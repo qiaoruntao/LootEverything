@@ -13,7 +13,7 @@ Begin GameMode
 		set cellOwner to rActor.GetParentCellOwner
 		if owner == player.GetBaseObject || owner == PlayerFaction || cellOwner == player.GetBaseObject || cellOwner == PlayerFaction
 			;messageex "owner= %n, cellOwner=%n" owner, cellOwner
-			rActor.activate tryLootHelper
+			rActor.activate tryLootHelper 1
 			messageex "%n looted" rActor
 		endif
 		set rActor to GetNextRef
@@ -25,8 +25,18 @@ Begin GameMode
 		ref cellOwner
 		set cellOwner to rActor.GetParentCellOwner
 		if owner == player.GetBaseObject || owner == PlayerFaction || cellOwner == player.GetBaseObject || cellOwner == PlayerFaction
-			;messageex "owner= %n, cellOwner=%n" owner, cellOwner
+			int tempCount
+			set tempCount to rActor.GetRefCount
+			messageex "31 count=%g" tempCount
 			rActor.activate tryLootHelper
+			let tempCount -= 1
+			ref base
+			set base to rActor.GetBaseObject
+			tryLootHelper.addItem base tempCount 1
+			;rActor.SetRefCount tempCount
+			;set tempCount to rActor.GetRefCount
+			;messageex "31 count=%g" tempCount
+			;messageex "owner= %n, cellOwner=%n" owner, cellOwner
 			messageex "%n looted" rActor
 		endif
 		set rActor to GetNextRef
