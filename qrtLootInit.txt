@@ -2,97 +2,92 @@
 ;用于执行loot操作
 
 Begin GameMode
-	int currentTryTimes
-	set currentTryTimes to 4
-	ref tempItem
+	messageex "run now"
 	int tempCount
-	set tempCount to 1
-	while tempCount==1 && currentTryTimes > 0
-		;inner loop search all refs in the current cell
-		set tempCount to 0
-		set tempItem to GetFirstRef
-		while tempItem !=0
-			;get some common flags
-			int tempType
-			set tempType to tempItem.GetType
-			;process part
-			if tempType ==21 ;actvator
-				ref tempBaseId
-				set tempBaseId to tempItem.GetBaseObject
-			elseif tempType ==24;Armor
-				set tempCount to 1
-				tempItem.activate player
-			elseif tempType ==25;Book
-				set tempCount to 1
-				tempItem.activate player
-			elseif tempType ==26;Clothing
-				set tempCount to 1
-				tempItem.activate player
-			elseif tempType ==27;Container
-				if tempItem.GetLocked==0
-					tempItem.RemoveAllItems player
-				endif
-			elseif tempType ==29;Ingredient
-				set tempCount to 1
-				messageex "%n looted" tempItem
-				tempItem.activate player
-			elseif tempType ==31;Misc
-				set tempCount to 1
-				messageex "%n looted" tempItem
-				tempItem.activate player					
-			elseif tempType ==40;Weapon
-				set tempCount to 1
-				messageex "%n looted" tempItem
-				tempItem.activate player
-			elseif tempType ==41;Ammo
-				set tempCount to 1
-				messageex "%n looted" tempItem
-				tempItem.activate player
-			elseif tempType ==42 || tempType ==43;creature
-				if tempItem.GetDead
-				;生物已死
-					ref creatureContainer
-					set creatureContainer to tempItem.GetContainer
-					ref creatureItem
-					tempItem.RemoveAllItems player
-				endif
-			elseif tempType ==46;Key
-				messageex "%n looted" tempItem
-				tempItem.activate player
-				set tempCount to 1
-			elseif tempType ==47;AlchemyItem
-				messageex "%n looted" tempItem
-				tempItem.activate player
-				set tempCount to 1
-			elseif tempType ==49;Note
-				messageex "%n looted" tempItem
-				tempItem.activate player
-				set tempCount to 1
-			elseif tempType ==50; ConstructibleObject
-				messageex "%n looted" tempItem
-				tempItem.activate player
-				set tempCount to 1
-			elseif tempType ==103; IMOD (weapon mods)
-				messageex "%n looted" tempItem
-				tempItem.activate player
-				set tempCount to 1
-			elseif tempType ==108; CHIP (casino chip)
-				messageex "%n looted" tempItem
-				tempItem.activate player
-				set tempCount to 1
-			elseif tempType ==115; CCRD (caravan card)
-				messageex "%n looted" tempItem
-				tempItem.activate player
-				set tempCount to 1
-			elseif tempType ==116; CMNY (faction currency)
-				messageex "%n looted" tempItem
-				tempItem.activate player
-				set tempCount to 1
+	ref tempItem
+	set tempItem to GetFirstRef
+	messageex "item name= %n" tempItem
+	while tempItem !=0
+		messageex "enter while"
+		;get some common flags
+		int tempType
+		set tempType to GetType tempItem
+		;messageex "item name= %n, type= %g, ref=%c" tempItem, tempType, tempItem
+		;process part
+		if tempType ==21 ;actvator
+			ref tempBaseId
+			set tempBaseId to tempItem.GetBaseObject
+		elseif tempType ==24;Armor
+			set tempCount to 1
+			tempItem.activate player
+		elseif tempType ==25;Book
+			set tempCount to 1
+			tempItem.activate player
+		elseif tempType ==26;Clothing
+			set tempCount to 1
+			tempItem.activate player
+		elseif tempType ==27;Container
+			if tempItem.GetLocked==0
+				tempItem.RemoveAllItems player
 			endif
-			;get ready for next search
-			set tempItem to GetNextRef
-		loop
-		;get ready for next procedule
-		set currentTryTimes to currentTryTimes - 1
+		elseif tempType ==29;Ingredient
+			set tempCount to 1
+			messageex "%n looted" tempItem
+			tempItem.activate player
+		elseif tempType ==31;Misc
+			set tempCount to 1
+			messageex "%n looted" tempItem
+			tempItem.activate player					
+		elseif tempType ==40;Weapon
+			set tempCount to 1
+			messageex "%n looted" tempItem
+			tempItem.activate player
+		elseif tempType ==41;Ammo
+			set tempCount to 1
+			messageex "%n looted" tempItem
+			tempItem.activate player
+		elseif tempType ==42 || tempType ==43;creature
+			if tempItem.GetDead
+			;生物已死
+				ref creatureContainer
+				set creatureContainer to tempItem.GetContainer
+				ref creatureItem
+				tempItem.RemoveAllItems player
+			endif
+		elseif tempType ==46;Key
+			messageex "%n looted" tempItem
+			tempItem.activate player
+			set tempCount to 1
+		elseif tempType ==47;AlchemyItem
+			messageex "%n looted" tempItem
+			tempItem.activate player
+			set tempCount to 1
+		elseif tempType ==49;Note
+			messageex "%n looted" tempItem
+			tempItem.activate player
+			set tempCount to 1
+		elseif tempType ==50; ConstructibleObject
+			messageex "%n looted" tempItem
+			tempItem.activate player
+			set tempCount to 1
+		elseif tempType ==103; IMOD (weapon mods)
+			messageex "%n looted" tempItem
+			tempItem.activate player
+			set tempCount to 1
+		elseif tempType ==108; CHIP (casino chip)
+			messageex "%n looted" tempItem
+			tempItem.activate player
+			set tempCount to 1
+		elseif tempType ==115; CCRD (caravan card)
+			messageex "%n looted" tempItem
+			tempItem.activate player
+			set tempCount to 1
+		elseif tempType ==116; CMNY (faction currency)
+			messageex "%n looted" tempItem
+			tempItem.activate player
+			set tempCount to 1
+		endif
+		;get ready for next search
+		set tempItem to GetNextRef
 	loop
 End
