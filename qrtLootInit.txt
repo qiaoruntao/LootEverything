@@ -6,69 +6,18 @@ Begin GameMode
 	set tryLootHelper to player
 	ref rActor
 	set rActor to GetFirstRef 24;Armor
-	while rActor != 0
+	if rActor != 0
 		rActor.activate tryLootHelper
-		MessageEx "%n looted" rActor
-		set rActor to GetNextRef
-	loop
-	set rActor to GetFirstRef 25;Book
-	while rActor != 0
-		rActor.activate tryLootHelper
-		MessageEx "%n looted" rActor
-		set rActor to GetNextRef
-	loop
-	set rActor to GetFirstRef 26;Clothing
-	while rActor != 0
-		rActor.activate tryLootHelper
-		MessageEx "%n looted" rActor
-		set rActor to GetNextRef
-	loop
-	set rActor to GetFirstRef 29;Ingredient
-	while rActor != 0
-		rActor.activate tryLootHelper
-		MessageEx "%n looted" rActor
-		set rActor to GetNextRef
-	loop
+		messageex "%n looted" rActor
+	endif
 	set rActor to GetFirstRef 31;Misc
-	while rActor != 0
+	if rActor != 0
+		ref owner
+		set owner to rActor.GetOwner
+		ref cellOwner
+		set cellOwner to rActor.GetParentCellOwner
+		messageex "owner= %n, cellOwner=%n" owner, cellOwner
 		rActor.activate tryLootHelper
-		MessageEx "%n looted" rActor
-		set rActor to GetNextRef
-	loop
-	set rActor to GetFirstRef 40;Weapon
-	while rActor != 0
-		rActor.activate tryLootHelper
-		MessageEx "%n looted" rActor
-		set rActor to GetNextRef
-	loop
-	set rActor to GetFirstRef 41;Ammo
-	while rActor != 0
-		rActor.activate tryLootHelper
-		MessageEx "%n looted" rActor
-		set rActor to GetNextRef
-	loop
-	set rActor to GetFirstRef 47;AlchemyItem
-	while rActor != 0
-		rActor.activate tryLootHelper
-		MessageEx "%n looted" rActor
-		set rActor to GetNextRef
-	loop
-	set rActor to GetFirstRef 49;Note
-	while rActor != 0
-		rActor.activate tryLootHelper
-		MessageEx "%n looted" rActor
-		set rActor to GetNextRef
-	loop
-	set rActor to GetFirstRef 50; ConstructibleObject
-	while rActor != 0
-		rActor.activate tryLootHelper
-		MessageEx "%n looted" rActor
-		set rActor to GetNextRef
-	loop
-	set rActor to GetFirstRef 103; IMOD (weapon mods)
-	while rActor != 0
-		rActor.activate tryLootHelper
-		MessageEx "%n looted" rActor
-		set rActor to GetNextRef
-	loop
+		messageex "%n looted" rActor
+	endif
 End
