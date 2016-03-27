@@ -6,7 +6,7 @@ Begin GameMode
 	set tryLootHelper to player
 	ref armorRef
 	set armorRef to GetFirstRef 24;Armor
-	if IsFormValid armorRef
+	while armorRef != 0
 		ref owner
 		set owner to armorRef.GetOwner
 		ref cellOwner
@@ -16,10 +16,11 @@ Begin GameMode
 			armorRef.activate tryLootHelper
 			messageex "%n looted" armorRef
 		endif
-	endif
+		set armorRef to GetNextRef
+	loop
 	ref miscRef
 	set miscRef to GetFirstRef 31;Misc
-	if IsFormValid miscRef
+	while miscRef != 0
 		ref owner
 		set owner to miscRef.GetOwner
 		ref cellOwner
@@ -29,10 +30,11 @@ Begin GameMode
 			miscRef.activate tryLootHelper
 			messageex "%n looted" miscRef
 		endif
-	endif
+		set miscRef to GetNextRef
+	loop
 	ref weaponRef
 	set weaponRef to GetFirstRef 40;Weapon
-	if IsFormValid weaponRef
+	while weaponRef != 0
 		ref owner
 		set owner to weaponRef.GetOwner
 		ref cellOwner
@@ -42,7 +44,8 @@ Begin GameMode
 			weaponRef.activate tryLootHelper
 			messageex "%n looted" weaponRef
 		endif
-	endif
+		set weaponRef to GetNextRef
+	loop
 	ref ammoRef
 	set ammoRef to GetFirstRef 41;Ammo
 	if IsFormValid ammoRef
