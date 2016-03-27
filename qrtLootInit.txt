@@ -1,0 +1,30 @@
+﻿scn tryLootScript
+;用于执行loot操作
+
+Begin GameMode
+	int currentTryTimes
+	set currentTryTimes to 4
+	ref tempItem
+	
+	int tempCount
+	set tempCount to 1
+	while tempCount==1 && currentTryTimes > 0
+		;inner loop search all refs in the current cell
+		set tempItem to GetFirstRef
+		while tempItem !=0
+			;get some common flags
+			int tempType
+			set tempType to tempItem.GetType
+			;process part
+			if tempType ==21 ;actvator
+				ref tempBaseId
+				set tempBaseId to tempItem.GetBaseObject
+			elseif tempType ==24;Armor
+				set tempCount to 1
+				tempItem.activate player
+			endif
+			;ready for next search
+			set tempItem to GetNextRef
+		loop
+	loop
+End
