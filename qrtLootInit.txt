@@ -4,47 +4,45 @@
 Begin GameMode
 	ref tryLootHelper
 	set tryLootHelper to player
-	ref armorRef
-	set armorRef to GetFirstRef 24;Armor
-	while armorRef != 0
+	ref rActor
+	set rActor to GetFirstRef 24;Armor
+	while rActor != 0
 		ref owner
-		set owner to armorRef.GetOwner
+		set owner to rActor.GetOwner
 		ref cellOwner
-		set cellOwner to armorRef.GetParentCellOwner
+		set cellOwner to rActor.GetParentCellOwner
 		if owner == player.GetBaseObject || owner == PlayerFaction || cellOwner == player.GetBaseObject || cellOwner == PlayerFaction
 			;messageex "owner= %n, cellOwner=%n" owner, cellOwner
-			armorRef.activate tryLootHelper
-			messageex "%n looted" armorRef
+			rActor.activate tryLootHelper
+			messageex "%n looted" rActor
 		endif
-		set armorRef to GetNextRef
+		set rActor to GetNextRef
 	loop
-	ref miscRef
-	set miscRef to GetFirstRef 31;Misc
-	while miscRef != 0
+	set rActor to GetFirstRef 31;Misc
+	while rActor != 0
 		ref owner
-		set owner to miscRef.GetOwner
+		set owner to rActor.GetOwner
 		ref cellOwner
-		set cellOwner to miscRef.GetParentCellOwner
+		set cellOwner to rActor.GetParentCellOwner
 		if owner == player.GetBaseObject || owner == PlayerFaction || cellOwner == player.GetBaseObject || cellOwner == PlayerFaction
 			;messageex "owner= %n, cellOwner=%n" owner, cellOwner
-			miscRef.activate tryLootHelper
-			messageex "%n looted" miscRef
+			rActor.activate tryLootHelper
+			messageex "%n looted" rActor
 		endif
-		set miscRef to GetNextRef
+		set rActor to GetNextRef
 	loop
-	ref weaponRef
-	set weaponRef to GetFirstRef 40;Weapon
-	while weaponRef != 0
+	set rActor to GetFirstRef 40;Weapon
+	while rActor != 0
 		ref owner
-		set owner to weaponRef.GetOwner
+		set owner to rActor.GetOwner
 		ref cellOwner
-		set cellOwner to weaponRef.GetParentCellOwner
+		set cellOwner to rActor.GetParentCellOwner
 		if owner == player.GetBaseObject || owner == PlayerFaction || cellOwner == player.GetBaseObject || cellOwner == PlayerFaction
 			;messageex "owner= %n, cellOwner=%n" owner, cellOwner
-			weaponRef.activate tryLootHelper
-			messageex "%n looted" weaponRef
+			rActor.activate tryLootHelper
+			messageex "%n looted" rActor
 		endif
-		set weaponRef to GetNextRef
+		set rActor to GetNextRef
 	loop
 	ref ammoRef
 	set ammoRef to GetFirstRef 41;Ammo
@@ -163,7 +161,7 @@ Begin GameMode
 			messageex "%n looted" currencyRef
 		endif
 	endif
-	ref rActor
+	
 	set rActor to GetFirstRef 0;none
 	if rActor != 0
 		ref owner
