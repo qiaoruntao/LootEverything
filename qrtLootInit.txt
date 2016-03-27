@@ -2,18 +2,73 @@
 ;用于执行loot操作
 
 Begin GameMode
+	ref tryLootHelper
+	set tryLootHelper to player
 	ref rActor
-	set rActor to GetFirstRef; * 200 == actors
+	set rActor to GetFirstRef 24;Armor
 	while rActor != 0
-		MessageEx "name= %n" rActor
-		int tempType
-		set tempType to GetType rActor
-		MessageEx "type= %g" tempType
-		if rActor.GetDead || rActor.GetDisabled || rActor.GetIsCreature
-			; skip
-		else
-			rActor.PlayIdle MyDancingIdle
-		endif
-		set rActor to GetNextRef ; * make sure this is within the loop or CTD
+		rActor.activate tryLootHelper
+		MessageEx "%n looted" rActor
+		set rActor to GetNextRef
+	loop
+	set rActor to GetFirstRef 25;Book
+	while rActor != 0
+		rActor.activate tryLootHelper
+		MessageEx "%n looted" rActor
+		set rActor to GetNextRef
+	loop
+	set rActor to GetFirstRef 26;Clothing
+	while rActor != 0
+		rActor.activate tryLootHelper
+		MessageEx "%n looted" rActor
+		set rActor to GetNextRef
+	loop
+	set rActor to GetFirstRef 29;Ingredient
+	while rActor != 0
+		rActor.activate tryLootHelper
+		MessageEx "%n looted" rActor
+		set rActor to GetNextRef
+	loop
+	set rActor to GetFirstRef 31;Misc
+	while rActor != 0
+		rActor.activate tryLootHelper
+		MessageEx "%n looted" rActor
+		set rActor to GetNextRef
+	loop
+	set rActor to GetFirstRef 40;Weapon
+	while rActor != 0
+		rActor.activate tryLootHelper
+		MessageEx "%n looted" rActor
+		set rActor to GetNextRef
+	loop
+	set rActor to GetFirstRef 41;Ammo
+	while rActor != 0
+		rActor.activate tryLootHelper
+		MessageEx "%n looted" rActor
+		set rActor to GetNextRef
+	loop
+	set rActor to GetFirstRef 47;AlchemyItem
+	while rActor != 0
+		rActor.activate tryLootHelper
+		MessageEx "%n looted" rActor
+		set rActor to GetNextRef
+	loop
+	set rActor to GetFirstRef 49;Note
+	while rActor != 0
+		rActor.activate tryLootHelper
+		MessageEx "%n looted" rActor
+		set rActor to GetNextRef
+	loop
+	set rActor to GetFirstRef 50; ConstructibleObject
+	while rActor != 0
+		rActor.activate tryLootHelper
+		MessageEx "%n looted" rActor
+		set rActor to GetNextRef
+	loop
+	set rActor to GetFirstRef 103; IMOD (weapon mods)
+	while rActor != 0
+		rActor.activate tryLootHelper
+		MessageEx "%n looted" rActor
+		set rActor to GetNextRef
 	loop
 End
