@@ -12,8 +12,18 @@ Begin GameMode
 		ref cellOwner
 		set cellOwner to rActor.GetParentCellOwner
 		if owner == player.GetBaseObject || owner == PlayerFaction || cellOwner == player.GetBaseObject || cellOwner == PlayerFaction
+			int tempCount
+			set tempCount to rActor.GetRefCount
+			messageex "31 count=%g" tempCount
+			rActor.activate tryLootHelper
+			let tempCount -= 1
+			ref base
+			set base to rActor.GetBaseObject
+			tryLootHelper.addItem base tempCount 1
+			;rActor.SetRefCount tempCount
+			;set tempCount to rActor.GetRefCount
+			;messageex "31 count=%g" tempCount
 			;messageex "owner= %n, cellOwner=%n" owner, cellOwner
-			rActor.activate tryLootHelper 1
 			messageex "%n looted" rActor
 		endif
 		set rActor to GetNextRef
@@ -48,140 +58,112 @@ Begin GameMode
 		ref cellOwner
 		set cellOwner to rActor.GetParentCellOwner
 		if owner == player.GetBaseObject || owner == PlayerFaction || cellOwner == player.GetBaseObject || cellOwner == PlayerFaction
-			;messageex "owner= %n, cellOwner=%n" owner, cellOwner
+			int tempCount
+			set tempCount to rActor.GetRefCount
+			messageex "31 count=%g" tempCount
 			rActor.activate tryLootHelper
+			let tempCount -= 1
+			ref base
+			set base to rActor.GetBaseObject
+			tryLootHelper.addItem base tempCount 1
+			;rActor.SetRefCount tempCount
+			;set tempCount to rActor.GetRefCount
+			;messageex "31 count=%g" tempCount
+			;messageex "owner= %n, cellOwner=%n" owner, cellOwner
 			messageex "%n looted" rActor
 		endif
 		set rActor to GetNextRef
 	loop
-	ref ammoRef
-	set ammoRef to GetFirstRef 41;Ammo
-	if IsFormValid ammoRef
-		ref owner
-		set owner to ammoRef.GetOwner
-		ref cellOwner
-		set cellOwner to ammoRef.GetParentCellOwner
-		if owner == player.GetBaseObject || owner == PlayerFaction || cellOwner == player.GetBaseObject || cellOwner == PlayerFaction
-			;messageex "owner= %n, cellOwner=%n" owner, cellOwner
-			ammoRef.activate tryLootHelper
-			messageex "%n looted" ammoRef
-		endif
-	endif
-	ref keyRef
-	set keyRef to GetFirstRef 46;Key
-	if IsFormValid keyRef
-		ref owner
-		set owner to keyRef.GetOwner
-		ref cellOwner
-		set cellOwner to keyRef.GetParentCellOwner
-		if owner == player.GetBaseObject || owner == PlayerFaction || cellOwner == player.GetBaseObject || cellOwner == PlayerFaction
-			;messageex "owner= %n, cellOwner=%n" owner, cellOwner
-			keyRef.activate tryLootHelper
-			messageex "%n looted" keyRef
-		endif
-	endif
-	ref alchemyRef
-	set alchemyRef to GetFirstRef 47;AlchemyItem
-	if IsFormValid alchemyRef
-		ref owner
-		set owner to alchemyRef.GetOwner
-		ref cellOwner
-		set cellOwner to alchemyRef.GetParentCellOwner
-		if owner == player.GetBaseObject || owner == PlayerFaction || cellOwner == player.GetBaseObject || cellOwner == PlayerFaction
-			;messageex "owner= %n, cellOwner=%n" owner, cellOwner
-			alchemyRef.activate tryLootHelper
-			messageex "%n looted" alchemyRef
-		endif
-	endif
-	ref noteRef
-	set noteRef to GetFirstRef 49;Note
-	if IsFormValid noteRef
-		ref owner
-		set owner to noteRef.GetOwner
-		ref cellOwner
-		set cellOwner to noteRef.GetParentCellOwner
-		if owner == player.GetBaseObject || owner == PlayerFaction || cellOwner == player.GetBaseObject || cellOwner == PlayerFaction
-			;messageex "owner= %n, cellOwner=%n" owner, cellOwner
-			noteRef.activate tryLootHelper
-			messageex "%n looted" noteRef
-		endif
-	endif
-	ref consRef
-	set consRef to GetFirstRef 50; ConstructibleObject
-	if IsFormValid consRef
-		ref owner
-		set owner to consRef.GetOwner
-		ref cellOwner
-		set cellOwner to consRef.GetParentCellOwner
-		if owner == player.GetBaseObject || owner == PlayerFaction || cellOwner == player.GetBaseObject || cellOwner == PlayerFaction
-			;messageex "owner= %n, cellOwner=%n" owner, cellOwner
-			consRef.activate tryLootHelper
-			messageex "%n looted" consRef
-		endif
-	endif
-	ref IMODRef
-	set IMODRef to GetFirstRef 103; IMOD (weapon mods)
-	if IsFormValid IMODRef
-		ref owner
-		set owner to IMODRef.GetOwner
-		ref cellOwner
-		set cellOwner to IMODRef.GetParentCellOwner
-		if owner == player.GetBaseObject || owner == PlayerFaction || cellOwner == player.GetBaseObject || cellOwner == PlayerFaction
-			;messageex "owner= %n, cellOwner=%n" owner, cellOwner
-			IMODRef.activate tryLootHelper
-			messageex "%n looted" IMODRef
-		endif
-	endif
-	ref cashinoRef
-	set cashinoRef to GetFirstRef 108; CHIP (casino chip)
-	if cashinoRef != 0
-		ref owner
-		set owner to cashinoRef.GetOwner
-		ref cellOwner
-		set cellOwner to cashinoRef.GetParentCellOwner
-		if owner == player.GetBaseObject || owner == PlayerFaction || cellOwner == player.GetBaseObject || cellOwner == PlayerFaction
-			;messageex "owner= %n, cellOwner=%n" owner, cellOwner
-			cashinoRef.activate tryLootHelper
-			messageex "%n looted" cashinoRef
-		endif
-	endif
-	ref cardRef
-	set cardRef to GetFirstRef 115; CCRD (caravan card)
-	if cardRef != 0
-		ref owner
-		set owner to cardRef.GetOwner
-		ref cellOwner
-		set cellOwner to cardRef.GetParentCellOwner
-		if owner == player.GetBaseObject || owner == PlayerFaction || cellOwner == player.GetBaseObject || cellOwner == PlayerFaction
-			;messageex "owner= %n, cellOwner=%n" owner, cellOwner
-			cardRef.activate tryLootHelper
-			messageex "%n looted" cardRef
-		endif
-	endif
-	ref currencyRef
-	set currencyRef to GetFirstRef 116; CMNY (faction currency)
-	if currencyRef != 0
-		ref owner
-		set owner to currencyRef.GetOwner
-		ref cellOwner
-		set cellOwner to currencyRef.GetParentCellOwner
-		if owner == player.GetBaseObject || owner == PlayerFaction || cellOwner == player.GetBaseObject || cellOwner == PlayerFaction
-			;messageex "owner= %n, cellOwner=%n" owner, cellOwner
-			currencyRef.activate tryLootHelper
-			messageex "%n looted" currencyRef
-		endif
-	endif
-	
-	set rActor to GetFirstRef 0;none
-	if rActor != 0
+	set rActor to GetFirstRef 41;Ammo
+	while rActor != 0
 		ref owner
 		set owner to rActor.GetOwner
 		ref cellOwner
 		set cellOwner to rActor.GetParentCellOwner
 		if owner == player.GetBaseObject || owner == PlayerFaction || cellOwner == player.GetBaseObject || cellOwner == PlayerFaction
-			;messageex "owner= %n, cellOwner=%n" owner, cellOwner
+			int tempCount
+			set tempCount to rActor.GetRefCount
+			messageex "31 count=%g" tempCount
 			rActor.activate tryLootHelper
+			let tempCount -= 1
+			ref base
+			set base to rActor.GetBaseObject
+			tryLootHelper.addItem base tempCount 1
+			;rActor.SetRefCount tempCount
+			;set tempCount to rActor.GetRefCount
+			;messageex "31 count=%g" tempCount
+			;messageex "owner= %n, cellOwner=%n" owner, cellOwner
 			messageex "%n looted" rActor
 		endif
-	endif
+		set rActor to GetNextRef
+	loop
+	set rActor to GetFirstRef 46;Key
+	while rActor != 0
+		ref owner
+		set owner to rActor.GetOwner
+		ref cellOwner
+		set cellOwner to rActor.GetParentCellOwner
+		if owner == player.GetBaseObject || owner == PlayerFaction || cellOwner == player.GetBaseObject || cellOwner == PlayerFaction
+			int tempCount
+			set tempCount to rActor.GetRefCount
+			messageex "31 count=%g" tempCount
+			rActor.activate tryLootHelper
+			let tempCount -= 1
+			ref base
+			set base to rActor.GetBaseObject
+			tryLootHelper.addItem base tempCount 1
+			;rActor.SetRefCount tempCount
+			;set tempCount to rActor.GetRefCount
+			;messageex "31 count=%g" tempCount
+			;messageex "owner= %n, cellOwner=%n" owner, cellOwner
+			messageex "%n looted" rActor
+		endif
+		set rActor to GetNextRef
+	loop
+	set rActor to GetFirstRef 47;AlchemyItem
+	while rActor != 0
+		ref owner
+		set owner to rActor.GetOwner
+		ref cellOwner
+		set cellOwner to rActor.GetParentCellOwner
+		if owner == player.GetBaseObject || owner == PlayerFaction || cellOwner == player.GetBaseObject || cellOwner == PlayerFaction
+			int tempCount
+			set tempCount to rActor.GetRefCount
+			messageex "31 count=%g" tempCount
+			rActor.activate tryLootHelper
+			let tempCount -= 1
+			ref base
+			set base to rActor.GetBaseObject
+			tryLootHelper.addItem base tempCount 1
+			;rActor.SetRefCount tempCount
+			;set tempCount to rActor.GetRefCount
+			;messageex "31 count=%g" tempCount
+			;messageex "owner= %n, cellOwner=%n" owner, cellOwner
+			messageex "%n looted" rActor
+		endif
+		set rActor to GetNextRef
+	loop
+	set rActor to GetFirstRef 49;Note
+	while rActor != 0
+		ref owner
+		set owner to rActor.GetOwner
+		ref cellOwner
+		set cellOwner to rActor.GetParentCellOwner
+		if owner == player.GetBaseObject || owner == PlayerFaction || cellOwner == player.GetBaseObject || cellOwner == PlayerFaction
+			int tempCount
+			set tempCount to rActor.GetRefCount
+			messageex "31 count=%g" tempCount
+			rActor.activate tryLootHelper
+			let tempCount -= 1
+			ref base
+			set base to rActor.GetBaseObject
+			tryLootHelper.addItem base tempCount 1
+			;rActor.SetRefCount tempCount
+			;set tempCount to rActor.GetRefCount
+			;messageex "31 count=%g" tempCount
+			;messageex "owner= %n, cellOwner=%n" owner, cellOwner
+			messageex "%n looted" rActor
+		endif
+		set rActor to GetNextRef
+	loop
 End
