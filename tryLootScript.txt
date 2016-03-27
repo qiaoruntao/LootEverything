@@ -1,0 +1,205 @@
+﻿scn tryLootScript
+;用于执行loot操作
+
+int t
+int bIsNPressed
+int targetKey
+int debugint
+int isRemoveToPlayer
+int isNotToSort
+;
+int isToLoot
+int currentTryTimes
+int maxTimes
+;用于自动搜刮计数
+int timesCount
+int isToAutoLoot
+Begin GameMode
+;用于执行一键搜刮, 搜刮的装备
+	;通过自动搜刮进入
+	if isToAutoLoot
+		set timesCount to timesCount+1
+		if timesCount==50
+			set timesCount to 0
+			set isToLoot to 1
+		endif
+	;通过按键事件进入
+	elseif bIsNPressed != IsKeyPressed 49 
+		set bIsNPressed to IsKeyPressed 49 
+		if bIsNPressed
+		else
+		;按钮放开
+			set isToLoot to 1
+		endif
+	endif
+	;
+	if isToLoot==1
+		;NOTE: 
+		set isToLoot to 0
+		set maxTimes to 3
+		set currentTryTimes to maxTimes + 1
+		;
+		ref tempItem
+		int tempType
+		;记录是否有搜刮到物品
+		int tempCount
+		set tempCount to 	1
+		while tempCount==1 && currentTryTimes > 0
+		;如果发现本次循环中有搜刮到，那么继续搜刮
+			set tempCount to 0
+			set currentTryTimes to currentTryTimes - 1
+			;开始遍历
+			set tempItem to GetFirstRef
+			while tempItem !=0
+			;得到类型
+				set tempType to tempItem.GetType
+				if tempType ==21 ;actvator
+					ref tempBaseId
+					set tempBaseId to tempItem.GetBaseObject
+					if IsRefInList tryWasterLandPlantsList tempBaseId !=-1
+					;是植物
+						tempItem.activate player 1
+;						messageboxex "%n added" tempItem
+					endif
+				elseif tempType ==23 ;Terminal
+					if tempItem.GetLocked==1 && currentTryTimes==maxTimes
+					;发现锁上的终端, 给出位置提示
+						float temppos
+						float  x
+						set x to Player.GetPos X
+						set temppos to tempItem.GetPos X
+						set x to x - temppos
+						float  y
+						set y to Player.GetPos Y
+						set temppos to tempItem.GetPos Y
+						set y to y - temppos
+						float  z_pos
+						set z_pos to Player.GetPos Z
+						set temppos to tempItem.GetPos Z
+						set z_pos to z_pos - temppos
+						messageex "terminal dx=%g, dy=%g, dz=%g" x y z_pos
+					endif
+				elseif tempType ==24;Armor
+						set tempCount to 1
+						tempItem.activate tryLootHelper
+					elseif tempType ==25;Book
+						set tempCount to 1
+						tempItem.activate tryLootHelper
+					elseif tempType ==26;Clothing
+						set tempCount to 1
+						tempItem.activate tryLootHelper
+					elseif tempType ==27;Container
+						if tempItem.GetLocked==1&& currentTryTimes==maxTimes
+						;发现锁着的箱子
+							float temppos
+							float  x
+							set x to Player.GetPos X
+							set temppos to tempItem.GetPos X
+							set x to x - temppos
+							float  y
+							set y to Player.GetPos Y
+							set temppos to tempItem.GetPos Y
+							set y to y - temppos
+							float  z_pos
+							set z_pos to Player.GetPos Z
+							set temppos to tempItem.GetPos Z
+							set z_pos to z_pos - temppos
+							messageex "lock dx=%g, dy=%g, dz=%g" x y z_pos
+						elseif tempItem.GetLocked==0
+						;发现未被锁的箱子
+							if player.GetInCell tryMainRoom
+							;避免搜刮主箱
+							else
+								if tempItem.GetItemCount EveryThing != 0
+								;不空
+	;								messageboxex "test, 27 empty"
+									messageex "container %n looted" tempItem
+									tempItem.RemoveAllItems tryLootHelper
+								endif						
+							endif
+						endif
+					elseif tempType ==28;Door
+						if tempItem.GetLocked==1
+						;find a locked door
+							;showmessage trydebugint tempType 
+						endif
+					elseif tempType ==29;Ingredient
+						set tempCount to 1
+						messageex "%n looted" tempItem
+						tempItem.activate tryLootHelper
+					elseif tempType ==31;Misc
+						set tempCount to 1
+						messageex "%n looted" tempItem
+						tempItem.activate tryLootHelper					
+					elseif tempType ==40;Weapon
+						set tempCount to 1
+						messageex "%n looted" tempItem
+						tempItem.activate tryLootHelper
+					elseif tempType ==41;Ammo
+						set tempCount to 1
+						messageex "%n looted" tempItem
+						tempItem.activate tryLootHelper
+					elseif tempType ==42 || tempType ==43;creature
+						if tempItem.GetDead
+						;生物已死
+							ref creatureContainer
+							set creatureContainer to tempItem.GetContainer
+							ref creatureItem
+							;TODO loot提示
+;							messageboxex "entered"
+							tempItem.RemoveAllItems tryLootHelper
+						endif
+					elseif tempType ==46;Key
+						if tempItem.GetLocked==1
+						;find a key
+							;showmessage trydebugint tempType 
+						endif
+					elseif tempType ==47;AlchemyItem
+						messageex "%n looted" tempItem
+						tempItem.activate tryLootHelper
+						set tempCount to 1
+					elseif tempType ==49;Note
+						if tempItem.GetLocked==1
+						;find a locked note
+							;showmessage trydebugint tempType 
+						endif
+					elseif tempType ==50; ConstructibleObject
+						messageex "%n looted" tempItem
+						tempItem.activate tryLootHelper
+						set tempCount to 1
+					elseif tempType ==103; IMOD (weapon mods)
+						messageex "%n looted" tempItem
+						tempItem.activate tryLootHelper
+						set tempCount to 1
+					elseif tempType ==108; CHIP (casino chip)
+						messageex "%n looted" tempItem
+						tempItem.activate tryLootHelper
+						set tempCount to 1
+					elseif tempType ==115; CCRD (caravan card)
+						messageex "%n looted" tempItem
+						tempItem.activate tryLootHelper
+						set tempCount to 1
+					elseif tempType ==116; CMNY (faction currency)
+						messageex "%n looted" tempItem
+						tempItem.activate tryLootHelper
+						set tempCount to 1
+					endif
+					;前进至下一个
+					set tempItem to GetNextRef
+				loop
+		loop
+		;显示清空的消息
+		messageex "cleared"
+		;移动
+		if isRemoveToPlayer
+			tryLootHelper.RemoveAllItems player 1
+		else
+			tryLootHelper.RemoveAllItems tryOthersContainer 1
+			if isNotToSort
+			else
+			;对Others整理
+				tryOthersContainer.activate tryRefreshSignal 1
+			endif
+		endif
+	endif
+End
