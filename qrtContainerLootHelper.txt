@@ -8,7 +8,7 @@ Begin Function {tryLootHelper}
 	set rActor to GetFirstRef 27
 	while rActor != 0
 		let isLegal := call qrtIsLegalToPickUpFunction rActor
-		if isLegal && rActor.GetLocked==0
+		if isLegal && rActor.GetLocked==0 && rActor.GetContainerInventoryCount >=1
 			rActor.RemoveAllItems tryLootHelper 1 1
 			messageex "%n looted" rActor
 		endif
