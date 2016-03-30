@@ -1,0 +1,25 @@
+﻿scn qrtSingleKindLootFunction
+
+int itemType
+ref tryLootHelper
+ref rActor
+int isLegal
+ref base
+int tempCount
+
+Begin Function { itemType, tryLootHelper}
+	set rActor to GetFirstRef itemType;Armor
+	while rActor != 0
+		let isLegal := call qrtIsLegalToPickUpFunction rActor
+		if isLegal
+			set tempCount to rActor.GetRefCount
+			rActor.activate tryLootHelper
+			let tempCount -= 1
+			set base to rActor.GetBaseObject
+			tryLootHelper.addItem base tempCount 1
+			;messageex "owner= %n, cellOwner=%n" owner, cellOwner
+			messageex "%n looted" rActor
+		endif
+		set rActor to GetNextRef
+	loop
+End 

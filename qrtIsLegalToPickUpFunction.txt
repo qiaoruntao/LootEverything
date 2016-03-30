@@ -1,0 +1,13 @@
+﻿scn qrtIsLegalToPickUpFunction
+
+ref rActor ;rActor !=0
+int result
+ref owner
+ref cellOwner
+
+Begin Function { rActor}
+	set owner to rActor.GetOwner
+	set cellOwner to rActor.GetParentCellOwner
+	let result := (owner==0 && cellOwner==0) || owner == player.GetBaseObject || owner == PlayerFaction || cellOwner == player.GetBaseObject || cellOwner == PlayerFaction
+	SetFunctionValue result
+End
