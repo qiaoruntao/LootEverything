@@ -5,39 +5,19 @@ Begin GameMode
 	ref tryLootHelper
 	set tryLootHelper to player
 	ref rActor
-	set rActor to GetFirstRef 24;Armor
-	while rActor != 0
-		ref owner
-		set owner to rActor.GetOwner
-		ref cellOwner
-		set cellOwner to rActor.GetParentCellOwner
-		if owner == player.GetBaseObject || owner == PlayerFaction || cellOwner == player.GetBaseObject || cellOwner == PlayerFaction
-			int tempCount
-			set tempCount to rActor.GetRefCount
-			messageex "31 count=%g" tempCount
-			rActor.activate tryLootHelper
-			let tempCount -= 1
-			ref base
-			set base to rActor.GetBaseObject
-			tryLootHelper.addItem base tempCount 1
-			;rActor.SetRefCount tempCount
-			;set tempCount to rActor.GetRefCount
-			;messageex "31 count=%g" tempCount
-			;messageex "owner= %n, cellOwner=%n" owner, cellOwner
-			messageex "%n looted" rActor
-		endif
-		set rActor to GetNextRef
-	loop
+	;process container
 	set rActor to GetFirstRef 27;Container
 	while rActor != 0
 		ref owner
 		set owner to rActor.GetOwner
 		ref cellOwner
 		set cellOwner to rActor.GetParentCellOwner
-		messageex "%n looted. cellOwner =%n, owner =%n" rActor, cellOwner, owner
-		rActor.RemoveAllItems tryLootHelper
+		;messageex "%n looted. cellOwner =%n, owner =%n" rActor, cellOwner, owner
+		rActor.RemoveAllItems tryLootHelper 1 1
 		set rActor to GetNextRef
 	loop
+	;42, 43 ==creature
+	messageex "42 check start"
 	set rActor to GetFirstRef 42;creature
 	while rActor != 0
 		ref owner
@@ -47,11 +27,13 @@ Begin GameMode
 		if rActor.GetDead
 			ref creatureContainer
 			set creatureContainer to rActor.GetContainer
+			;messageex "%n container" creatureContainer
+			rActor.RemoveAllItems tryLootHelper
 			messageex "%n looted" rActor
-			creatureContainer.RemoveAllItems tryLootHelper
 		endif
 		set rActor to GetNextRef
 	loop
+	messageex "43 check start"
 	set rActor to GetFirstRef 43;creature
 	while rActor != 0
 		ref owner
@@ -61,147 +43,25 @@ Begin GameMode
 		if rActor.GetDead
 			ref creatureContainer
 			set creatureContainer to rActor.GetContainer
-			messageex "%n looted" rActor
-			creatureContainer.RemoveAllItems tryLootHelper
-		endif
-		set rActor to GetNextRef
-	loop
-	set rActor to GetFirstRef 31;Misc
-	while rActor != 0
-		ref owner
-		set owner to rActor.GetOwner
-		ref cellOwner
-		set cellOwner to rActor.GetParentCellOwner
-		if owner == player.GetBaseObject || owner == PlayerFaction || cellOwner == player.GetBaseObject || cellOwner == PlayerFaction
-			int tempCount
-			set tempCount to rActor.GetRefCount
-			messageex "31 count=%g" tempCount
-			rActor.activate tryLootHelper
-			let tempCount -= 1
-			ref base
-			set base to rActor.GetBaseObject
-			tryLootHelper.addItem base tempCount 1
-			;rActor.SetRefCount tempCount
-			;set tempCount to rActor.GetRefCount
-			;messageex "31 count=%g" tempCount
-			;messageex "owner= %n, cellOwner=%n" owner, cellOwner
+			rActor.RemoveAllItems tryLootHelper
 			messageex "%n looted" rActor
 		endif
 		set rActor to GetNextRef
 	loop
-	set rActor to GetFirstRef 40;Weapon
-	while rActor != 0
-		ref owner
-		set owner to rActor.GetOwner
-		ref cellOwner
-		set cellOwner to rActor.GetParentCellOwner
-		if owner == player.GetBaseObject || owner == PlayerFaction || cellOwner == player.GetBaseObject || cellOwner == PlayerFaction
-			int tempCount
-			set tempCount to rActor.GetRefCount
-			messageex "31 count=%g" tempCount
-			rActor.activate tryLootHelper
-			let tempCount -= 1
-			ref base
-			set base to rActor.GetBaseObject
-			tryLootHelper.addItem base tempCount 1
-			;rActor.SetRefCount tempCount
-			;set tempCount to rActor.GetRefCount
-			;messageex "31 count=%g" tempCount
-			;messageex "owner= %n, cellOwner=%n" owner, cellOwner
-			messageex "%n looted" rActor
-		endif
-		set rActor to GetNextRef
-	loop
-	set rActor to GetFirstRef 41;Ammo
-	while rActor != 0
-		ref owner
-		set owner to rActor.GetOwner
-		ref cellOwner
-		set cellOwner to rActor.GetParentCellOwner
-		if owner == player.GetBaseObject || owner == PlayerFaction || cellOwner == player.GetBaseObject || cellOwner == PlayerFaction
-			int tempCount
-			set tempCount to rActor.GetRefCount
-			messageex "31 count=%g" tempCount
-			rActor.activate tryLootHelper
-			let tempCount -= 1
-			ref base
-			set base to rActor.GetBaseObject
-			tryLootHelper.addItem base tempCount 1
-			;rActor.SetRefCount tempCount
-			;set tempCount to rActor.GetRefCount
-			;messageex "31 count=%g" tempCount
-			;messageex "owner= %n, cellOwner=%n" owner, cellOwner
-			messageex "%n looted" rActor
-		endif
-		set rActor to GetNextRef
-	loop
-	set rActor to GetFirstRef 46;Key
-	while rActor != 0
-		ref owner
-		set owner to rActor.GetOwner
-		ref cellOwner
-		set cellOwner to rActor.GetParentCellOwner
-		if owner == player.GetBaseObject || owner == PlayerFaction || cellOwner == player.GetBaseObject || cellOwner == PlayerFaction
-			int tempCount
-			set tempCount to rActor.GetRefCount
-			messageex "31 count=%g" tempCount
-			rActor.activate tryLootHelper
-			let tempCount -= 1
-			ref base
-			set base to rActor.GetBaseObject
-			tryLootHelper.addItem base tempCount 1
-			;rActor.SetRefCount tempCount
-			;set tempCount to rActor.GetRefCount
-			;messageex "31 count=%g" tempCount
-			;messageex "owner= %n, cellOwner=%n" owner, cellOwner
-			messageex "%n looted" rActor
-		endif
-		set rActor to GetNextRef
-	loop
-	set rActor to GetFirstRef 47;AlchemyItem
-	while rActor != 0
-		ref owner
-		set owner to rActor.GetOwner
-		ref cellOwner
-		set cellOwner to rActor.GetParentCellOwner
-		if owner == player.GetBaseObject || owner == PlayerFaction || cellOwner == player.GetBaseObject || cellOwner == PlayerFaction
-			int tempCount
-			set tempCount to rActor.GetRefCount
-			messageex "31 count=%g" tempCount
-			rActor.activate tryLootHelper
-			let tempCount -= 1
-			ref base
-			set base to rActor.GetBaseObject
-			tryLootHelper.addItem base tempCount 1
-			;rActor.SetRefCount tempCount
-			;set tempCount to rActor.GetRefCount
-			;messageex "31 count=%g" tempCount
-			;messageex "owner= %n, cellOwner=%n" owner, cellOwner
-			messageex "%n looted" rActor
-		endif
-		set rActor to GetNextRef
-	loop
-	set rActor to GetFirstRef 49;Note
-	while rActor != 0
-		ref owner
-		set owner to rActor.GetOwner
-		ref cellOwner
-		set cellOwner to rActor.GetParentCellOwner
-		if owner == player.GetBaseObject || owner == PlayerFaction || cellOwner == player.GetBaseObject || cellOwner == PlayerFaction
-			int tempCount
-			set tempCount to rActor.GetRefCount
-			messageex "31 count=%g" tempCount
-			rActor.activate tryLootHelper
-			let tempCount -= 1
-			ref base
-			set base to rActor.GetBaseObject
-			tryLootHelper.addItem base tempCount 1
-			;rActor.SetRefCount tempCount
-			;set tempCount to rActor.GetRefCount
-			;messageex "31 count=%g" tempCount
-			;messageex "owner= %n, cellOwner=%n" owner, cellOwner
-			messageex "%n looted" rActor
-		endif
-		set rActor to GetNextRef
-	loop
+	;process some type which require only one activate
+	call qrtSingleKindLootFunction 24 player
+	call qrtSingleKindLootFunction 25 player
+	call qrtSingleKindLootFunction 26 player
+	call qrtSingleKindLootFunction 29 player
+	call qrtSingleKindLootFunction 31 player
+	call qrtSingleKindLootFunction 40 player
+	call qrtSingleKindLootFunction 41 player
+	call qrtSingleKindLootFunction 46 player
+	call qrtSingleKindLootFunction 47 player
+	call qrtSingleKindLootFunction 49 player
+	call qrtSingleKindLootFunction 50 player
+	call qrtSingleKindLootFunction 103 player
+	call qrtSingleKindLootFunction 108 player
+	call qrtSingleKindLootFunction 115 player
+	call qrtSingleKindLootFunction 116 player
 End
