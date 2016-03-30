@@ -1,0 +1,24 @@
+﻿scn qrtKeyBindScript
+
+int bIsNPressed
+int isPressN
+
+Begin GameMode
+	if bIsNPressed != IsKeyPressed 49 
+		set bIsNPressed to IsKeyPressed 49 
+		if bIsNPressed
+		else
+		;按钮放开了
+			set isPressN to 1
+		endif
+	endif
+	if isPressN==1
+		messageex "no loot received"
+		set isPressN to 0
+		;add current cell to form
+		ref currentCell
+		set currentCell to player.gpc
+		AddFormToFormList qrtNoLootCellList currentCell
+		messageex "no loot processed, cell=%n" currentCell
+	endif
+End

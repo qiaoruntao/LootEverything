@@ -1,0 +1,10 @@
+﻿scn qrtIsInNoLootCell
+
+int result
+ref currentCell
+
+Begin Function{}
+	set currentCell to player.gpc
+	let result := IsRefInList qrtNoLootCellList currentCell !=-1
+	SetFunctionValue result
+End

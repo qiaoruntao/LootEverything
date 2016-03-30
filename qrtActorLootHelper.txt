@@ -13,7 +13,7 @@ ref cellOwner
 Begin Function { itemType, tryLootHelper}
 	set rActor to GetFirstRef itemType
 	while rActor != 0
-		if rActor.GetDead
+		if rActor.GetDead && rActor.GetContainerInventoryCount >=1
 			set creatureContainer to rActor.GetContainer
 			;messageex "%n container" creatureContainer
 			rActor.RemoveAllItems tryLootHelper 1 1

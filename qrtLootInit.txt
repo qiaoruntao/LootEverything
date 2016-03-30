@@ -2,6 +2,10 @@
 ;用于执行loot操作
 
 Begin GameMode
+	if call qrtIsInNoLootCell
+		messageex "no loot room"
+		return
+	endif
 	ref tryLootHelper
 	set tryLootHelper to player
 	ref rActor
