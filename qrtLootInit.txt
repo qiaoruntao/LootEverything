@@ -28,6 +28,44 @@ Begin GameMode
 		endif
 		set rActor to GetNextRef
 	loop
+	set rActor to GetFirstRef 27;Container
+	while rActor != 0
+		ref owner
+		set owner to rActor.GetOwner
+		ref cellOwner
+		set cellOwner to rActor.GetParentCellOwner
+		messageex "%n looted. cellOwner =%n, owner =%n" rActor, cellOwner, owner
+		rActor.RemoveAllItems tryLootHelper
+		set rActor to GetNextRef
+	loop
+	set rActor to GetFirstRef 42;creature
+	while rActor != 0
+		ref owner
+		set owner to rActor.GetOwner
+		ref cellOwner
+		set cellOwner to rActor.GetParentCellOwner
+		if rActor.GetDead
+			ref creatureContainer
+			set creatureContainer to rActor.GetContainer
+			messageex "%n looted" rActor
+			creatureContainer.RemoveAllItems tryLootHelper
+		endif
+		set rActor to GetNextRef
+	loop
+	set rActor to GetFirstRef 43;creature
+	while rActor != 0
+		ref owner
+		set owner to rActor.GetOwner
+		ref cellOwner
+		set cellOwner to rActor.GetParentCellOwner
+		if rActor.GetDead
+			ref creatureContainer
+			set creatureContainer to rActor.GetContainer
+			messageex "%n looted" rActor
+			creatureContainer.RemoveAllItems tryLootHelper
+		endif
+		set rActor to GetNextRef
+	loop
 	set rActor to GetFirstRef 31;Misc
 	while rActor != 0
 		ref owner
