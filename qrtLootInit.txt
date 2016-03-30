@@ -6,48 +6,10 @@ Begin GameMode
 	set tryLootHelper to player
 	ref rActor
 	;process container
-	set rActor to GetFirstRef 27;Container
-	while rActor != 0
-		ref owner
-		set owner to rActor.GetOwner
-		ref cellOwner
-		set cellOwner to rActor.GetParentCellOwner
-		;messageex "%n looted. cellOwner =%n, owner =%n" rActor, cellOwner, owner
-		rActor.RemoveAllItems tryLootHelper 1 1
-		set rActor to GetNextRef
-	loop
+	call qrtContainerLootHelper player
 	;42, 43 ==creature
-	messageex "42 check start"
-	set rActor to GetFirstRef 42;creature
-	while rActor != 0
-		ref owner
-		set owner to rActor.GetOwner
-		ref cellOwner
-		set cellOwner to rActor.GetParentCellOwner
-		if rActor.GetDead
-			ref creatureContainer
-			set creatureContainer to rActor.GetContainer
-			;messageex "%n container" creatureContainer
-			rActor.RemoveAllItems tryLootHelper
-			messageex "%n looted" rActor
-		endif
-		set rActor to GetNextRef
-	loop
-	messageex "43 check start"
-	set rActor to GetFirstRef 43;creature
-	while rActor != 0
-		ref owner
-		set owner to rActor.GetOwner
-		ref cellOwner
-		set cellOwner to rActor.GetParentCellOwner
-		if rActor.GetDead
-			ref creatureContainer
-			set creatureContainer to rActor.GetContainer
-			rActor.RemoveAllItems tryLootHelper
-			messageex "%n looted" rActor
-		endif
-		set rActor to GetNextRef
-	loop
+	call qrtActorLootHelper 42 player
+	call qrtActorLootHelper 43 player
 	;process some type which require only one activate
 	call qrtSingleKindLootFunction 24 player
 	call qrtSingleKindLootFunction 25 player

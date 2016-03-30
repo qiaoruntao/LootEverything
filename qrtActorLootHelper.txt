@@ -1,0 +1,24 @@
+﻿scn qrtActorLootHelper
+
+int itemType
+ref tryLootHelper
+ref rActor
+int isLegal
+ref base
+int tempCount
+ref creatureContainer
+ref owner
+ref cellOwner
+
+Begin Function { itemType, tryLootHelper}
+	set rActor to GetFirstRef itemType
+	while rActor != 0
+		if rActor.GetDead
+			set creatureContainer to rActor.GetContainer
+			;messageex "%n container" creatureContainer
+			rActor.RemoveAllItems tryLootHelper 1 1
+			messageex "%n looted" rActor
+		endif
+		set rActor to GetNextRef
+	loop
+End 
