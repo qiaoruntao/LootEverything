@@ -1,0 +1,23 @@
+﻿scn qrtOpenMainContainerScript
+
+int bIsLootRoomPressed
+int isPressLootRoom
+int deleteResult
+int isPressOpenMainContainer
+int bIsPressOpenMainContainer
+
+Begin GameMode
+	if bIsPressOpenMainContainer != IsKeyPressed 50
+		set bIsPressOpenMainContainer to IsKeyPressed 50
+		if bIsPressOpenMainContainer
+		else
+		;按钮放开了
+			set isPressOpenMainContainer to 1
+		endif
+	endif
+	if isPressOpenMainContainer==1
+		set isPressOpenMainContainer to 0
+		;messageex "open container"
+		qrtMainLootSafe.activate player
+	endif
+End

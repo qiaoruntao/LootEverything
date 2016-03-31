@@ -1,24 +1,33 @@
 ﻿scn qrtKeyBindScript
 
-int bIsNPressed
-int isPressN
+int bIsLootRoomPressed
+int isPressLootRoom
+int deleteResult
+int isPressOpenMainContainer
+int bIsPressOpenMainContainer
 
 Begin GameMode
-	if bIsNPressed != IsKeyPressed 49 
-		set bIsNPressed to IsKeyPressed 49 
-		if bIsNPressed
+	if bIsLootRoomPressed != IsKeyPressed 49 
+		set bIsLootRoomPressed to IsKeyPressed 49 
+		if bIsLootRoomPressed
 		else
 		;按钮放开了
-			set isPressN to 1
+			set isPressLootRoom to 1
 		endif
 	endif
-	if isPressN==1
-		messageex "no loot received"
-		set isPressN to 0
+	if isPressLootRoom==1
+		;messageex "no loot received"
+		set isPressLootRoom to 0
 		;add current cell to form
 		ref currentCell
 		set currentCell to player.gpc
-		AddFormToFormList qrtNoLootCellList currentCell
-		messageex "no loot processed, cell=%n" currentCell
+		if call qrtIsInNoLootCell
+			;不能loot的房间, 删除之
+			set deleteResult to ListRemoveForm qrtNoLootCellList currentCell
+			messageex "cell %n removed from exception list" currentCell
+		else
+			AddFormToFormList qrtNoLootCellList currentCell
+			messageex "cell %n added into exception list" currentCell
+		endif
 	endif
 End

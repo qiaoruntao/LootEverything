@@ -3,7 +3,7 @@
 
 Begin GameMode
 	if call qrtIsInNoLootCell
-		messageex "no loot room"
+		;messageex "no loot room"
 		return
 	endif
 	ref tryLootHelper
