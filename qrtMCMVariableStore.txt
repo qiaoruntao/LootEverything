@@ -3,6 +3,7 @@
 short mainContainerHotkey
 short cellToggleHotkey
 short isAutoLootEnabled
+short isLootIntoContainer
 
 short iInit
 
@@ -10,8 +11,9 @@ begin GameMode
 	if iInit
 	else
 		set iInit to 1
-		set isAutoLootEnabled to 0
+		set isAutoLootEnabled to 1
 		set mainContainerHotkey to 50
 		set cellToggleHotkey to 49
+		set isLootIntoContainer to 0
 	endif
 end

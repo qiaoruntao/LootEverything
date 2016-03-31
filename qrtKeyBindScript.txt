@@ -7,8 +7,8 @@ int isPressOpenMainContainer
 int bIsPressOpenMainContainer
 
 Begin GameMode
-	if bIsLootRoomPressed != IsKeyPressed 49 
-		set bIsLootRoomPressed to IsKeyPressed 49 
+	if bIsLootRoomPressed != IsKeyPressed qrtGlobalMCMVariable.cellToggleHotkey
+		set bIsLootRoomPressed to IsKeyPressed qrtGlobalMCMVariable.cellToggleHotkey
 		if bIsLootRoomPressed
 		else
 		;按钮放开了

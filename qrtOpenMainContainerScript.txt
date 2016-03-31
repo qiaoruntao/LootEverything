@@ -7,8 +7,8 @@ int isPressOpenMainContainer
 int bIsPressOpenMainContainer
 
 Begin GameMode
-	if bIsPressOpenMainContainer != IsKeyPressed 50
-		set bIsPressOpenMainContainer to IsKeyPressed 50
+	if bIsPressOpenMainContainer != IsKeyPressed qrtGlobalMCMVariable.mainContainerHotkey
+		set bIsPressOpenMainContainer to IsKeyPressed qrtGlobalMCMVariable.mainContainerHotkey
 		if bIsPressOpenMainContainer
 		else
 		;按钮放开了
