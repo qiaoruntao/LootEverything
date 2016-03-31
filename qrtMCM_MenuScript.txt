@@ -24,7 +24,7 @@ begin MenuMode 1013
 	else
 		Return
 	endif
-	if GetUIFloat "StartMenu/MCM/_ActiveMod" == GetModIndex "autoLoot01.esp"
+	if GetUIFloat "StartMenu/MCM/_ActiveMod" == GetModIndex "LootEverything.esp"
 		set iOption to GetUIFloat "StartMenu/MCM/_ActiveOption"
 		set fValue to GetUIFloat "StartMenu/MCM/_Value"
 		if GetUIFloat "StartMenu/MCM/*:5/SubMenu1/_enable" == 0
