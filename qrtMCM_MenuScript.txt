@@ -31,18 +31,28 @@ begin MenuMode 1013
 			SetUIFloat "StartMenu/MCM/_ActiveSubMenu" 1
 			SetUIFloat "StartMenu/MCM/*:5/SubMenu1/_enable" 1
 			SetUIString "StartMenu/MCM/*:5/SubMenu1/text/string" "Main Menu"
-			;SetUIString "StartMenu/MCM/*:8/SubTitle1/string" "Example Sub Menu 1"
+			SetUIString "StartMenu/MCM/*:8/SubTitle1/string" "Main Menu"
 		endif
 		set iSubMenu to GetUIFloat "StartMenu/MCM/_ActiveSubMenu"
 		if GetUIFloat "StartMenu/MCM/_Reset"			;1 - RESET
 			SetUIFloat "StartMenu/MCM/_Reset" 0
 			;number of columns
 			SetUIFloat "StartMenu/MCM/*:1/_columns" 1
-			;options
+			;option 
 			SetUIFloat "StartMenu/MCM/*:1/*:1/_enable" 1
-			SetUIString "StartMenu/MCM/*:1/*:1/_title" "Hotkey: Add/Remove Current Cell From Auto-Looting"
-			SetUIFloat "StartMenu/MCM/*:1/*:1/_type" 3
-			SetUIStringEx "StartMenu/MCM/*:1/*:1/value/*:1/string" "%k" qrtGlobalMCMVariable.cellToggleHotkey
+			SetUIString "StartMenu/MCM/*:1/*:1/_title" "Enable/Disable Auto-Looting"
+			SetUIFloat "StartMenu/MCM/*:1/*:1/_type" 4
+			SetUIFloat "StartMenu/MCM/*:1/*:1/_value" qrtGlobalMCMVariable.isAutoLootEnabled
+			;option 
+			SetUIFloat "StartMenu/MCM/*:1/*:3/_enable" 1
+			SetUIString "StartMenu/MCM/*:1/*:3/_title" "Hotkey: Add/Remove Current Cell From Auto-Looting"
+			SetUIFloat "StartMenu/MCM/*:1/*:3/_type" 3
+			SetUIStringEx "StartMenu/MCM/*:1/*:3/value/*:1/string" "%k" qrtGlobalMCMVariable.cellToggleHotkey
+			;option 
+			SetUIFloat "StartMenu/MCM/*:1/*:2/_enable" 1
+			SetUIString "StartMenu/MCM/*:1/*:2/_title" "Hotkey: Open Main Loot Container"
+			SetUIFloat "StartMenu/MCM/*:1/*:2/_type" 3
+			SetUIStringEx "StartMenu/MCM/*:1/*:2/value/*:1/string" "%k" qrtGlobalMCMVariable.mainContainerHotkey
 		elseif GetUIFloat "StartMenu/MCM/_Default"		;2 - DEFAULT
 			SetUIFloat "StartMenu/MCM/_Default" 0
 			SetUIFloat "StartMenu/MCM/_Reset" 1
@@ -51,8 +61,12 @@ begin MenuMode 1013
 			SetUIFloat "StartMenu/MCM/_Reset" 1
 			;process
 			if iSubMenu == 1
-				if iOption == 1
+				if iOption == 3
 					set qrtGlobalMCMVariable.cellToggleHotkey to fValue
+				elseif iOption == 2
+					set qrtGlobalMCMVariable.mainContainerHotkey to fValue
+				elseif iOption == 1
+					set qrtGlobalMCMVariable.isAutoLootEnabled to fValue
 				endif
 			endif
 		elseif GetUIFloat "StartMenu/MCM/_ShowList" == 1		;4 - SHOW LIST
@@ -68,8 +82,12 @@ begin MenuMode 1013
 			if iMouseover
 				SetUIFloat "StartMenu/MCM/MCM_Info/visible" 1
 				if iSubMenu == 1
-					if iMouseover == 1
-						SetUIString "StartMenu/MCM/*:9/string" "Add/Remove Current Cell From Auto-Looting"
+					if iMouseover == 3
+						SetUIString "StartMenu/MCM/*:9/string" "Use this key to disable/enable current cell from auto-looting."
+					elseif iMouseover == 2
+						SetUIString "StartMenu/MCM/*:9/string" "This container will not be looted. It is also used for an alternative container to store looted goods."
+					elseif iMouseover == 1
+						SetUIString "StartMenu/MCM/*:9/string" "Globally Disable/Enable Auto-Looting"
 					endif
 				endif
 			else

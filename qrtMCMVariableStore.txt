@@ -1,13 +1,8 @@
 ﻿ScriptName qrtMCMVariableStore
 
-short iVariable1
-short iVariable2
+short mainContainerHotkey
 short cellToggleHotkey
-short iVariable4
-short iVariable5
-short iVariable6
-
-float fVariable25
+short isAutoLootEnabled
 
 short iInit
 
@@ -15,12 +10,8 @@ begin GameMode
 	if iInit
 	else
 		set iInit to 1
-		set iVariable1 to 2
-		set iVariable2 to 35
-		set fVariable25 to 1.7
+		set isAutoLootEnabled to 0
+		set mainContainerHotkey to 50
 		set cellToggleHotkey to 49
-		set iVariable4 to 1
-		set iVariable5 to 1
-		set iVariable6 to 0
 	endif
 end
