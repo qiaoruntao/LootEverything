@@ -16,7 +16,7 @@ Begin GameMode
 		set tryLootHelper to player
 	endif
 	ref rActor
-	call qrtPlantLootHelper tryLootHelper
+	call qrtPlantLootHelper
 	;process container 27
 	call qrtContainerLootHelper tryLootHelper
 	;42, 43 ==creature
