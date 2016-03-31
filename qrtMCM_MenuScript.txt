@@ -1,0 +1,80 @@
+﻿scn qrtMCM_MenuScript
+
+short iMaster
+short iMouseover
+short iOption
+short iTemp
+float fTemp
+float fValue
+reference rList
+short iSubMenu
+
+begin GameMode
+	if GetGameRestarted
+		if IsModLoaded "The Mod Configuration Menu.esp"
+			set iMaster to GetModIndex "The Mod Configuration Menu.esp"
+			set rList to BuildRef iMaster 2790
+			ListAddForm rList qrtMCMMODName
+		endif
+	endif
+end
+
+begin MenuMode 1013
+	if IsModLoaded "The Mod Configuration Menu.esp"
+	else
+		Return
+	endif
+	if GetUIFloat "StartMenu/MCM/_ActiveMod" == GetModIndex "autoLoot01.esp"
+		set iOption to GetUIFloat "StartMenu/MCM/_ActiveOption"
+		set fValue to GetUIFloat "StartMenu/MCM/_Value"
+		if GetUIFloat "StartMenu/MCM/*:5/SubMenu1/_enable" == 0
+			SetUIFloat "StartMenu/MCM/_ActiveSubMenu" 1
+			SetUIFloat "StartMenu/MCM/*:5/SubMenu1/_enable" 1
+			SetUIString "StartMenu/MCM/*:5/SubMenu1/text/string" "Main Menu"
+			;SetUIString "StartMenu/MCM/*:8/SubTitle1/string" "Example Sub Menu 1"
+		endif
+		set iSubMenu to GetUIFloat "StartMenu/MCM/_ActiveSubMenu"
+		if GetUIFloat "StartMenu/MCM/_Reset"			;1 - RESET
+			SetUIFloat "StartMenu/MCM/_Reset" 0
+			;number of columns
+			SetUIFloat "StartMenu/MCM/*:1/_columns" 1
+			;options
+			SetUIFloat "StartMenu/MCM/*:1/*:1/_enable" 1
+			SetUIString "StartMenu/MCM/*:1/*:1/_title" "Hotkey: Add/Remove Current Cell From Auto-Looting"
+			SetUIFloat "StartMenu/MCM/*:1/*:1/_type" 3
+			SetUIStringEx "StartMenu/MCM/*:1/*:1/value/*:1/string" "%k" qrtGlobalMCMVariable.cellToggleHotkey
+		elseif GetUIFloat "StartMenu/MCM/_Default"		;2 - DEFAULT
+			SetUIFloat "StartMenu/MCM/_Default" 0
+			SetUIFloat "StartMenu/MCM/_Reset" 1
+		elseif GetUIFloat "StartMenu/MCM/_NewValue"		;3 - NEW VALUE
+			SetUIFloat "StartMenu/MCM/_NewValue" 0
+			SetUIFloat "StartMenu/MCM/_Reset" 1
+			;process
+			if iSubMenu == 1
+				if iOption == 1
+					set qrtGlobalMCMVariable.cellToggleHotkey to fValue
+				endif
+			endif
+		elseif GetUIFloat "StartMenu/MCM/_ShowList" == 1		;4 - SHOW LIST
+			SetUIFloat "StartMenu/MCM/_ShowList" 2
+		elseif GetUIFloat "StartMenu/MCM/_ShowScale" == 1		;5 - SHOW SCALE
+			SetUIFloat "StartMenu/MCM/_ShowScale" 2
+		elseif GetUIFloat "StartMenu/MCM/_DefaultScale"		;6 - DEFAULT SCALE
+			SetUIFloat "StartMenu/MCM/_DefaultScale" 0
+			SetUIFloat "StartMenu/MCM/_ShowScale" 2
+		endif
+		if iMouseover != GetUIFloat "StartMenu/MCM/*:1/_optionID"		;7 - MOUSE-OVER
+			set iMouseover to GetUIFloat "StartMenu/MCM/*:1/_optionID"
+			if iMouseover
+				SetUIFloat "StartMenu/MCM/MCM_Info/visible" 1
+				if iSubMenu == 1
+					if iMouseover == 1
+						SetUIString "StartMenu/MCM/*:9/string" "Add/Remove Current Cell From Auto-Looting"
+					endif
+				endif
+			else
+				SetUIFloat "StartMenu/MCM/MCM_Info/visible" 0
+			endif
+		endif
+	endif
+end
