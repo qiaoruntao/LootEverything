@@ -6,12 +6,14 @@ ref rActor
 int isLegal
 ref base
 int tempCount
+int isInDistance
 
 Begin Function { itemType, tryLootHelper}
 	set rActor to GetFirstRef itemType;Armor
 	while rActor != 0
 		let isLegal := call qrtIsLegalToPickUpFunction rActor
-		if isLegal
+		let isInDistance := call qrtLootDistanceCheckScript rActor
+		if isLegal && isInDistance
 			set tempCount to rActor.GetRefCount
 			rActor.activate tryLootHelper
 			let tempCount -= 1

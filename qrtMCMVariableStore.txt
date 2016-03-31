@@ -4,7 +4,7 @@ short mainContainerHotkey
 short cellToggleHotkey
 short isAutoLootEnabled
 short isLootIntoContainer
-
+float distanceCheck
 short iInit
 
 begin GameMode
@@ -15,5 +15,6 @@ begin GameMode
 		set mainContainerHotkey to 50
 		set cellToggleHotkey to 49
 		set isLootIntoContainer to 0
+		set distanceCheck to 0
 	endif
 end
