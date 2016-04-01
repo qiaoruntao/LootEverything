@@ -10,7 +10,8 @@ int isInDistance
 int isPlayerDropped
 
 Begin Function { itemType, tryLootHelper}
-	set rActor to GetFirstRef itemType;Armor
+	set tryLootHelper to 
+	set rActor to GetFirstRef itemType
 	while rActor != 0
 		;check the distance
 		let isInDistance := call qrtLootDistanceCheckScript rActor

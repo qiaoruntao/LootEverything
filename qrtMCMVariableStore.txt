@@ -9,6 +9,14 @@ short iInit
 short isPickPlayerDroppedItems
 short isPickUnPlayableItem
 short manualLootHotkey
+short isDisableMsg24
+short isDisableMsg25
+short isDisableMsg26
+short isDisableMsg29
+short toWhichContainer24
+short toWhichContainer25
+short toWhichContainer26
+short toWhichContainer29
 
 begin GameMode
 	if iInit
@@ -22,5 +30,10 @@ begin GameMode
 		set isPickPlayerDroppedItems to 0
 		set isPickUnPlayableItem to 0
 		set manualLootHotkey to 51
+		set isDisableMsg24 to 1
+		set toWhichContainer24 to 1
+		set toWhichContainer25 to 1
+		set toWhichContainer26 to 1
+		set toWhichContainer29 to 1
 	endif
 end

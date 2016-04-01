@@ -1,0 +1,191 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 58.0,
+		"last_filter": "pack",
+		"selected_items":
+		[
+			[
+				"pack",
+				"Preferences: Browse Packages"
+			]
+		],
+		"width": 392.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/I/#sjtu/LootEverything"
+	],
+	"file_history":
+	[
+		"/D/Program Files/FalloutNV/Data/LootEverything_ForDlcSupport.esp",
+		"/G/SteamLibrary/steamapps/common/ARKDevKit/ARKDevKit.bat",
+		"/G/Nexus/FalloutNV/Mod/ModProfiles/ProfileManagerCfg.xml",
+		"/G/apache-tomee-webprofile-1.7.4/bin/catalina.bat",
+		"/G/SteamLibrary/steamapps/common/ARKDevKit/ARKDevKitLaunch.bat",
+		"/I/#sjtu/web/Server Component 1/WarehouseServerActivator/bin/run.bat",
+		"/D/Program Files/Fallout 4/Data/Strings/Fallout4_en.DLSTRINGS",
+		"/E/Documents/Visual Studio 2015/Projects/clumsy/premake4.lua",
+		"/D/Steam/steamapps/common/ARK/ShooterGame/Saved/SavedArksLocal/TestMap.ark",
+		"/E/Documents/Workspace/PHP-Source-Query/.codeclimate.sh",
+		"/D/Steam/steamapps/common/ARK/ShooterGame/Binaries/Win64/ShooterGame.exe",
+		"/H/Epic Games/ARKDevKit/ARKDevKit.bat",
+		"/F/ThunderDownloads/方舟汉化补丁v0.9.3.5离线版/ShooterGame/Content/OldAssets/UI/HUD/15_QQqun150057044.uasset",
+		"/E/Documents/Visual Studio 2013/Projects/test_opengl04/test_opengl04.vcxproj",
+		"/E/Desktop/FallingCubesBullet-master/Makefile"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"学院 学号 姓名 班级",
+			".*x64.*",
+			".*\\d+\\)"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "LootEverything.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 336.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

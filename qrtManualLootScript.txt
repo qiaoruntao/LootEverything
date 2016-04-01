@@ -1,0 +1,23 @@
+﻿scn qrtManualLootScript
+
+int bIsLootRoomPressed
+int isPressLootRoom
+int deleteResult
+int isPressOpenMainContainer
+int bIsPressManualLoot
+
+Begin GameMode
+	if bIsPressManualLoot != IsKeyPressed qrtGlobalMCMVariable.manualLootHotkey
+		set bIsPressManualLoot to IsKeyPressed qrtGlobalMCMVariable.manualLootHotkey
+		if bIsPressManualLoot
+		else
+		;按钮放开了
+			set isPressOpenMainContainer to 1
+		endif
+	endif
+	if isPressOpenMainContainer==1
+		set isPressOpenMainContainer to 0
+		messageex "loot now"
+		call qrtLootMain
+	endif
+End

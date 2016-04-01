@@ -1,0 +1,12 @@
+scn qrtMenuTypeItemHelper02
+
+int value
+
+Begin Function {value}
+	SetUIString "StartMenu/MCM/*:3/_title" "Destination"
+	SetUIFloat "StartMenu/MCM/*:3/*:1/_enable" 1
+	SetUIFloat "StartMenu/MCM/*:3/*:2/_enable" 1
+	SetUIString "StartMenu/MCM/*:3/*:1/text/string" "Player"
+	SetUIString "StartMenu/MCM/*:3/*:2/text/string" "Main Loot Safe"
+	SetUIFloat "StartMenu/MCM/_Value" value
+End

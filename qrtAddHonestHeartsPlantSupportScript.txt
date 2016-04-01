@@ -1,0 +1,7 @@
+﻿scn qrtAddHonestHeartsPlantSupportScript
+
+Begin GameMode
+	messageex "support START"
+	AddFormToFormList qrtPlantList CaveFungusPlant
+	messageex "support added"
+end
