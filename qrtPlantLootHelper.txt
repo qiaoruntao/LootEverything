@@ -2,12 +2,14 @@
 
 ref tempBaseId
 ref rActor
+int isInDistance
 
 Begin Function {}
 	set rActor to GetFirstRef 21
 	while rActor != 0
 		set tempBaseId to rActor.GetBaseObject
-		if IsRefInList qrtPlantList tempBaseId !=-1
+		let isInDistance := call qrtLootDistanceCheckScript rActor
+		if IsRefInList qrtPlantList tempBaseId !=-1 && isInDistance
 		;是植物
 			rActor.activate player 1
 			;messageboxex "%n picked" rActor

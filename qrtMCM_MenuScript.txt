@@ -65,6 +65,11 @@ begin MenuMode 1013
 			SetUIString "StartMenu/MCM/*:1/*:5/_title" "Max Loot Distance"
 			SetUIFloat "StartMenu/MCM/*:1/*:5/_type" 2.5
 			SetUIStringEx "StartMenu/MCM/*:1/*:5/value/*:1/string" "%.1f" qrtGlobalMCMVariable.distanceCheck
+			;option 
+			SetUIFloat "StartMenu/MCM/*:1/*:6/_enable" 1
+			SetUIString "StartMenu/MCM/*:1/*:6/_title" "Pick player dropped item"
+			SetUIFloat "StartMenu/MCM/*:1/*:6/_type" 4
+			SetUIFloat "StartMenu/MCM/*:1/*:6/_value" qrtGlobalMCMVariable.isPickPlayerDroppedItems
 		elseif GetUIFloat "StartMenu/MCM/_Default"		;2 - DEFAULT
 			SetUIFloat "StartMenu/MCM/_Default" 0
 			SetUIFloat "StartMenu/MCM/_Reset" 1
@@ -84,6 +89,8 @@ begin MenuMode 1013
 					set qrtGlobalMCMVariable.isLootIntoContainer to fValue
 				elseif iOption == 5
 					set qrtGlobalMCMVariable.distanceCheck to fValue
+				elseif iOption == 6
+					set qrtGlobalMCMVariable.isPickPlayerDroppedItems to fValue
 				endif
 			endif
 		elseif GetUIFloat "StartMenu/MCM/_ShowList" == 1		;4 - SHOW LIST
@@ -123,6 +130,8 @@ begin MenuMode 1013
 						SetUIString "StartMenu/MCM/*:9/string" "Loot All goods into Main Loot Container which you can access it remotely by hotkey."
 					elseif iMouseover == 5
 						SetUIString "StartMenu/MCM/*:9/string" "Define the maximum distance auto-loot can search. Anything beyond this distance will be ignored. Set it to 0 to disable distance check"
+					elseif iMouseover == 6
+						SetUIString "StartMenu/MCM/*:9/string" "If set to ON, auto-looting will pick what you drop."
 					endif
 				endif
 			else

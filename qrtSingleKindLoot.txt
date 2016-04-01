@@ -7,13 +7,25 @@ int isLegal
 ref base
 int tempCount
 int isInDistance
+int isPlayerDropped
 
 Begin Function { itemType, tryLootHelper}
 	set rActor to GetFirstRef itemType;Armor
 	while rActor != 0
+		if qrtGlobalMCMVariable.isPickPlayerDroppedItems==0
+			let isPlayerDropped := GetSourceModIndex rActor ==255
+			if isPlayerDropped
+				set rActor to GetNextRef
+				continue
+			endif
+		endif
 		let isLegal := call qrtIsLegalToPickUpFunction rActor
+		if isLegal==0
+			set rActor to GetNextRef
+			continue
+		endif
 		let isInDistance := call qrtLootDistanceCheckScript rActor
-		if isLegal && isInDistance
+		if isInDistance
 			set tempCount to rActor.GetRefCount
 			rActor.activate tryLootHelper
 			let tempCount -= 1

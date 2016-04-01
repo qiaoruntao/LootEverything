@@ -9,14 +9,16 @@ int tempCount
 ref creatureContainer
 ref owner
 ref cellOwner
+int isInDistance
 
 Begin Function { itemType, tryLootHelper}
 	set rActor to GetFirstRef itemType
 	while rActor != 0
-		if rActor.GetDead && rActor.GetContainerInventoryCount >=1 && rActor!=tryLootHelper
+		let isInDistance := call qrtLootDistanceCheckScript rActor
+		if rActor.GetDead && rActor.GetContainerInventoryCount >=1 && rActor!=tryLootHelper && isInDistance
 			set creatureContainer to rActor.GetContainer
 			;messageex "%n container" creatureContainer
-			rActor.RemoveAllItems tryLootHelper 1 1
+			rActor.RemoveAllItems tryLootHelper 0 1
 			messageex "%n looted" rActor
 		endif
 		set rActor to GetNextRef

@@ -6,6 +6,7 @@ short isAutoLootEnabled
 short isLootIntoContainer
 float distanceCheck
 short iInit
+short isPickPlayerDroppedItems
 
 begin GameMode
 	if iInit
@@ -16,5 +17,6 @@ begin GameMode
 		set cellToggleHotkey to 49
 		set isLootIntoContainer to 0
 		set distanceCheck to 0
+		set isPickPlayerDroppedItems to 0
 	endif
 end
