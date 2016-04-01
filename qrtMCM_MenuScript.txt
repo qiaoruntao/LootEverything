@@ -70,6 +70,11 @@ begin MenuMode 1013
 			SetUIString "StartMenu/MCM/*:1/*:6/_title" "Pick player dropped item"
 			SetUIFloat "StartMenu/MCM/*:1/*:6/_type" 4
 			SetUIFloat "StartMenu/MCM/*:1/*:6/_value" qrtGlobalMCMVariable.isPickPlayerDroppedItems
+			;option 
+			SetUIFloat "StartMenu/MCM/*:1/*:7/_enable" 1
+			SetUIString "StartMenu/MCM/*:1/*:7/_title" "Pick unplayable item(not recommended)"
+			SetUIFloat "StartMenu/MCM/*:1/*:7/_type" 4
+			SetUIFloat "StartMenu/MCM/*:1/*:7/_value" qrtGlobalMCMVariable.isPickUnPlayableItem
 		elseif GetUIFloat "StartMenu/MCM/_Default"		;2 - DEFAULT
 			SetUIFloat "StartMenu/MCM/_Default" 0
 			SetUIFloat "StartMenu/MCM/_Reset" 1
@@ -91,6 +96,8 @@ begin MenuMode 1013
 					set qrtGlobalMCMVariable.distanceCheck to fValue
 				elseif iOption == 6
 					set qrtGlobalMCMVariable.isPickPlayerDroppedItems to fValue
+				elseif iOption == 7
+					set qrtGlobalMCMVariable.isPickUnPlayableItem to fValue
 				endif
 			endif
 		elseif GetUIFloat "StartMenu/MCM/_ShowList" == 1		;4 - SHOW LIST
@@ -131,7 +138,9 @@ begin MenuMode 1013
 					elseif iMouseover == 5
 						SetUIString "StartMenu/MCM/*:9/string" "Define the maximum distance auto-loot can search. Anything beyond this distance will be ignored. Set it to 0 to disable distance check"
 					elseif iMouseover == 6
-						SetUIString "StartMenu/MCM/*:9/string" "If set to ON, auto-looting will pick what you drop."
+						SetUIString "StartMenu/MCM/*:9/string" "If set to ON, auto-loot will try picking what you drop."
+					elseif iMouseover == 7
+						SetUIString "StartMenu/MCM/*:9/string" "If set to ON, auto-loot will try picking up unplayable items."
 					endif
 				endif
 			else

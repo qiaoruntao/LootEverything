@@ -7,6 +7,7 @@ short isLootIntoContainer
 float distanceCheck
 short iInit
 short isPickPlayerDroppedItems
+short isPickUnPlayableItem
 
 begin GameMode
 	if iInit
@@ -18,5 +19,6 @@ begin GameMode
 		set isLootIntoContainer to 0
 		set distanceCheck to 0
 		set isPickPlayerDroppedItems to 0
+		set isPickUnPlayableItem to 0
 	endif
 end

@@ -12,9 +12,17 @@ int isPlayerDropped
 Begin Function { itemType, tryLootHelper}
 	set rActor to GetFirstRef itemType;Armor
 	while rActor != 0
+		;check if dropped by player
 		if qrtGlobalMCMVariable.isPickPlayerDroppedItems==0
 			let isPlayerDropped := GetSourceModIndex rActor ==255
 			if isPlayerDropped
+				set rActor to GetNextRef
+				continue
+			endif
+		endif
+		;check if playable
+		if qrtGlobalMCMVariable.isPickUnPlayableItem==0
+			if IsPlayable rActor==0
 				set rActor to GetNextRef
 				continue
 			endif
