@@ -8,6 +8,7 @@ float distanceCheck
 short iInit
 short isPickPlayerDroppedItems
 short isPickUnPlayableItem
+short manualLootHotkey
 
 begin GameMode
 	if iInit
@@ -20,5 +21,6 @@ begin GameMode
 		set distanceCheck to 0
 		set isPickPlayerDroppedItems to 0
 		set isPickUnPlayableItem to 0
+		set manualLootHotkey to 51
 	endif
 end

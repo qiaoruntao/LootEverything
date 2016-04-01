@@ -75,6 +75,11 @@ begin MenuMode 1013
 			SetUIString "StartMenu/MCM/*:1/*:7/_title" "Pick unplayable item(not recommended)"
 			SetUIFloat "StartMenu/MCM/*:1/*:7/_type" 4
 			SetUIFloat "StartMenu/MCM/*:1/*:7/_value" qrtGlobalMCMVariable.isPickUnPlayableItem
+			;option 
+			SetUIFloat "StartMenu/MCM/*:1/*:8/_enable" 1
+			SetUIString "StartMenu/MCM/*:1/*:8/_title" "Hotkey: Manual Loot"
+			SetUIFloat "StartMenu/MCM/*:1/*:8/_type" 3
+			SetUIStringEx "StartMenu/MCM/*:1/*:8/value/*:1/string" "%k" qrtGlobalMCMVariable.manualLootHotkey
 		elseif GetUIFloat "StartMenu/MCM/_Default"		;2 - DEFAULT
 			SetUIFloat "StartMenu/MCM/_Default" 0
 			SetUIFloat "StartMenu/MCM/_Reset" 1
@@ -90,6 +95,13 @@ begin MenuMode 1013
 					set qrtGlobalMCMVariable.mainContainerHotkey to fValue
 				elseif iOption == 1
 					set qrtGlobalMCMVariable.isAutoLootEnabled to fValue
+					;change the state of the auto-loot quest
+					if fValue
+						;enable the auto-loot
+						StartQuest qrtAutoLoot
+					else
+						StopQuest qrtAutoLoot
+					endif
 				elseif iOption == 4
 					set qrtGlobalMCMVariable.isLootIntoContainer to fValue
 				elseif iOption == 5
@@ -98,6 +110,8 @@ begin MenuMode 1013
 					set qrtGlobalMCMVariable.isPickPlayerDroppedItems to fValue
 				elseif iOption == 7
 					set qrtGlobalMCMVariable.isPickUnPlayableItem to fValue
+				elseif iOption == 8
+					set qrtGlobalMCMVariable.manualLootHotkey to fValue
 				endif
 			endif
 		elseif GetUIFloat "StartMenu/MCM/_ShowList" == 1		;4 - SHOW LIST
@@ -141,6 +155,8 @@ begin MenuMode 1013
 						SetUIString "StartMenu/MCM/*:9/string" "If set to ON, auto-loot will try picking what you drop."
 					elseif iMouseover == 7
 						SetUIString "StartMenu/MCM/*:9/string" "If set to ON, auto-loot will try picking up unplayable items."
+					elseif iMouseover == 8
+						SetUIString "StartMenu/MCM/*:9/string" "Press to start a loot, no matter whether auto-loot is enabled."
 					endif
 				endif
 			else

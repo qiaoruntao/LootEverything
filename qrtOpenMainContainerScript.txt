@@ -3,20 +3,20 @@
 int bIsLootRoomPressed
 int isPressLootRoom
 int deleteResult
-int isPressOpenMainContainer
-int bIsPressOpenMainContainer
+int isPressManualLoot
+int bisPressManualLoot
 
 Begin GameMode
-	if bIsPressOpenMainContainer != IsKeyPressed qrtGlobalMCMVariable.mainContainerHotkey
-		set bIsPressOpenMainContainer to IsKeyPressed qrtGlobalMCMVariable.mainContainerHotkey
-		if bIsPressOpenMainContainer
+	if bisPressManualLoot != IsKeyPressed qrtGlobalMCMVariable.manualLootHotkey
+		set bisPressManualLoot to IsKeyPressed qrtGlobalMCMVariable.manualLootHotkey
+		if bisPressManualLoot
 		else
 		;按钮放开了
-			set isPressOpenMainContainer to 1
+			set isPressManualLoot to 1
 		endif
 	endif
-	if isPressOpenMainContainer==1
-		set isPressOpenMainContainer to 0
+	if isPressManualLoot==1
+		set isPressManualLoot to 0
 		;messageex "open container"
 		qrtMainLootSafe.activate player
 	endif

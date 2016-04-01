@@ -2,43 +2,5 @@
 ;用于执行loot操作
 
 Begin GameMode
-	if qrtGlobalMCMVariable.isAutoLootEnabled==0
-		return
-	endif
-	if call qrtIsInNoLootCell
-		;messageex "no loot room"
-		return
-	endif
-	ref tryLootHelper
-	if qrtGlobalMCMVariable.isLootIntoContainer==1
-		set tryLootHelper to qrtLootHelper
-	else
-		set tryLootHelper to player
-	endif
-	ref rActor
-	call qrtPlantLootHelper
-	;process container 27
-	call qrtContainerLootHelper tryLootHelper
-	;42, 43 ==creature
-	call qrtActorLootHelper 42 tryLootHelper
-	call qrtActorLootHelper 43 tryLootHelper
-	;process some type which require only one activate
-	call qrtSingleKindLootFunction 24 tryLootHelper
-	call qrtSingleKindLootFunction 25 tryLootHelper
-	call qrtSingleKindLootFunction 26 tryLootHelper
-	call qrtSingleKindLootFunction 29 tryLootHelper
-	call qrtSingleKindLootFunction 31 tryLootHelper
-	call qrtSingleKindLootFunction 40 tryLootHelper
-	call qrtSingleKindLootFunction 41 tryLootHelper
-	call qrtSingleKindLootFunction 46 tryLootHelper
-	call qrtSingleKindLootFunction 47 tryLootHelper
-	call qrtSingleKindLootFunction 49 tryLootHelper
-	call qrtSingleKindLootFunction 50 tryLootHelper
-	call qrtSingleKindLootFunction 103 tryLootHelper
-	call qrtSingleKindLootFunction 108 tryLootHelper
-	call qrtSingleKindLootFunction 115 tryLootHelper
-	call qrtSingleKindLootFunction 116 tryLootHelper
-	if qrtGlobalMCMVariable.isLootIntoContainer==1
-		tryLootHelper.RemoveAllItems qrtMainLootSafe 0 1
-	endif
+	call qrtLootMain
 End
