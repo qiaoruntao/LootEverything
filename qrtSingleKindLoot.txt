@@ -12,6 +12,12 @@ int isPlayerDropped
 Begin Function { itemType, tryLootHelper}
 	set rActor to GetFirstRef itemType;Armor
 	while rActor != 0
+		;check the distance
+		let isInDistance := call qrtLootDistanceCheckScript rActor
+		if isInDistance==0
+			set rActor to GetNextRef
+			continue
+		endif
 		;check if dropped by player
 		if qrtGlobalMCMVariable.isPickPlayerDroppedItems==0
 			let isPlayerDropped := GetSourceModIndex rActor ==255
@@ -32,16 +38,15 @@ Begin Function { itemType, tryLootHelper}
 			set rActor to GetNextRef
 			continue
 		endif
-		let isInDistance := call qrtLootDistanceCheckScript rActor
-		if isInDistance
-			set tempCount to rActor.GetRefCount
-			rActor.activate tryLootHelper
-			let tempCount -= 1
-			set base to rActor.GetBaseObject
-			tryLootHelper.addItem base tempCount 1
-			;messageex "owner= %n, cellOwner=%n" owner, cellOwner
-			messageex "%n looted" rActor
-		endif
+		;all condition checked, loot now
+		set tempCount to rActor.GetRefCount
+		rActor.activate tryLootHelper
+		let tempCount -= 1
+		set base to rActor.GetBaseObject
+		tryLootHelper.addItem base tempCount 1
+		;messageex "owner= %n, cellOwner=%n" owner, cellOwner
+		messageex "%n looted" rActor
+		;next item
 		set rActor to GetNextRef
 	loop
 End 

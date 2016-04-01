@@ -39,6 +39,6 @@ Begin GameMode
 	call qrtSingleKindLootFunction 115 tryLootHelper
 	call qrtSingleKindLootFunction 116 tryLootHelper
 	if qrtGlobalMCMVariable.isLootIntoContainer==1
-		tryLootHelper.RemoveAllItems qrtMainLootSafe 1 1
+		tryLootHelper.RemoveAllItems qrtMainLootSafe 0 1
 	endif
 End

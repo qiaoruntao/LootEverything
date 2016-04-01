@@ -3,15 +3,37 @@
 ref tryLootHelper
 ref rActor
 int isLegal
+int isInDistance
 
 Begin Function {tryLootHelper}
 	set rActor to GetFirstRef 27
 	while rActor != 0
-		let isLegal := call qrtIsLegalToPickUpFunction rActor
-		if isLegal && rActor.GetLocked==0 && rActor.GetContainerInventoryCount >=1 && rActor !=qrtMainLootSafe
-			rActor.RemoveAllItems tryLootHelper 1 1
-			messageex "%n looted" rActor
+		let isInDistance := call qrtLootDistanceCheckScript rActor
+		if isInDistance==0
+			set rActor to GetNextRef
+			continue
 		endif
+		if  rActor.GetContainerInventoryCount ==0
+			set rActor to GetNextRef
+			continue
+		endif
+		let isLegal := call qrtIsLegalToPickUpFunction rActor
+		if isLegal==0
+			set rActor to GetNextRef
+			continue
+		endif
+		if rActor.GetLocked!=0
+			set rActor to GetNextRef
+			continue
+		endif
+		if rActor ==qrtMainLootSafe
+			set rActor to GetNextRef
+			continue
+		endif
+		;main process
+		rActor.RemoveAllItems tryLootHelper 1 1
+		messageex "%n looted" rActor
+		;next item
 		set rActor to GetNextRef
 	loop
 End 
