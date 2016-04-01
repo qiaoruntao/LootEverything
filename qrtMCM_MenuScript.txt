@@ -95,8 +95,11 @@ begin MenuMode 1013
 				int subMenu2Index
 				set subMenu2Index to 1
 				call qrtMenuTypeItemHelper01 subMenu2Index "Armor Destination" qrtGlobalMCMVariable.toWhichContainer24
+				let subMenu2Index +=1
 				call qrtMenuTypeItemHelper01 subMenu2Index "Book Destination" qrtGlobalMCMVariable.toWhichContainer25
+				let subMenu2Index +=1
 				call qrtMenuTypeItemHelper01 subMenu2Index "Clothing Destination" qrtGlobalMCMVariable.toWhichContainer26
+				let subMenu2Index +=1
 				call qrtMenuTypeItemHelper01 subMenu2Index "Ingredient Destination" qrtGlobalMCMVariable.toWhichContainer29
 			endif
 		elseif GetUIFloat "StartMenu/MCM/_Default"		;2 - DEFAULT

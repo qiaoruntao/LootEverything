@@ -8,6 +8,34 @@ Begin Function {}
 		;messageex "no loot room"
 		return
 	endif
+
+	;process some type which require only one activate
+	if qrtGlobalMCMVariable.toWhichContainer24==1
+		set tryLootHelper to player
+	elseif qrtGlobalMCMVariable.toWhichContainer24==2
+		set tryLootHelper to qrtLootHelper
+	endif
+	call qrtSingleKindLootFunction 24 tryLootHelper
+	if qrtGlobalMCMVariable.toWhichContainer24==1
+		set tryLootHelper to player
+	elseif qrtGlobalMCMVariable.toWhichContainer24==2
+		set tryLootHelper to qrtLootHelper
+	endif
+	call qrtSingleKindLootFunction 25 tryLootHelper
+	if qrtGlobalMCMVariable.toWhichContainer24==1
+		set tryLootHelper to player
+	elseif qrtGlobalMCMVariable.toWhichContainer24==2
+		set tryLootHelper to qrtLootHelper
+	endif
+	call qrtSingleKindLootFunction 26 tryLootHelper
+	if qrtGlobalMCMVariable.toWhichContainer24==1
+		set tryLootHelper to player
+	elseif qrtGlobalMCMVariable.toWhichContainer24==2
+		set tryLootHelper to qrtLootHelper
+	endif
+	call qrtSingleKindLootFunction 29 tryLootHelper
+
+
 	if qrtGlobalMCMVariable.isLootIntoContainer==1
 		set tryLootHelper to qrtLootHelper
 	else
@@ -19,11 +47,6 @@ Begin Function {}
 	;42, 43 ==creature
 	call qrtActorLootHelper 42 tryLootHelper
 	call qrtActorLootHelper 43 tryLootHelper
-	;process some type which require only one activate
-	call qrtSingleKindLootFunction 24 tryLootHelper
-	call qrtSingleKindLootFunction 25 tryLootHelper
-	call qrtSingleKindLootFunction 26 tryLootHelper
-	call qrtSingleKindLootFunction 29 tryLootHelper
 	call qrtSingleKindLootFunction 31 tryLootHelper
 	call qrtSingleKindLootFunction 40 tryLootHelper
 	call qrtSingleKindLootFunction 41 tryLootHelper
