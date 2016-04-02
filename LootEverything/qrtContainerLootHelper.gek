@@ -30,9 +30,8 @@ Begin Function {tryLootHelper}
 			set rActor to GetNextRef
 			continue
 		endif
-		;main process
-		rActor.RemoveAllItems tryLootHelper 1 1
-		messageex "%n looted" rActor
+		;all checked, loot it
+		call qrtContainerLootCore rActor
 		;next item
 		set rActor to GetNextRef
 	loop

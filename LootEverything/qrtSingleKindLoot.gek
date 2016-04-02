@@ -61,7 +61,7 @@ Begin Function { itemType, destinationInfo, isShowMessage}
 		;messageex "owner= %n, cellOwner=%n" owner, cellOwner
 		;show message or not
 		if isShowMessage
-			messageex "%n looted" rActor
+			messageex "%n looted to %n" rActor, storeRef
 		endif
 		;next item
 		set rActor to GetNextRef
