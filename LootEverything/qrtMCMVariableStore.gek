@@ -44,45 +44,7 @@ short toWhichContainer116
 begin GameMode
 	if iInit
 	else
-		set isPickQuestItem to 0
 		set iInit to 1
-		set isAutoLootEnabled to 1
-		set mainContainerHotkey to 50
-		set cellToggleHotkey to 49
-		set isLootIntoContainer to 0
-		set distanceCheck to 0
-		set isPickPlayerDroppedItems to 0
-		set isPickUnPlayableItem to 0
-		set manualLootHotkey to 51
-		set isDisableMsg24 to 1
-		set isDisableMsg25 to 1
-		set isDisableMsg26 to 1
-		set isDisableMsg29 to 1
-		set isDisableMsg31 to 1
-		set isDisableMsg40 to 1
-		set isDisableMsg41 to 1
-		set isDisableMsg46 to 1
-		set isDisableMsg47 to 1
-		set isDisableMsg49 to 1
-		set isDisableMsg50 to 1
-		set isDisableMsg103 to 1
-		set isDisableMsg108 to 1
-		set isDisableMsg115 to 1
-		set isDisableMsg116 to 1
-		set toWhichContainer24 to 1
-		set toWhichContainer25 to 1
-		set toWhichContainer26 to 1
-		set toWhichContainer29 to 1
-		set toWhichContainer31 to 1
-		set toWhichContainer40 to 1
-		set toWhichContainer41 to 1
-		set toWhichContainer46 to 1
-		set toWhichContainer47 to 1
-		set toWhichContainer49 to 1
-		set toWhichContainer50 to 1
-		set toWhichContainer103 to 1
-		set toWhichContainer108 to 1
-		set toWhichContainer115 to 1
-		set toWhichContainer116 to 1
+		call qrtMCMDefault
 	endif
 end

@@ -157,7 +157,7 @@ begin MenuMode 1013
 		elseif GetUIFloat "StartMenu/MCM/_Default"		;2 - DEFAULT
 			SetUIFloat "StartMenu/MCM/_Default" 0
 			SetUIFloat "StartMenu/MCM/_Reset" 1
-			;TODO: default values
+			call qrtMCMDefault
 		elseif GetUIFloat "StartMenu/MCM/_NewValue"		;3 - NEW VALUE
 			SetUIFloat "StartMenu/MCM/_NewValue" 0
 			SetUIFloat "StartMenu/MCM/_Reset" 1
