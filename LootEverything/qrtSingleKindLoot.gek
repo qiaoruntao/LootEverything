@@ -13,7 +13,16 @@ int isShowMessage
 
 Begin Function { itemType, destinationInfo, isShowMessage}
 	;get which place to store
-	let storeRef := call qrtGetLootStoreByDestinationInfo destinationInfo
+	if destinationInfo==1
+		set storeRef to player
+		;refItem.RemoveMeIR player
+	elseif destinationInfo==2
+		set storeRef to qrtLootHelper
+		;refItem.RemoveMeIR qrtLootHelper
+	else
+		set storeRef to player
+		;refItem.RemoveMeIR player
+	endif
 	;main process
 	set rActor to GetFirstRef itemType
 	while rActor != 0
