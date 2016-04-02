@@ -40,24 +40,36 @@ Begin Function { itemType, destinationInfo, isShowMessage}
 				continue
 			endif
 		endif
+		;base is used multiple times below
+		set base to rActor.GetBaseObject
 		;check if playable
 		if qrtGlobalMCMVariable.isPickUnPlayableItem==0
-			if IsPlayable rActor==0
+			if IsPlayable base==0
 				set rActor to GetNextRef
 				continue
 			endif
 		endif
+		;check if steal
 		let isLegal := call qrtIsLegalToPickUpFunction rActor
 		if isLegal==0
 			set rActor to GetNextRef
 			continue
 		endif
+		;check if quest item
+		if qrtGlobalMCMVariable.isPickQuestItem==0
+			if IsQuestItem base
+				set rActor to GetNextRef
+				continue
+			endif
+		endif
 		;all condition checked, loot now
 		set tempCount to rActor.GetRefCount
 		rActor.activate storeRef
-		let tempCount -= 1
-		set base to rActor.GetBaseObject
-		storeRef.addItem base tempCount 1
+		if tempCount>1
+			let tempCount -= 1
+			storeRef.addItem base tempCount 1
+		endif
+
 		;messageex "owner= %n, cellOwner=%n" owner, cellOwner
 		;show message or not
 		if isShowMessage

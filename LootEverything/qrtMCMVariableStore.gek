@@ -8,6 +8,7 @@ float distanceCheck
 short iInit
 short isPickPlayerDroppedItems
 short isPickUnPlayableItem
+short isPickQuestItem
 short manualLootHotkey
 short isDisableMsg24
 short isDisableMsg25
@@ -43,6 +44,7 @@ short toWhichContainer116
 begin GameMode
 	if iInit
 	else
+		set isPickQuestItem to 0
 		set iInit to 1
 		set isAutoLootEnabled to 1
 		set mainContainerHotkey to 50

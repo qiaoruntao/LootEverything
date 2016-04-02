@@ -62,11 +62,6 @@ begin MenuMode 1013
 				SetUIString "StartMenu/MCM/*:1/*:2/_title" "Hotkey: Open Main Loot Container"
 				SetUIFloat "StartMenu/MCM/*:1/*:2/_type" 3
 				SetUIStringEx "StartMenu/MCM/*:1/*:2/value/*:1/string" "%k" qrtGlobalMCMVariable.mainContainerHotkey
-				;option 
-				SetUIFloat "StartMenu/MCM/*:1/*:4/_enable" 1
-				SetUIString "StartMenu/MCM/*:1/*:4/_title" "Loot into Main Loot Container"
-				SetUIFloat "StartMenu/MCM/*:1/*:4/_type" 4
-				SetUIFloat "StartMenu/MCM/*:1/*:4/_value" qrtGlobalMCMVariable.isLootIntoContainer
 				;option
 				SetUIFloat "StartMenu/MCM/*:1/*:5/_enable" 1
 				SetUIFloat "StartMenu/MCM/*:1/*:5/_suffix" 1
@@ -85,10 +80,15 @@ begin MenuMode 1013
 				SetUIFloat "StartMenu/MCM/*:1/*:7/_type" 4
 				SetUIFloat "StartMenu/MCM/*:1/*:7/_value" qrtGlobalMCMVariable.isPickUnPlayableItem
 				;option 
+				SetUIFloat "StartMenu/MCM/*:1/*:4/_enable" 1
+				SetUIString "StartMenu/MCM/*:1/*:4/_title" "Hotkey: Manual Loot"
+				SetUIFloat "StartMenu/MCM/*:1/*:4/_type" 3
+				SetUIStringEx "StartMenu/MCM/*:1/*:4/value/*:1/string" "%k" qrtGlobalMCMVariable.manualLootHotkey
+				;option 
 				SetUIFloat "StartMenu/MCM/*:1/*:8/_enable" 1
-				SetUIString "StartMenu/MCM/*:1/*:8/_title" "Hotkey: Manual Loot"
-				SetUIFloat "StartMenu/MCM/*:1/*:8/_type" 3
-				SetUIStringEx "StartMenu/MCM/*:1/*:8/value/*:1/string" "%k" qrtGlobalMCMVariable.manualLootHotkey
+				SetUIString "StartMenu/MCM/*:1/*:8/_title" "Pick Quest item"
+				SetUIFloat "StartMenu/MCM/*:1/*:8/_type" 4
+				SetUIFloat "StartMenu/MCM/*:1/*:8/_value" qrtGlobalMCMVariable.isPickQuestItem
 			elseif iSubMenu == 2
 				int subMenu2Index
 				set subMenu2Index to 1
@@ -177,7 +177,7 @@ begin MenuMode 1013
 						StopQuest qrtAutoLoot
 					endif
 				elseif iOption == 4
-					set qrtGlobalMCMVariable.isLootIntoContainer to fValue
+					set qrtGlobalMCMVariable.manualLootHotkey to fValue
 				elseif iOption == 5
 					set qrtGlobalMCMVariable.distanceCheck to fValue
 				elseif iOption == 6
@@ -185,7 +185,7 @@ begin MenuMode 1013
 				elseif iOption == 7
 					set qrtGlobalMCMVariable.isPickUnPlayableItem to fValue
 				elseif iOption == 8
-					set qrtGlobalMCMVariable.manualLootHotkey to fValue
+					set qrtGlobalMCMVariable.isPickQuestItem to fValue
 				endif
 			elseif iSubMenu == 2
 				if iOption == 1
@@ -293,7 +293,7 @@ begin MenuMode 1013
 					elseif iMouseover == 1
 						SetUIString "StartMenu/MCM/*:9/string" "Globally Disable/Enable Auto-Looting"
 					elseif iMouseover == 4
-						SetUIString "StartMenu/MCM/*:9/string" "Loot All goods into Main Loot Container which you can access it remotely by hotkey."
+						SetUIString "StartMenu/MCM/*:9/string" "Press to start a loot, no matter whether auto-loot is enabled."
 					elseif iMouseover == 5
 						SetUIString "StartMenu/MCM/*:9/string" "Define the maximum distance auto-loot can loot. Currently not recommended to set larger than 0, it makes the game laggy."
 					elseif iMouseover == 6
@@ -301,7 +301,7 @@ begin MenuMode 1013
 					elseif iMouseover == 7
 						SetUIString "StartMenu/MCM/*:9/string" "If set to ON, auto-loot will try picking up unplayable items."
 					elseif iMouseover == 8
-						SetUIString "StartMenu/MCM/*:9/string" "Press to start a loot, no matter whether auto-loot is enabled."
+						SetUIString "StartMenu/MCM/*:9/string" "If set to ON, auto-loot will try picking up quest items."
 					endif
 				elseif iSubMenu == 2
 					SetUIString "StartMenu/MCM/*:9/string" "Change default store destination"

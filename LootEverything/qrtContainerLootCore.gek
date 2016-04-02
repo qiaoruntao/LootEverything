@@ -4,11 +4,18 @@ int itemType
 ref lootTarget
 ref refItem
 int tempType
+ref base
 
 
 Begin Function { lootTarget }
 	foreach refItem <- lootTarget
-		;TODO:check if quest item
+		;check if quest item
+		set base to refItem.GetBaseObject
+		if qrtGlobalMCMVariable.isPickQuestItem==0
+			if IsQuestItem base
+				continue
+			endif
+		endif
 		;proceed according item type
 		set tempType to refItem.GetType
 		if tempType == 24
