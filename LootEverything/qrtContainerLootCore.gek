@@ -4,8 +4,7 @@ int itemType
 ref lootTarget
 ref refItem
 int tempType
-ref storeRef
-int result
+
 
 Begin Function { lootTarget }
 	foreach refItem <- lootTarget
@@ -13,36 +12,9 @@ Begin Function { lootTarget }
 		;proceed according item type
 		set tempType to refItem.GetType
 		if tempType == 24
-			let storeRef := call qrtGetLootStoreByDestinationInfo qrtGlobalMCMVariable.toWhichContainer24
-			if qrtGlobalMCMVariable.isDisableMsg24
-				messageex "%n looted from %n to %n" refItem, lootTarget, storeRef
-			endif
-			let result := refItem.RemoveMeIR storeRef
-			printtoConsole "finished 24 %g" result
-		elseif tempType == 25
-			let storeRef := call qrtGetLootStoreByDestinationInfo qrtGlobalMCMVariable.toWhichContainer25
-			refItem.RemoveMeIR storeRef
-			if qrtGlobalMCMVariable.isDisableMsg25
-				messageex "%n looted from %n to %n" refItem, lootTarget, storeRef
-			endif
-		elseif tempType == 26
-			let storeRef := call qrtGetLootStoreByDestinationInfo qrtGlobalMCMVariable.toWhichContainer26
-			refItem.RemoveMeIR storeRef
-			if qrtGlobalMCMVariable.isDisableMsg26
-				messageex "%n looted from %n to %n" refItem, lootTarget, storeRef
-			endif
-		elseif tempType == 29
-			let storeRef := call qrtGetLootStoreByDestinationInfo qrtGlobalMCMVariable.toWhichContainer29
-			refItem.RemoveMeIR storeRef
-			if qrtGlobalMCMVariable.isDisableMsg29
-				messageex "%n looted from %n to %n" refItem, lootTarget, storeRef
-			endif
+			call qrtContainerLootCoreHelper refItem qrtGlobalMCMVariable.toWhichContainer24 qrtGlobalMCMVariable.isDisableMsg24
 		elseif tempType == 31
-			let storeRef := call qrtGetLootStoreByDestinationInfo qrtGlobalMCMVariable.toWhichContainer31
-			refItem.RemoveMeIR storeRef
-			if qrtGlobalMCMVariable.isDisableMsg31
-				messageex "%n looted from %n to %n" refItem, lootTarget, storeRef
-			endif
+			call qrtContainerLootCoreHelper refItem qrtGlobalMCMVariable.toWhichContainer31 qrtGlobalMCMVariable.isDisableMsg31
 		endif
 	loop
 End

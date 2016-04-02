@@ -1,0 +1,19 @@
+﻿scn qrtContainerLootCoreHelper
+
+ref refItem
+ref storeRef
+int destinationInfo
+int isShowMessage
+
+Begin Function { refItem, destinationInfo, isShowMessage}
+	if destinationInfo==1
+		refItem.RemoveMeIR player
+	elseif destinationInfo==2
+		refItem.RemoveMeIR qrtLootHelper
+	else
+		refItem.RemoveMeIR player
+	endif
+	if isShowMessage
+		messageex "%n looted" refItem
+	endif
+End

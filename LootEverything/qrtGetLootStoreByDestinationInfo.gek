@@ -6,7 +6,7 @@ Begin Function { destinationInfo }
 	if destinationInfo==1
 		SetFunctionValue player
 	elseif destinationInfo==2
-		SetFunctionValue qrtLootNPC
+		SetFunctionValue qrtLootHelper
 	else
 		SetFunctionValue player
 	endif
