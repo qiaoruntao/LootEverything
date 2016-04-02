@@ -8,9 +8,17 @@ ref base
 int tempCount
 int isInDistance
 int isPlayerDropped
+int destinationInfo
+int isShowMessage
 
-Begin Function { itemType, tryLootHelper}
-	set tryLootHelper to 
+Begin Function { itemType, destinationInfo, isShowMessage}
+	;get which place to store
+	if destinationInfo==1
+		set tryLootHelper to player
+	elseif destinationInfo==2
+		set tryLootHelper to qrtLootHelper
+	endif
+	;main process
 	set rActor to GetFirstRef itemType
 	while rActor != 0
 		;check the distance
@@ -46,7 +54,10 @@ Begin Function { itemType, tryLootHelper}
 		set base to rActor.GetBaseObject
 		tryLootHelper.addItem base tempCount 1
 		;messageex "owner= %n, cellOwner=%n" owner, cellOwner
-		messageex "%n looted" rActor
+		;show message or not
+		if isShowMessage
+			messageex "%n looted" rActor
+		endif
 		;next item
 		set rActor to GetNextRef
 	loop

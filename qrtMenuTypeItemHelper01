@@ -7,16 +7,12 @@ string_var my_string
 
 Begin Function { index, title, value}
 	let my_string := "StartMenu/MCM/*:1/*:"+$index+"/_enable"
-	PrintToConsole $my_string
 	SetUIFloat $my_string 1
 	let my_string := "StartMenu/MCM/*:1/*:"+$index+"/_title"
-	PrintToConsole $my_string
 	SetUIString $my_string $title
 	let my_string := "StartMenu/MCM/*:1/*:"+$index+"/_type"
-	PrintToConsole $my_string
 	SetUIFloat $my_string 1
 	let my_string := "StartMenu/MCM/*:1/*:"+$index+"/value/*:1/string"
-	PrintToConsole $my_string
 	if value == 1
 		SetUIStringEx $my_string "Player"
 	elseif value == 2

@@ -90,8 +90,6 @@ begin MenuMode 1013
 				SetUIFloat "StartMenu/MCM/*:1/*:8/_type" 3
 				SetUIStringEx "StartMenu/MCM/*:1/*:8/value/*:1/string" "%k" qrtGlobalMCMVariable.manualLootHotkey
 			elseif iSubMenu == 2
-				;PrintToConsole "subMenu 2"
-				;sub menu 2
 				int subMenu2Index
 				set subMenu2Index to 1
 				call qrtMenuTypeItemHelper01 subMenu2Index "Armor Destination" qrtGlobalMCMVariable.toWhichContainer24
@@ -101,6 +99,60 @@ begin MenuMode 1013
 				call qrtMenuTypeItemHelper01 subMenu2Index "Clothing Destination" qrtGlobalMCMVariable.toWhichContainer26
 				let subMenu2Index +=1
 				call qrtMenuTypeItemHelper01 subMenu2Index "Ingredient Destination" qrtGlobalMCMVariable.toWhichContainer29
+				let subMenu2Index +=1
+				call qrtMenuTypeItemHelper01 subMenu2Index "Misc Destination" qrtGlobalMCMVariable.toWhichContainer31
+				let subMenu2Index +=1
+				call qrtMenuTypeItemHelper01 subMenu2Index "Weapon Destination" qrtGlobalMCMVariable.toWhichContainer40
+				let subMenu2Index +=1
+				call qrtMenuTypeItemHelper01 subMenu2Index "Ammo Destination" qrtGlobalMCMVariable.toWhichContainer41
+				let subMenu2Index +=1
+				call qrtMenuTypeItemHelper01 subMenu2Index "Key Destination" qrtGlobalMCMVariable.toWhichContainer46
+				let subMenu2Index +=1
+				call qrtMenuTypeItemHelper01 subMenu2Index "AlchemyItem Destination" qrtGlobalMCMVariable.toWhichContainer47
+				let subMenu2Index +=1
+				call qrtMenuTypeItemHelper01 subMenu2Index "Note Destination" qrtGlobalMCMVariable.toWhichContainer49
+				let subMenu2Index +=1
+				call qrtMenuTypeItemHelper01 subMenu2Index "ConstructibleObject Destination" qrtGlobalMCMVariable.toWhichContainer50
+				let subMenu2Index +=1
+				call qrtMenuTypeItemHelper01 subMenu2Index "IMOD (weapon mods) Destination" qrtGlobalMCMVariable.toWhichContainer103
+				let subMenu2Index +=1
+				call qrtMenuTypeItemHelper01 subMenu2Index "CHIP (casino chip) Destination" qrtGlobalMCMVariable.toWhichContainer108
+				let subMenu2Index +=1
+				call qrtMenuTypeItemHelper01 subMenu2Index "CCRD (caravan card) Destination" qrtGlobalMCMVariable.toWhichContainer115
+				let subMenu2Index +=1
+				call qrtMenuTypeItemHelper01 subMenu2Index "CMNY (faction currency) Destination" qrtGlobalMCMVariable.toWhichContainer116
+			elseif iSubMenu ==3
+				int subMenu3Index
+				set subMenu3Index to 1
+				call qrtMenuTypeItemHelper02 subMenu3Index "Armor Message" qrtGlobalMCMVariable.isDisableMsg24
+				let subMenu3Index +=1
+				call qrtMenuTypeItemHelper02 subMenu3Index "Book Message" qrtGlobalMCMVariable.isDisableMsg25
+				let subMenu3Index +=1
+				call qrtMenuTypeItemHelper02 subMenu3Index "Clothing Message" qrtGlobalMCMVariable.isDisableMsg26
+				let subMenu3Index +=1
+				call qrtMenuTypeItemHelper02 subMenu3Index "Ingredient Message" qrtGlobalMCMVariable.isDisableMsg29
+				let subMenu3Index +=1
+				call qrtMenuTypeItemHelper02 subMenu3Index "Misc Message" qrtGlobalMCMVariable.isDisableMsg31
+				let subMenu3Index +=1
+				call qrtMenuTypeItemHelper02 subMenu3Index "Weapon Message" qrtGlobalMCMVariable.isDisableMsg40
+				let subMenu3Index +=1
+				call qrtMenuTypeItemHelper02 subMenu3Index "Ammo Message" qrtGlobalMCMVariable.isDisableMsg41
+				let subMenu3Index +=1
+				call qrtMenuTypeItemHelper02 subMenu3Index "Key Message" qrtGlobalMCMVariable.isDisableMsg46
+				let subMenu3Index +=1
+				call qrtMenuTypeItemHelper02 subMenu3Index "AlchemyItem Message" qrtGlobalMCMVariable.isDisableMsg47
+				let subMenu3Index +=1
+				call qrtMenuTypeItemHelper02 subMenu3Index "Note Message" qrtGlobalMCMVariable.isDisableMsg49
+				let subMenu3Index +=1
+				call qrtMenuTypeItemHelper02 subMenu3Index "ConstructibleObject Message" qrtGlobalMCMVariable.isDisableMsg50
+				let subMenu3Index +=1
+				call qrtMenuTypeItemHelper02 subMenu3Index "IMOD (weapon mods) Message" qrtGlobalMCMVariable.isDisableMsg103
+				let subMenu3Index +=1
+				call qrtMenuTypeItemHelper02 subMenu3Index "CHIP (casino chip) Message" qrtGlobalMCMVariable.isDisableMsg108
+				let subMenu3Index +=1
+				call qrtMenuTypeItemHelper02 subMenu3Index "CCRD (caravan card) Message" qrtGlobalMCMVariable.isDisableMsg115
+				let subMenu3Index +=1
+				call qrtMenuTypeItemHelper02 subMenu3Index "CMNY (faction currency) Message" qrtGlobalMCMVariable.isDisableMsg116
 			endif
 		elseif GetUIFloat "StartMenu/MCM/_Default"		;2 - DEFAULT
 			SetUIFloat "StartMenu/MCM/_Default" 0
@@ -137,15 +189,77 @@ begin MenuMode 1013
 				endif
 			elseif iSubMenu == 2
 				if iOption == 1
-					set qrtGlobalMCMVariable.toWhichContainer24 to fValue	
+					set qrtGlobalMCMVariable.toWhichContainer24 to fValue
+				elseif iOption == 2
+					set qrtGlobalMCMVariable.toWhichContainer25 to fValue	
+				elseif iOption == 3
+					set qrtGlobalMCMVariable.toWhichContainer26 to fValue	
+				elseif iOption == 4
+					set qrtGlobalMCMVariable.toWhichContainer29 to fValue	
+				elseif iOption == 5
+					set qrtGlobalMCMVariable.toWhichContainer31 to fValue	
+				elseif iOption == 6
+					set qrtGlobalMCMVariable.toWhichContainer40 to fValue	
+				elseif iOption == 7
+					set qrtGlobalMCMVariable.toWhichContainer41 to fValue
+				elseif iOption == 8
+					set qrtGlobalMCMVariable.toWhichContainer46 to fValue
+				elseif iOption == 9
+					set qrtGlobalMCMVariable.toWhichContainer47 to fValue	
+				elseif iOption == 10
+					set qrtGlobalMCMVariable.toWhichContainer49 to fValue	
+				elseif iOption == 11
+					set qrtGlobalMCMVariable.toWhichContainer50 to fValue	
+				elseif iOption == 12
+					set qrtGlobalMCMVariable.toWhichContainer103 to fValue	
+				elseif iOption == 13
+					set qrtGlobalMCMVariable.toWhichContainer108 to fValue	
+				elseif iOption == 14
+					set qrtGlobalMCMVariable.toWhichContainer115 to fValue
+				elseif iOption == 15
+					set qrtGlobalMCMVariable.toWhichContainer116 to fValue
+				endif
+			elseif iSubMenu == 3
+				if iOption == 1
+					set qrtGlobalMCMVariable.isDisableMsg24 to fValue
+				elseif iOption == 2
+					set qrtGlobalMCMVariable.isDisableMsg25 to fValue	
+				elseif iOption == 3
+					set qrtGlobalMCMVariable.isDisableMsg26 to fValue	
+				elseif iOption == 4
+					set qrtGlobalMCMVariable.isDisableMsg29 to fValue	
+				elseif iOption == 5
+					set qrtGlobalMCMVariable.isDisableMsg31 to fValue	
+				elseif iOption == 6
+					set qrtGlobalMCMVariable.isDisableMsg40 to fValue	
+				elseif iOption == 7
+					set qrtGlobalMCMVariable.isDisableMsg41 to fValue
+				elseif iOption == 8
+					set qrtGlobalMCMVariable.isDisableMsg46 to fValue
+				elseif iOption == 9
+					set qrtGlobalMCMVariable.isDisableMsg47 to fValue	
+				elseif iOption == 10
+					set qrtGlobalMCMVariable.isDisableMsg49 to fValue	
+				elseif iOption == 11
+					set qrtGlobalMCMVariable.isDisableMsg50 to fValue	
+				elseif iOption == 12
+					set qrtGlobalMCMVariable.isDisableMsg103 to fValue	
+				elseif iOption == 13
+					set qrtGlobalMCMVariable.isDisableMsg108 to fValue	
+				elseif iOption == 14
+					set qrtGlobalMCMVariable.isDisableMsg115 to fValue
+				elseif iOption == 15
+					set qrtGlobalMCMVariable.isDisableMsg116 to fValue
 				endif
 			endif
 		elseif GetUIFloat "StartMenu/MCM/_ShowList" == 1		;4 - SHOW LIST
 			SetUIFloat "StartMenu/MCM/_ShowList" 2
 			if iSubMenu == 2
-				if iOption == 1
-					call qrtMenuTypeItemHelper02 qrtGlobalMCMVariable.toWhichContainer24
-				endif
+				SetUIString "StartMenu/MCM/*:3/_title" "Destination"
+				SetUIFloat "StartMenu/MCM/*:3/*:1/_enable" 1
+				SetUIFloat "StartMenu/MCM/*:3/*:2/_enable" 1
+				SetUIString "StartMenu/MCM/*:3/*:1/text/string" "Player"
+				SetUIString "StartMenu/MCM/*:3/*:2/text/string" "Main Loot Safe"
 			endif
 		elseif GetUIFloat "StartMenu/MCM/_ShowScale" == 1		;5 - SHOW SCALE
 			SetUIFloat "StartMenu/MCM/_ShowScale" 2
@@ -190,9 +304,9 @@ begin MenuMode 1013
 						SetUIString "StartMenu/MCM/*:9/string" "Press to start a loot, no matter whether auto-loot is enabled."
 					endif
 				elseif iSubMenu == 2
-					if iMouseover == 1
-						SetUIString "StartMenu/MCM/*:9/string" "Change default store destination"
-					endif
+					SetUIString "StartMenu/MCM/*:9/string" "Change default store destination"
+				elseif iSubMenu == 3
+					SetUIString "StartMenu/MCM/*:9/string" "Yes means show message when this kind of item is looted. No otherwise"
 				endif
 			else
 				SetUIFloat "StartMenu/MCM/MCM_Info/visible" 0

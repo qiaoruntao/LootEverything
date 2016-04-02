@@ -1,12 +1,17 @@
 scn qrtMenuTypeItemHelper02
 
+int index
+string_var title
 int value
+string_var my_string
 
-Begin Function {value}
-	SetUIString "StartMenu/MCM/*:3/_title" "Destination"
-	SetUIFloat "StartMenu/MCM/*:3/*:1/_enable" 1
-	SetUIFloat "StartMenu/MCM/*:3/*:2/_enable" 1
-	SetUIString "StartMenu/MCM/*:3/*:1/text/string" "Player"
-	SetUIString "StartMenu/MCM/*:3/*:2/text/string" "Main Loot Safe"
-	SetUIFloat "StartMenu/MCM/_Value" value
+Begin Function { index, title, value}
+	let my_string := "StartMenu/MCM/*:1/*:"+$index+"/_enable"
+	SetUIFloat $my_string 1
+	let my_string := "StartMenu/MCM/*:1/*:"+$index+"/_title"
+	SetUIString $my_string $title
+	let my_string := "StartMenu/MCM/*:1/*:"+$index+"/_type"
+	SetUIFloat $my_string 4
+	let my_string := "StartMenu/MCM/*:1/*:"+$index+"/_value"
+	SetUIFloat $my_string value
 End
