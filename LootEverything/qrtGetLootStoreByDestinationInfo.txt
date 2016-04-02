@@ -1,0 +1,13 @@
+scn qrtGetLootStoreByDestinationInfo
+
+int destinationInfo
+
+Begin Function { destinationInfo }
+	if destinationInfo==1
+		SetFunctionValue player
+	elseif destinationInfo==2
+		SetFunctionValue qrtLootNPC
+	else
+		SetFunctionValue player
+	endif
+End

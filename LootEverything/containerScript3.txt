@@ -1,0 +1,99 @@
+﻿scn tryThirdContainerScript
+
+int isSearchSecond ;默认为0
+int isFirstNeedRefresh
+int isOpened
+Begin OnActivate
+	ref actionRef
+	set actionRef to GetActionRef
+	if actionRef ==player
+		set isOpened to 1
+	endif
+;	messageboxex "is third shown?"
+	if actionRef !=tryRefreshSignal
+		activate actionRef
+		return
+	endif
+	;开始refresh tryTempList
+	;清空tempList
+	ListClear tryTempList
+	ref refItems
+	ref tempBaseId
+	int tempType
+;	messageboxex "is third2 shown?"
+	;设置为默认的0
+	set isFirstNeedRefresh to 0
+	foreach refItems <- tryThirdContainer
+	;开始遍历
+		;TODO
+		;忽略其他物品
+		set tempType to refItems.GetType
+		if tempType!=24 && tempType !=26 &&tempType !=40
+			continue
+		endif
+		set tempBaseId to refItems.GetBaseObject
+		if IsRefInList tryTempList tempBaseId != -1
+		;检查到过了
+			continue
+		endif
+		;添加入列表
+		ListAddForm tryTempList tempBaseId
+		;开始检查1号箱存在与否
+		ref tempFirstItem
+		set tempFirstItem to tryFirstContainer.GetFirstRefForItem tempBaseId
+		;标记为需要刷新
+		set isFirstNeedRefresh to 1
+		if tempFirstItem ==0
+		;不存在, 分配过去
+			int tempCount
+			set tempCount to refItems.GetRefCount
+			if tempCount >1
+			;多个, 减少后送过去
+				refItems.SetRefCount 1
+				refItems.CopyIR tryFirstContainer
+				set tempCount to tempCount - 1
+				refItems.SetRefCount tempCount 
+			else
+				refItems.RemoveMeIR tryFirstContainer
+			endif
+		endif
+		;开始检查2号箱是否存在, 在此步判断并截断执行
+;		messageboxex "isSearchSecond =%g" isSearchSecond 
+		if isSearchSecond ==0
+			break
+		endif
+		;恢复默认
+		set isSearchSecond to 0
+		ref tempSecondItem
+		set tempSecondItem to trySecondContainer.GetFirstRefForItem tempBaseId
+		while tempSecondItem !=0
+		;循环带走
+			tempSecondItem.RemoveMeIR tryThirdContainer
+			set tempSecondItem to trySecondContainer.GetNextRefForItem tempBaseId
+		loop
+		;开始检查others中是否存在
+		ref tempOthersItem
+		set tempOthersItem to tryOthersContainer.GetFirstRefForItem tempBaseId
+		while tempOthersItem!=0
+		;循环带走
+			tempOthersItem.RemoveMeIR tryThirdContainer
+			set tempOthersItem to tryOthersContainer.GetNextRefForItem tempBaseId
+		loop
+	loop
+	;如果1号箱需要刷新, 则刷新
+	if isFirstNeedRefresh==1
+		set isFirstNeedRefresh to 0
+		tryFirstContainer.Activate tryRefreshSignal 1
+	endif
+End
+Begin OnClose
+	;refresh
+	if isOpened==0
+		return
+	endif
+	;恢复默认
+	set isOpened to 0
+	;设置为搜索
+	set isSearchSecond to 1
+	tryThirdContainer.Activate tryRefreshSignal 1
+End

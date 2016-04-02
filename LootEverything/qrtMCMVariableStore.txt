@@ -1,0 +1,86 @@
+﻿ScriptName qrtMCMVariableStore
+
+short mainContainerHotkey
+short cellToggleHotkey
+short isAutoLootEnabled
+short isLootIntoContainer
+float distanceCheck
+short iInit
+short isPickPlayerDroppedItems
+short isPickUnPlayableItem
+short manualLootHotkey
+short isDisableMsg24
+short isDisableMsg25
+short isDisableMsg26
+short isDisableMsg29
+short isDisableMsg31
+short isDisableMsg40
+short isDisableMsg41
+short isDisableMsg46
+short isDisableMsg47
+short isDisableMsg49
+short isDisableMsg50
+short isDisableMsg103
+short isDisableMsg108
+short isDisableMsg115
+short isDisableMsg116
+short toWhichContainer24
+short toWhichContainer25
+short toWhichContainer26
+short toWhichContainer29
+short toWhichContainer31
+short toWhichContainer40
+short toWhichContainer41
+short toWhichContainer46
+short toWhichContainer47
+short toWhichContainer49
+short toWhichContainer50
+short toWhichContainer103
+short toWhichContainer108
+short toWhichContainer115
+short toWhichContainer116
+
+begin GameMode
+	if iInit
+	else
+		set iInit to 1
+		set isAutoLootEnabled to 1
+		set mainContainerHotkey to 50
+		set cellToggleHotkey to 49
+		set isLootIntoContainer to 0
+		set distanceCheck to 0
+		set isPickPlayerDroppedItems to 0
+		set isPickUnPlayableItem to 0
+		set manualLootHotkey to 51
+		set isDisableMsg24 to 1
+		set isDisableMsg25 to 1
+		set isDisableMsg26 to 1
+		set isDisableMsg29 to 1
+		set isDisableMsg31 to 1
+		set isDisableMsg40 to 1
+		set isDisableMsg41 to 1
+		set isDisableMsg46 to 1
+		set isDisableMsg47 to 1
+		set isDisableMsg49 to 1
+		set isDisableMsg50 to 1
+		set isDisableMsg103 to 1
+		set isDisableMsg108 to 1
+		set isDisableMsg115 to 1
+		set isDisableMsg116 to 1
+		set toWhichContainer24 to 1
+		set toWhichContainer25 to 1
+		set toWhichContainer26 to 1
+		set toWhichContainer29 to 1
+		set toWhichContainer31 to 1
+		set toWhichContainer40 to 1
+		set toWhichContainer41 to 1
+		set toWhichContainer46 to 1
+		set toWhichContainer47 to 1
+		set toWhichContainer49 to 1
+		set toWhichContainer50 to 1
+		set toWhichContainer103 to 1
+		set toWhichContainer108 to 1
+		set toWhichContainer115 to 1
+		set toWhichContainer116 to 1
+	endif
+end

@@ -1,7 +1,7 @@
 ﻿scn qrtSingleKindLootFunction
 
 int itemType
-ref tryLootHelper
+ref storeRef
 ref rActor
 int isLegal
 ref base
@@ -13,11 +13,7 @@ int isShowMessage
 
 Begin Function { itemType, destinationInfo, isShowMessage}
 	;get which place to store
-	if destinationInfo==1
-		set tryLootHelper to player
-	elseif destinationInfo==2
-		set tryLootHelper to qrtLootHelper
-	endif
+	let storeRef := call qrtGetLootStoreByDestinationInfo destinationInfo
 	;main process
 	set rActor to GetFirstRef itemType
 	while rActor != 0
@@ -49,10 +45,10 @@ Begin Function { itemType, destinationInfo, isShowMessage}
 		endif
 		;all condition checked, loot now
 		set tempCount to rActor.GetRefCount
-		rActor.activate tryLootHelper
+		rActor.activate storeRef
 		let tempCount -= 1
 		set base to rActor.GetBaseObject
-		tryLootHelper.addItem base tempCount 1
+		storeRef.addItem base tempCount 1
 		;messageex "owner= %n, cellOwner=%n" owner, cellOwner
 		;show message or not
 		if isShowMessage

@@ -1,0 +1,33 @@
+<NotepadPlus>
+    <Project name="LootEverything">
+        <File name="AutoLootEnhancedLootScript.gek" />
+        <File name="containerScript3.txt" />
+        <File name="MCMExampleMenuScript.txt" />
+        <File name="qrtActorLootHelper.txt" />
+        <File name="qrtAddHonestHeartsPlantSupportScript.txt" />
+        <File name="qrtContainerLootCore.txt" />
+        <File name="qrtContainerLootHelper.txt" />
+        <File name="qrtGetLootStoreByDestinationInfo.txt" />
+        <File name="qrtIsInNoLootCell.txt" />
+        <File name="qrtIsLegalToPickUpFunction.txt" />
+        <File name="qrtKeyBindScript.txt" />
+        <File name="qrtLootDistanceCheckScript.txt" />
+        <File name="qrtLootInit.txt" />
+        <File name="qrtLootMain.txt" />
+        <File name="qrtManualLootScript.txt" />
+        <File name="qrtMCM_MenuScript.txt" />
+        <File name="qrtMCMVariableStore.txt" />
+        <File name="qrtMenuTypeItemHelper01.txt" />
+        <File name="qrtMenuTypeItemHelper02.txt" />
+        <File name="qrtMyDistanceMeter.txt" />
+        <File name="qrtOpenMainContainerScript.txt" />
+        <File name="qrtPlantLootHelper.txt" />
+        <File name="qrtSingleKindLoot.txt" />
+        <File name="tryLootScript.txt" />
+        <Folder name="esp">
+            <File name="LootEverything.esp" />
+            <File name="LootEverything_ForDlcSupport.esp" />
+            <File name="tryProject02version0_6.esp" />
+        </Folder>
+    </Project>
+</NotepadPlus>

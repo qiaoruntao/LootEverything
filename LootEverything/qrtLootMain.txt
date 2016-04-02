@@ -16,8 +16,8 @@ Begin Function {}
 	;process container 27
 	call qrtContainerLootHelper tryLootHelper
 	;42, 43 ==creature
-	call qrtActorLootHelper 42 tryLootHelper
-	call qrtActorLootHelper 43 tryLootHelper
+	call qrtActorLootHelper 42
+	call qrtActorLootHelper 43
 	;process some type which require only one activate
 	call qrtSingleKindLootFunction 24 qrtGlobalMCMVariable.toWhichContainer24 qrtGlobalMCMVariable.isDisableMsg24
 	call qrtSingleKindLootFunction 25 qrtGlobalMCMVariable.toWhichContainer25 qrtGlobalMCMVariable.isDisableMsg25

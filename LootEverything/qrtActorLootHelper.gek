@@ -1,17 +1,16 @@
 ﻿scn qrtActorLootHelper
 
 int itemType
-ref tryLootHelper
 ref rActor
 int isLegal
 ref base
 int tempCount
-;ref creatureContainer
+ref creatureContainer
 ref owner
 ref cellOwner
 int isInDistance
 
-Begin Function { itemType, tryLootHelper}
+Begin Function { itemType}
 	set rActor to GetFirstRef itemType
 	while rActor != 0
 		let isInDistance := call qrtLootDistanceCheckScript rActor
@@ -27,7 +26,7 @@ Begin Function { itemType, tryLootHelper}
 			set rActor to GetNextRef
 			continue
 		endif
-		if rActor==tryLootHelper
+		if rActor==qrtLootNPC
 			set rActor to GetNextRef
 			continue
 		endif
@@ -36,11 +35,10 @@ Begin Function { itemType, tryLootHelper}
 			continue
 		endif
 		;main process
-		;set creatureContainer to rActor.GetContainer
-		;messageex "%n container" creatureContainer
-		rActor.RemoveAllItems tryLootHelper 0 1
-		messageex "%n looted" rActor
+		set creatureContainer to rActor.GetContainer
+		PrintToConsole "%n actor loop start" rActor
+		call qrtContainerLootCore rActor
 		;next item
 		set rActor to GetNextRef
 	loop
-End 
+End
