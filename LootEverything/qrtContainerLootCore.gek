@@ -12,9 +12,35 @@ Begin Function { lootTarget }
 		;proceed according item type
 		set tempType to refItem.GetType
 		if tempType == 24
-			call qrtContainerLootCoreHelper refItem qrtGlobalMCMVariable.toWhichContainer24 qrtGlobalMCMVariable.isDisableMsg24
+			call qrtContainerLootCoreHelper refItem qrtGlobalMCMVariable.toWhichContainer24 qrtGlobalMCMVariable.isDisableMsg24 lootTarget
+		elseif tempType == 25
+			call qrtContainerLootCoreHelper refItem qrtGlobalMCMVariable.toWhichContainer25 qrtGlobalMCMVariable.isDisableMsg25 lootTarget
+		elseif tempType == 26
+			call qrtContainerLootCoreHelper refItem qrtGlobalMCMVariable.toWhichContainer26 qrtGlobalMCMVariable.isDisableMsg26 lootTarget
+		elseif tempType == 29
+			call qrtContainerLootCoreHelper refItem qrtGlobalMCMVariable.toWhichContainer29 qrtGlobalMCMVariable.isDisableMsg29 lootTarget
 		elseif tempType == 31
-			call qrtContainerLootCoreHelper refItem qrtGlobalMCMVariable.toWhichContainer31 qrtGlobalMCMVariable.isDisableMsg31
+			call qrtContainerLootCoreHelper refItem qrtGlobalMCMVariable.toWhichContainer31 qrtGlobalMCMVariable.isDisableMsg31 lootTarget
+		elseif tempType == 40
+			call qrtContainerLootCoreHelper refItem qrtGlobalMCMVariable.toWhichContainer40 qrtGlobalMCMVariable.isDisableMsg40 lootTarget
+		elseif tempType == 41
+			call qrtContainerLootCoreHelper refItem qrtGlobalMCMVariable.toWhichContainer41 qrtGlobalMCMVariable.isDisableMsg41 lootTarget
+		elseif tempType == 46
+			call qrtContainerLootCoreHelper refItem qrtGlobalMCMVariable.toWhichContainer46 qrtGlobalMCMVariable.isDisableMsg46 lootTarget
+		elseif tempType == 47
+			call qrtContainerLootCoreHelper refItem qrtGlobalMCMVariable.toWhichContainer47 qrtGlobalMCMVariable.isDisableMsg47 lootTarget
+		elseif tempType == 49
+			call qrtContainerLootCoreHelper refItem qrtGlobalMCMVariable.toWhichContainer49 qrtGlobalMCMVariable.isDisableMsg49 lootTarget
+		elseif tempType == 50
+			call qrtContainerLootCoreHelper refItem qrtGlobalMCMVariable.toWhichContainer50 qrtGlobalMCMVariable.isDisableMsg50 lootTarget
+		elseif tempType == 103
+			call qrtContainerLootCoreHelper refItem qrtGlobalMCMVariable.toWhichContainer103 qrtGlobalMCMVariable.isDisableMsg103 lootTarget
+		elseif tempType == 108
+			call qrtContainerLootCoreHelper refItem qrtGlobalMCMVariable.toWhichContainer108 qrtGlobalMCMVariable.isDisableMsg108 lootTarget
+		elseif tempType == 115
+			call qrtContainerLootCoreHelper refItem qrtGlobalMCMVariable.toWhichContainer115 qrtGlobalMCMVariable.isDisableMsg115 lootTarget
+		elseif tempType == 116
+			call qrtContainerLootCoreHelper refItem qrtGlobalMCMVariable.toWhichContainer116 qrtGlobalMCMVariable.isDisableMsg116 lootTarget
 		endif
 	loop
 End

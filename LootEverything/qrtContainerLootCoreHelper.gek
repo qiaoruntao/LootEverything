@@ -4,16 +4,21 @@ ref refItem
 ref storeRef
 int destinationInfo
 int isShowMessage
+ref rActor
 
-Begin Function { refItem, destinationInfo, isShowMessage}
+Begin Function { refItem, destinationInfo, isShowMessage, rActor }
 	if destinationInfo==1
-		refItem.RemoveMeIR player
+		set storeRef to player
+		;refItem.RemoveMeIR player
 	elseif destinationInfo==2
-		refItem.RemoveMeIR qrtLootHelper
+		set storeRef to qrtLootHelper
+		;refItem.RemoveMeIR qrtLootHelper
 	else
-		refItem.RemoveMeIR player
+		set storeRef to player
+		;refItem.RemoveMeIR player
 	endif
+	refItem.RemoveMeIR storeRef
 	if isShowMessage
-		messageex "%n looted" refItem
+		messageex "%n looted from %n to %n" refItem, rActor, storeRef
 	endif
 End
