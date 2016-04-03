@@ -15,10 +15,10 @@ Begin Function {}
 	call qrtPlantLootHelper
 	;process container 27
 	call qrtContainerLootHelper tryLootHelper
-	;42, 43 ==creature
-	call qrtActorLootHelper 42
-	call qrtActorLootHelper 43
+	;200==creature-player
+	call qrtActorLootHelper 200
 	;process some type which require only one activate
+	call qrtCellSearchAndBuffer
 	call qrtSingleKindLootFunction 24 qrtGlobalMCMVariable.toWhichContainer24 qrtGlobalMCMVariable.isDisableMsg24
 	call qrtSingleKindLootFunction 25 qrtGlobalMCMVariable.toWhichContainer25 qrtGlobalMCMVariable.isDisableMsg25
 	call qrtSingleKindLootFunction 26 qrtGlobalMCMVariable.toWhichContainer26 qrtGlobalMCMVariable.isDisableMsg26

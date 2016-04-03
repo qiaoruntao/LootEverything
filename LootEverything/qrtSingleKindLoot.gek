@@ -69,7 +69,6 @@ Begin Function { itemType, destinationInfo, isShowMessage}
 			let tempCount -= 1
 			storeRef.addItem base tempCount 1
 		endif
-
 		;messageex "owner= %n, cellOwner=%n" owner, cellOwner
 		;show message or not
 		if isShowMessage
