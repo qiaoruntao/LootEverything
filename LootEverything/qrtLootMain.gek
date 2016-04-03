@@ -14,26 +14,11 @@ Begin Function {}
 	endif
 	call qrtPlantLootHelper
 	;process container 27
-	call qrtContainerLootHelper tryLootHelper
+	call qrtContainerLootHelper
 	;200==creature-player
 	call qrtActorLootHelper 200
 	;process some type which require only one activate
 	call qrtCellSearchAndBuffer
-	call qrtSingleKindLootFunction 24 qrtGlobalMCMVariable.toWhichContainer24 qrtGlobalMCMVariable.isDisableMsg24
-	call qrtSingleKindLootFunction 25 qrtGlobalMCMVariable.toWhichContainer25 qrtGlobalMCMVariable.isDisableMsg25
-	call qrtSingleKindLootFunction 26 qrtGlobalMCMVariable.toWhichContainer26 qrtGlobalMCMVariable.isDisableMsg26
-	call qrtSingleKindLootFunction 29 qrtGlobalMCMVariable.toWhichContainer29 qrtGlobalMCMVariable.isDisableMsg29
-	call qrtSingleKindLootFunction 31 qrtGlobalMCMVariable.toWhichContainer31 qrtGlobalMCMVariable.isDisableMsg31
-	call qrtSingleKindLootFunction 40 qrtGlobalMCMVariable.toWhichContainer40 qrtGlobalMCMVariable.isDisableMsg40
-	call qrtSingleKindLootFunction 41 qrtGlobalMCMVariable.toWhichContainer41 qrtGlobalMCMVariable.isDisableMsg41
-	call qrtSingleKindLootFunction 46 qrtGlobalMCMVariable.toWhichContainer46 qrtGlobalMCMVariable.isDisableMsg46
-	call qrtSingleKindLootFunction 47 qrtGlobalMCMVariable.toWhichContainer47 qrtGlobalMCMVariable.isDisableMsg47
-	call qrtSingleKindLootFunction 49 qrtGlobalMCMVariable.toWhichContainer49 qrtGlobalMCMVariable.isDisableMsg49
-	call qrtSingleKindLootFunction 50 qrtGlobalMCMVariable.toWhichContainer50 qrtGlobalMCMVariable.isDisableMsg50
-	call qrtSingleKindLootFunction 103 qrtGlobalMCMVariable.toWhichContainer103 qrtGlobalMCMVariable.isDisableMsg103
-	call qrtSingleKindLootFunction 108 qrtGlobalMCMVariable.toWhichContainer108 qrtGlobalMCMVariable.isDisableMsg108
-	call qrtSingleKindLootFunction 115 qrtGlobalMCMVariable.toWhichContainer115 qrtGlobalMCMVariable.isDisableMsg115
-	call qrtSingleKindLootFunction 116 qrtGlobalMCMVariable.toWhichContainer116 qrtGlobalMCMVariable.isDisableMsg116
 	;make sure nothing is left
 	qrtLootHelper.RemoveAllItems qrtMainLootSafe 0 1
 End

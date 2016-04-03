@@ -1,6 +1,5 @@
 ﻿scn qrtSingleKindLootFunction
 
-int itemType
 ref storeRef
 ref rActor
 int isLegal
@@ -11,7 +10,7 @@ int isPlayerDropped
 int destinationInfo
 int isShowMessage
 
-Begin Function { itemType, destinationInfo, isShowMessage}
+Begin Function { rActor, destinationInfo, isShowMessage}
 	;get which place to store
 	if destinationInfo==1
 		set storeRef to player
@@ -23,58 +22,17 @@ Begin Function { itemType, destinationInfo, isShowMessage}
 		set storeRef to player
 		;refItem.RemoveMeIR player
 	endif
-	;main process
-	set rActor to GetFirstRef itemType
-	while rActor != 0
-		;check the distance
-		let isInDistance := call qrtLootDistanceCheckScript rActor
-		if isInDistance==0
-			set rActor to GetNextRef
-			continue
-		endif
-		;check if dropped by player
-		if qrtGlobalMCMVariable.isPickPlayerDroppedItems==0
-			let isPlayerDropped := GetSourceModIndex rActor ==255
-			if isPlayerDropped
-				set rActor to GetNextRef
-				continue
-			endif
-		endif
-		;base is used multiple times below
-		set base to rActor.GetBaseObject
-		;check if playable
-		if qrtGlobalMCMVariable.isPickUnPlayableItem==0
-			if IsPlayable base==0
-				set rActor to GetNextRef
-				continue
-			endif
-		endif
-		;check if steal
-		let isLegal := call qrtIsLegalToPickUpFunction rActor
-		if isLegal==0
-			set rActor to GetNextRef
-			continue
-		endif
-		;check if quest item
-		if qrtGlobalMCMVariable.isPickQuestItem==0
-			if IsQuestItem base
-				set rActor to GetNextRef
-				continue
-			endif
-		endif
-		;all condition checked, loot now
-		set tempCount to rActor.GetRefCount
-		rActor.activate storeRef
-		if tempCount>1
-			let tempCount -= 1
-			storeRef.addItem base tempCount 1
-		endif
-		;messageex "owner= %n, cellOwner=%n" owner, cellOwner
-		;show message or not
-		if isShowMessage
-			messageex "%n looted to %n" rActor, storeRef
-		endif
-		;next item
-		set rActor to GetNextRef
-	loop
+	;all condition checked, loot now
+	set tempCount to rActor.GetRefCount
+	rActor.activate storeRef
+	if tempCount>1
+		let tempCount -= 1
+		set base to eachRef.GetBaseObject
+		storeRef.addItem base tempCount 1
+	endif
+	;messageex "owner= %n, cellOwner=%n" owner, cellOwner
+	;show message or not
+	if isShowMessage
+		messageex "%n looted to %n" rActor, storeRef
+	endif
 End 

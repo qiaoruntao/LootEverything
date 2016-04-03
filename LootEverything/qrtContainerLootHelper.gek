@@ -1,11 +1,10 @@
 ﻿scn qrtContainerLootHelper
 
-ref tryLootHelper
 ref rActor
 int isLegal
 int isInDistance
 
-Begin Function {tryLootHelper}
+Begin Function {}
 	set rActor to GetFirstRef 27
 	while rActor != 0
 		let isInDistance := call qrtLootDistanceCheckScript rActor
