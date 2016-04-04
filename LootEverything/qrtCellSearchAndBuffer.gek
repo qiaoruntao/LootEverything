@@ -1,0 +1,102 @@
+﻿scn qrtCellSearchAndBuffer
+
+;configurations
+int bufferSize
+int bufferRadius
+int updateRadiusScale
+int checkNum
+;static variables
+array_var bufferArr
+ref currentCell
+;temp variables
+ref eachRef
+int searchCount
+int refType
+ref tempCell
+int tempIsLootFailed
+array_var refItem
+float tempDistance
+int tempSize
+;temp loot use 
+ref storeRef
+int isLegal
+ref base
+int isInDistance
+int isPlayerDropped
+int tempType
+
+Begin Function {}
+	let bufferArr := GetRefs 201 1 0
+	foreach refItem <- bufferArr
+		let eachRef := refItem["value"]
+		;printtoconsole "distanceCheck start"
+		;check the distance
+		if qrtGlobalMCMVariable.distanceCheck!=0
+			if player.GetDistance eachRef >qrtGlobalMCMVariable.distanceCheck
+				;printtoconsole "distanceCheck continue"
+				continue
+			endif
+		endif
+		;printtoconsole "distanceCheck end"
+		;check if dropped by player
+		if qrtGlobalMCMVariable.isPickPlayerDroppedItems==0
+			let isPlayerDropped := GetSourceModIndex eachRef ==255
+			if isPlayerDropped
+				continue
+			endif
+		endif
+		;base is used multiple times below
+		set base to eachRef.GetBaseObject
+		;check if playable
+		if qrtGlobalMCMVariable.isPickUnPlayableItem==0
+			if IsPlayable base==0
+				continue
+			endif
+		endif
+		;check if steal
+		let isLegal := call qrtIsLegalToPickUpFunction eachRef
+		if isLegal==0
+			continue
+		endif
+		;check if quest item
+		if qrtGlobalMCMVariable.isPickQuestItem==0
+			if IsQuestItem base
+				continue
+			endif
+		endif
+		;proceed according item type
+		set tempType to eachRef.GetType
+		if tempType == 24
+			call qrtSingleKindLootFunction eachRef qrtGlobalMCMVariable.toWhichContainer24 qrtGlobalMCMVariable.isDisableMsg24
+		elseif tempType == 25
+			call qrtSingleKindLootFunction eachRef qrtGlobalMCMVariable.toWhichContainer25 qrtGlobalMCMVariable.isDisableMsg25
+		elseif tempType == 26
+			call qrtSingleKindLootFunction eachRef qrtGlobalMCMVariable.toWhichContainer26 qrtGlobalMCMVariable.isDisableMsg26
+		elseif tempType == 29
+			call qrtSingleKindLootFunction eachRef qrtGlobalMCMVariable.toWhichContainer29 qrtGlobalMCMVariable.isDisableMsg29
+		elseif tempType == 31
+			call qrtSingleKindLootFunction eachRef qrtGlobalMCMVariable.toWhichContainer31 qrtGlobalMCMVariable.isDisableMsg31
+		elseif tempType == 40
+			call qrtSingleKindLootFunction eachRef qrtGlobalMCMVariable.toWhichContainer40 qrtGlobalMCMVariable.isDisableMsg40
+		elseif tempType == 41
+			call qrtSingleKindLootFunction eachRef qrtGlobalMCMVariable.toWhichContainer41 qrtGlobalMCMVariable.isDisableMsg41
+		elseif tempType == 46
+			call qrtSingleKindLootFunction eachRef qrtGlobalMCMVariable.toWhichContainer46 qrtGlobalMCMVariable.isDisableMsg46
+		elseif tempType == 47
+			call qrtSingleKindLootFunction eachRef qrtGlobalMCMVariable.toWhichContainer47 qrtGlobalMCMVariable.isDisableMsg47
+		elseif tempType == 49
+			call qrtSingleKindLootFunction eachRef qrtGlobalMCMVariable.toWhichContainer49 qrtGlobalMCMVariable.isDisableMsg49
+		elseif tempType == 50
+			call qrtSingleKindLootFunction eachRef qrtGlobalMCMVariable.toWhichContainer50 qrtGlobalMCMVariable.isDisableMsg50
+		elseif tempType == 103
+			call qrtSingleKindLootFunction eachRef qrtGlobalMCMVariable.toWhichContainer103 qrtGlobalMCMVariable.isDisableMsg103
+		elseif tempType == 108
+			call qrtSingleKindLootFunction eachRef qrtGlobalMCMVariable.toWhichContainer108 qrtGlobalMCMVariable.isDisableMsg108
+		elseif tempType == 115
+			call qrtSingleKindLootFunction eachRef qrtGlobalMCMVariable.toWhichContainer115 qrtGlobalMCMVariable.isDisableMsg115
+		elseif tempType == 116
+			call qrtSingleKindLootFunction eachRef qrtGlobalMCMVariable.toWhichContainer116 qrtGlobalMCMVariable.isDisableMsg116
+		endif
+	loop
+
+End
