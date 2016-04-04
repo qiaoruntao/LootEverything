@@ -41,6 +41,9 @@ short toWhichContainer108
 short toWhichContainer115
 short toWhichContainer116
 
+array_var bufferArr
+ref currentCell
+
 begin GameMode
 	if iInit
 	else

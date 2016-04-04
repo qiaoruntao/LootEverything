@@ -1,1 +1,41 @@
-<NotepadPlus />
+<NotepadPlus>
+    <Project name="LootEverything">
+        <Folder name="geck_functions">
+            <File name="geck_functions\FireShot Capture 12 - Category_Console Functions - GECK_ - http___geck.bethsoft.com_index.php.png" />
+            <File name="geck_functions\FireShot Capture 13 - NVSE Expressions - GECK_ - http___geck.bethsoft.com_index.php.png" />
+            <File name="geck_functions\FireShot Capture 14 - NVSE Expressions - GECK_ - http___geck.bethsoft.com_index.php.png" />
+            <File name="geck_functions\FireShot Capture 15 - Cipscis - Fallout - Detecting Keypress_ - http___www.cipscis.com_fallout_tut.png" />
+            <File name="geck_functions\FireShot Capture 16 - Cipscis - Fallo_ - http___www.cipscis.com_fallout_tutorials_staged_timers.aspx.png" />
+            <File name="geck_functions\FireShot Capture 17 - List of Global Variables - GECK_ - http___geck.bethsoft.com_index.php.png" />
+            <File name="geck_functions\FireShot Capture 18 - Category_Designer Debug Tools - GECK_ - http___geck.bethsoft.com_index.php.png" />
+        </Folder>
+        <File name="containerScript3.txt" />
+        <File name="LootEverything" />
+        <File name="LootEverything.esp" />
+        <File name="qrtActorLootHelper.gek" />
+        <File name="qrtAddHonestHeartsPlantSupportScript.txt" />
+        <File name="qrtCellSearchAndBuffer.gek" />
+        <File name="qrtContainerLootCore.gek" />
+        <File name="qrtContainerLootCoreHelper.gek" />
+        <File name="qrtContainerLootHelper.gek" />
+        <File name="qrtGetLootStoreByDestinationInfo.gek" />
+        <File name="qrtIsInNoLootCell.gek" />
+        <File name="qrtIsLegalToPickUpFunction.txt" />
+        <File name="qrtKeyBindScript.gek" />
+        <File name="qrtLootDistanceCheckScript.gek" />
+        <File name="qrtLootInit.gek" />
+        <File name="qrtLootMain.gek" />
+        <File name="qrtManualLootScript.txt" />
+        <File name="qrtMCMDefault.gek" />
+        <File name="qrtMCMVariableStore.gek" />
+        <File name="qrtMCM_MenuScript.gek" />
+        <File name="qrtMenuTypeItemHelper01.txt" />
+        <File name="qrtMenuTypeItemHelper02.txt" />
+        <File name="qrtMyDistanceMeter.txt" />
+        <File name="qrtOpenMainContainerScript.txt" />
+        <File name="qrtPlantLootHelper.txt" />
+        <File name="qrtSingleKindLoot.gek" />
+        <File name="tryLootScript.txt" />
+        <File name="tryProject02version0_6.esp" />
+    </Project>
+</NotepadPlus>
