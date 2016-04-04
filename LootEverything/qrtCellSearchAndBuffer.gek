@@ -1,0 +1,44 @@
+﻿scn qrtCellSearchAndBuffer
+
+;configurations
+int bufferSize
+int bufferRadius
+int updateRadiusScale
+int checkNum
+;static variables
+array_var bufferArr
+ref currentCell
+;temp variables
+ref eachRef
+int searchCount
+int refType
+ref tempCell
+int tempIsLootFailed
+array_var Entry
+float tempDistance
+int tempSize
+int isInDistance
+
+Begin GameMode
+	set tempCell to player.gpc
+	printtoconsole "tempcell= %n, currentCell=%n" tempCell, currentCell
+	if currentCell != tempCell
+		printtoconsole "init now"
+		set eachRef to GetFirstRef 201 1 0
+		set currentCell to tempCell
+	endif
+	set searchCount to 0
+	while eachRef != 0 && searchCount<50
+		let searchCount +=1
+		let isInDistance := call qrtLootDistanceCheckScript eachRef
+		if isInDistance==0
+			set eachRef to GetNextRef
+			continue
+		endif
+		set eachRef to GetNextRef
+	loop
+	if eachRef ==0
+		printtoconsole "search ended"
+		set eachRef to GetFirstRef 201 1 0
+	endif
+End
