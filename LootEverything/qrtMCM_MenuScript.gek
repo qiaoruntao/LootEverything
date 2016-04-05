@@ -202,7 +202,10 @@ begin MenuMode 1013
 				elseif iOption == 9
 					set qrtGlobalMCMVariable.totalSearchNum to fValue
 				elseif iOption == 10
-					set qrtGlobalMCMVariable.searchInterval to fValue
+					if fValue!=0
+						set qrtGlobalMCMVariable.searchInterval to fValue
+						SetQuestDelay qrtAutoLoot fValue
+					endif
 				endif
 			elseif iSubMenu == 2
 				if iOption == 1
@@ -289,16 +292,16 @@ begin MenuMode 1013
 					SetUIFloat "StartMenu/MCM/_ValueMin" 0
 				elseif iOption == 9
 					SetUIFloat "StartMenu/MCM/_Value" qrtGlobalMCMVariable.totalSearchNum
-					SetUIFloat "StartMenu/MCM/_ValueDecimal" 1
+					SetUIFloat "StartMenu/MCM/_ValueDecimal" 0
 					SetUIFloat "StartMenu/MCM/_ValueIncrement" 1
 					SetUIFloat "StartMenu/MCM/_ValueMax" 999
 					SetUIFloat "StartMenu/MCM/_ValueMin" 0
 				elseif iOption == 10
 					SetUIFloat "StartMenu/MCM/_Value" qrtGlobalMCMVariable.searchInterval
-					SetUIFloat "StartMenu/MCM/_ValueDecimal" 1
+					SetUIFloat "StartMenu/MCM/_ValueDecimal" 3
 					SetUIFloat "StartMenu/MCM/_ValueIncrement" 0.001
-					SetUIFloat "StartMenu/MCM/_ValueMax" 99
-					SetUIFloat "StartMenu/MCM/_ValueMin" 0
+					SetUIFloat "StartMenu/MCM/_ValueMax" 10
+					SetUIFloat "StartMenu/MCM/_ValueMin" 0.001
 				endif
 			endif
 		elseif GetUIFloat "StartMenu/MCM/_DefaultScale"		;6 - DEFAULT SCALE
@@ -308,9 +311,9 @@ begin MenuMode 1013
 				if iOption == 5
 					SetUIFloat "StartMenu/MCM/_Value" 1.7
 				elseif iOption == 9
-					SetUIFloat "StartMenu/MCM/_Value" 1.7
+					SetUIFloat "StartMenu/MCM/_Value" 80
 				elseif iOption == 10
-					SetUIFloat "StartMenu/MCM/_Value" 1.7
+					SetUIFloat "StartMenu/MCM/_Value" 0.25
 				endif
 			endif
 		endif

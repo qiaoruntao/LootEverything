@@ -9,6 +9,7 @@ ref base
 
 Begin Function { lootTarget }
 	foreach refItem <- lootTarget
+		;printtoconsole "containerLootCore ref=%n" refItem
 		;check if quest item
 		set base to refItem.GetBaseObject
 		if qrtGlobalMCMVariable.isPickQuestItem==0
@@ -18,6 +19,7 @@ Begin Function { lootTarget }
 		endif
 		;proceed according item type
 		set tempType to refItem.GetType
+		;printtoconsole "start type=%g" tempType
 		if tempType == 24
 			call qrtContainerLootCoreHelper refItem qrtGlobalMCMVariable.toWhichContainer24 qrtGlobalMCMVariable.isDisableMsg24 lootTarget
 		elseif tempType == 25
@@ -49,5 +51,6 @@ Begin Function { lootTarget }
 		elseif tempType == 116
 			call qrtContainerLootCoreHelper refItem qrtGlobalMCMVariable.toWhichContainer116 qrtGlobalMCMVariable.isDisableMsg116 lootTarget
 		endif
+		;printtoconsole "ended"
 	loop
 End

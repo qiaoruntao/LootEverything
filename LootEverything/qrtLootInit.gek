@@ -2,5 +2,5 @@
 ;用于执行loot操作
 
 Begin GameMode
-	call qrtLootMain
+	call qrtLootMain qrtGlobalMCMVariable.totalSearchNum
 End

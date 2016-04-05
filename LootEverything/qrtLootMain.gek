@@ -1,8 +1,9 @@
 ﻿scn qrtLootMain
 
 ref tryLootHelper
+int totalSearchNum
 
-Begin Function {}
+Begin Function {totalSearchNum}
 	if call qrtIsInNoLootCell
 		;messageex "no loot room"
 		return
@@ -18,7 +19,7 @@ Begin Function {}
 	;200==creature-player
 	call qrtActorLootHelper 200
 	;process some type which require only one activate
-	call qrtCellSearchAndBuffer
+	call qrtCellSearchAndBuffer totalSearchNum
 	;make sure nothing is left
 	qrtLootHelper.RemoveAllItems qrtMainLootSafe 0 1
 End
