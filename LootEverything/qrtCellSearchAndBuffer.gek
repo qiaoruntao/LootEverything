@@ -6,10 +6,10 @@ int bufferRadius
 int updateRadiusScale
 int checkNum
 ;static variables
-array_var bufferArr
+ref eachRef
 ref currentCell
 ;temp variables
-ref eachRef
+
 int searchCount
 int refType
 ref tempCell
@@ -26,22 +26,38 @@ int isPlayerDropped
 int tempType
 
 Begin Function {}
-	let bufferArr := GetRefs 201 1 0
-	foreach refItem <- bufferArr
-		let eachRef := refItem["value"]
-		;printtoconsole "distanceCheck start"
+	;get from variables
+	set eachRef to qrtGlobalMCMVariable.eachRef
+	;main function
+	set tempCell to player.gpc
+	;printtoconsole "tempcell= %n, currentCell=%n" tempCell, qrtGlobalMCMVariable.currentCell
+	;printtoconsole "ref=%n" eachRef
+	if qrtGlobalMCMVariable.currentCell != tempCell
+		printtoconsole "init now"
+		set qrtGlobalMCMVariable.currentCell to tempCell
+		set eachRef to GetFirstRef 201 1 0
+	elseif IsReference eachRef ==0
+		printtoconsole "not a ref now"
+		set eachRef to GetFirstRef 201 1 0
+	endif
+	set searchCount to 0
+	while eachRef != 0 && searchCount<50
+		;printtoconsole "while check %n now" eachRef
+		;add count
+		let searchCount +=1
 		;check the distance
 		if qrtGlobalMCMVariable.distanceCheck!=0
 			if player.GetDistance eachRef >qrtGlobalMCMVariable.distanceCheck
 				;printtoconsole "distanceCheck continue"
+				set eachRef to GetNextRef
 				continue
 			endif
 		endif
-		;printtoconsole "distanceCheck end"
 		;check if dropped by player
 		if qrtGlobalMCMVariable.isPickPlayerDroppedItems==0
 			let isPlayerDropped := GetSourceModIndex eachRef ==255
 			if isPlayerDropped
+				set eachRef to GetNextRef
 				continue
 			endif
 		endif
@@ -50,17 +66,20 @@ Begin Function {}
 		;check if playable
 		if qrtGlobalMCMVariable.isPickUnPlayableItem==0
 			if IsPlayable base==0
+				set eachRef to GetNextRef
 				continue
 			endif
 		endif
 		;check if steal
 		let isLegal := call qrtIsLegalToPickUpFunction eachRef
 		if isLegal==0
+			set eachRef to GetNextRef
 			continue
 		endif
 		;check if quest item
 		if qrtGlobalMCMVariable.isPickQuestItem==0
 			if IsQuestItem base
+				set eachRef to GetNextRef
 				continue
 			endif
 		endif
@@ -97,6 +116,10 @@ Begin Function {}
 		elseif tempType == 116
 			call qrtSingleKindLootFunction eachRef qrtGlobalMCMVariable.toWhichContainer116 qrtGlobalMCMVariable.isDisableMsg116
 		endif
+		set eachRef to GetNextRef
 	loop
-
+	;get from variables
+	;printtoconsole "ref=%n" eachRef
+	printtoconsole "searchCount=%g" searchCount
+	set qrtGlobalMCMVariable.eachRef to eachRef
 End
