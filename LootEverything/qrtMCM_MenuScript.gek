@@ -89,6 +89,19 @@ begin MenuMode 1013
 				SetUIString "StartMenu/MCM/*:1/*:8/_title" "Pick Quest item"
 				SetUIFloat "StartMenu/MCM/*:1/*:8/_type" 4
 				SetUIFloat "StartMenu/MCM/*:1/*:8/_value" qrtGlobalMCMVariable.isPickQuestItem
+				;option
+				SetUIFloat "StartMenu/MCM/*:1/*:9/_enable" 1
+				SetUIFloat "StartMenu/MCM/*:1/*:9/_suffix" 1
+				SetUIString "StartMenu/MCM/*:1/*:9/_title" "Max Check Number"
+				SetUIFloat "StartMenu/MCM/*:1/*:9/_type" 2
+				SetUIFloat "StartMenu/MCM/*:1/*:9/_value" qrtGlobalMCMVariable.totalSearchNum
+				;option
+				SetUIFloat "StartMenu/MCM/*:1/*:10/_enable" 1
+				SetUIFloat "StartMenu/MCM/*:1/*:10/_suffix" 1
+				SetUIString "StartMenu/MCM/*:1/*:10/_suffixText" "second"
+				SetUIString "StartMenu/MCM/*:1/*:10/_title" "Check interval"
+				SetUIFloat "StartMenu/MCM/*:1/*:10/_type" 2.5
+				SetUIStringEx "StartMenu/MCM/*:1/*:10/value/*:1/string" "%.1f" qrtGlobalMCMVariable.searchInterval
 			elseif iSubMenu == 2
 				int subMenu2Index
 				set subMenu2Index to 1
@@ -186,6 +199,10 @@ begin MenuMode 1013
 					set qrtGlobalMCMVariable.isPickUnPlayableItem to fValue
 				elseif iOption == 8
 					set qrtGlobalMCMVariable.isPickQuestItem to fValue
+				elseif iOption == 9
+					set qrtGlobalMCMVariable.totalSearchNum to fValue
+				elseif iOption == 10
+					set qrtGlobalMCMVariable.searchInterval to fValue
 				endif
 			elseif iSubMenu == 2
 				if iOption == 1
@@ -268,7 +285,19 @@ begin MenuMode 1013
 					SetUIFloat "StartMenu/MCM/_Value" qrtGlobalMCMVariable.distanceCheck
 					SetUIFloat "StartMenu/MCM/_ValueDecimal" 1
 					SetUIFloat "StartMenu/MCM/_ValueIncrement" 0.1
-					SetUIFloat "StartMenu/MCM/_ValueMax" 500
+					SetUIFloat "StartMenu/MCM/_ValueMax" 999
+					SetUIFloat "StartMenu/MCM/_ValueMin" 0
+				elseif iOption == 9
+					SetUIFloat "StartMenu/MCM/_Value" qrtGlobalMCMVariable.totalSearchNum
+					SetUIFloat "StartMenu/MCM/_ValueDecimal" 1
+					SetUIFloat "StartMenu/MCM/_ValueIncrement" 1
+					SetUIFloat "StartMenu/MCM/_ValueMax" 999
+					SetUIFloat "StartMenu/MCM/_ValueMin" 0
+				elseif iOption == 10
+					SetUIFloat "StartMenu/MCM/_Value" qrtGlobalMCMVariable.searchInterval
+					SetUIFloat "StartMenu/MCM/_ValueDecimal" 1
+					SetUIFloat "StartMenu/MCM/_ValueIncrement" 0.001
+					SetUIFloat "StartMenu/MCM/_ValueMax" 99
 					SetUIFloat "StartMenu/MCM/_ValueMin" 0
 				endif
 			endif
@@ -277,6 +306,10 @@ begin MenuMode 1013
 			SetUIFloat "StartMenu/MCM/_ShowScale" 2
 			if iSubMenu == 1
 				if iOption == 5
+					SetUIFloat "StartMenu/MCM/_Value" 1.7
+				elseif iOption == 9
+					SetUIFloat "StartMenu/MCM/_Value" 1.7
+				elseif iOption == 10
 					SetUIFloat "StartMenu/MCM/_Value" 1.7
 				endif
 			endif
@@ -302,6 +335,10 @@ begin MenuMode 1013
 						SetUIString "StartMenu/MCM/*:9/string" "If set to ON, auto-loot will try picking up unplayable items."
 					elseif iMouseover == 8
 						SetUIString "StartMenu/MCM/*:9/string" "If set to ON, auto-loot will try picking up quest items."
+					elseif iMouseover == 9
+						SetUIString "StartMenu/MCM/*:9/string" "Define how many items should be checked in a auto-loot check."
+					elseif iMouseover == 10
+						SetUIString "StartMenu/MCM/*:9/string" "Define the interval between each auto-loot check."
 					endif
 				elseif iSubMenu == 2
 					SetUIString "StartMenu/MCM/*:9/string" "Change default store destination"

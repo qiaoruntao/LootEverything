@@ -40,8 +40,11 @@ short toWhichContainer103
 short toWhichContainer108
 short toWhichContainer115
 short toWhichContainer116
+;cellSearch
 ref eachRef
 ref currentCell
+int totalSearchNum
+float searchInterval
 
 begin GameMode
 	if iInit
