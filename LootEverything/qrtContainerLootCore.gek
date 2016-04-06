@@ -5,13 +5,18 @@ ref lootTarget
 ref refItem
 int tempType
 ref base
-
+int isLegal
 
 Begin Function { lootTarget }
 	foreach refItem <- lootTarget
-		;printtoconsole "containerLootCore ref=%n" refItem
-		;check if quest item
 		set base to refItem.GetBaseObject
+		;check if playable
+		if qrtGlobalMCMVariable.isPickUnPlayableItem==0
+			if IsPlayable base==0
+				continue
+			endif
+		endif
+		;check if quest item
 		if qrtGlobalMCMVariable.isPickQuestItem==0
 			if IsQuestItem base
 				continue
