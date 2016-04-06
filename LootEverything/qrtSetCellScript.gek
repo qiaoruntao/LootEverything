@@ -1,14 +1,14 @@
-﻿scn qrtKeyBindScript
+﻿scn qrtSetCellScript
 
 int bIsLootRoomPressed
 int isPressLootRoom
 int deleteResult
-int isPressOpenMainContainer
-int bIsPressOpenMainContainer
+short tempKey
 
 Begin GameMode
-	if bIsLootRoomPressed != IsKeyPressed qrtGlobalMCMVariable.cellToggleHotkey
-		set bIsLootRoomPressed to IsKeyPressed qrtGlobalMCMVariable.cellToggleHotkey
+	set tempKey to qrtGlobalMCMVariable.cellToggleHotkey
+	if bIsLootRoomPressed != IsKeyPressed tempKey
+		set bIsLootRoomPressed to IsKeyPressed tempKey
 		if bIsLootRoomPressed
 		else
 		;按钮放开了
@@ -24,10 +24,10 @@ Begin GameMode
 		if call qrtIsInNoLootCell
 			;不能loot的房间, 删除之
 			set deleteResult to ListRemoveForm qrtNoLootCellList currentCell
-			messageex "cell %n removed from exception list" currentCell
+			messageex "'%n' removed from auto-loot exception list" currentCell
 		else
 			AddFormToFormList qrtNoLootCellList currentCell
-			messageex "cell %n added into exception list" currentCell
+			messageex "'%n' added into auto-loot exception list" currentCell
 		endif
 	endif
 End

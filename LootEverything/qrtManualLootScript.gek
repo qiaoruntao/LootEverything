@@ -2,19 +2,24 @@
 
 int bIsLootRoomPressed
 int isPressLootRoom
-int deleteResult
+short tempKey
 int isPressOpenMainContainer
 int bIsPressManualLoot
 
 Begin GameMode
-	if bIsPressManualLoot != IsKeyPressed qrtGlobalMCMVariable.manualLootHotkey
-		set bIsPressManualLoot to IsKeyPressed qrtGlobalMCMVariable.manualLootHotkey
+	set tempKey to qrtGlobalMCMVariable.manualLootHotkey
+	;printtoconsole "key=%g" tempKey
+	if bIsPressManualLoot != IsKeyPressed tempKey
+		printtoconsole "manualLootHotkey pressed"
+		set bIsPressManualLoot to IsKeyPressed tempKey
 		if bIsPressManualLoot
 		else
 		;按钮放开了
+			printtoconsole "manualLootHotkey released"
 			set isPressOpenMainContainer to 1
 		endif
 	endif
+	;printtoconsole "manualLootHotkey endif"
 	if isPressOpenMainContainer==1
 		set isPressOpenMainContainer to 0
 		messageex "loot now"

@@ -1,0 +1,22 @@
+﻿scn qrtOpenMainContainerScript
+
+short tempKey
+int isPressOpenContainer
+int bisPressOpenContainer
+
+Begin GameMode
+	set tempKey to qrtGlobalMCMVariable.mainContainerHotkey
+	if bisPressOpenContainer != IsKeyPressed tempKey
+		set bisPressOpenContainer to IsKeyPressed tempKey
+		if bisPressOpenContainer
+		else
+		;按钮放开了
+			set isPressOpenContainer to 1
+		endif
+	endif
+	if isPressOpenContainer==1
+		set isPressOpenContainer to 0
+		;messageex "open container"
+		qrtMainLootSafe.activate player
+	endif
+End
