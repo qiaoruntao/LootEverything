@@ -1,0 +1,5 @@
+﻿scn qrtContainerOwnedScript
+
+Begin OnActivate player
+	activate player
+End

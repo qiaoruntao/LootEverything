@@ -17,6 +17,6 @@ Begin GameMode
 	if isPressOpenContainer==1
 		set isPressOpenContainer to 0
 		;messageex "open container"
-		qrtMainLootSafe.activate player
+		qrtMainLootSafe.activate player 0
 	endif
 End
