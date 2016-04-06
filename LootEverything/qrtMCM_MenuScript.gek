@@ -66,7 +66,7 @@ begin MenuMode 1013
 				SetUIFloat "StartMenu/MCM/*:1/*:5/_enable" 1
 				SetUIFloat "StartMenu/MCM/*:1/*:5/_suffix" 1
 				SetUIString "StartMenu/MCM/*:1/*:5/_suffixText" "unit"
-				SetUIString "StartMenu/MCM/*:1/*:5/_title" "Max Loot Distance(0 means no distance check)"
+				SetUIString "StartMenu/MCM/*:1/*:5/_title" "Max Loot Distance"
 				SetUIFloat "StartMenu/MCM/*:1/*:5/_type" 2.5
 				SetUIStringEx "StartMenu/MCM/*:1/*:5/value/*:1/string" "%.1f" qrtGlobalMCMVariable.distanceCheck
 				;option 
@@ -331,7 +331,7 @@ begin MenuMode 1013
 					elseif iMouseover == 4
 						SetUIString "StartMenu/MCM/*:9/string" "Press to start a loot, no matter whether auto-loot is enabled."
 					elseif iMouseover == 5
-						SetUIString "StartMenu/MCM/*:9/string" "Define the maximum distance auto-loot can loot. Currently not recommended to set larger than 0, it makes the game laggy."
+						SetUIString "StartMenu/MCM/*:9/string" "Define the maximum distance auto-loot can loot. 0 means no distance check. Currently not recommended to set larger than 0, it makes the game laggy."
 					elseif iMouseover == 6
 						SetUIString "StartMenu/MCM/*:9/string" "If set to ON, auto-loot will try picking what you drop."
 					elseif iMouseover == 7
@@ -339,7 +339,7 @@ begin MenuMode 1013
 					elseif iMouseover == 8
 						SetUIString "StartMenu/MCM/*:9/string" "If set to ON, auto-loot will try picking up quest items."
 					elseif iMouseover == 9
-						SetUIString "StartMenu/MCM/*:9/string" "Define how many items should be checked in a auto-loot check."
+						SetUIString "StartMenu/MCM/*:9/string" "Define how many items should be checked in a auto-loot check.0 means check all items."
 					elseif iMouseover == 10
 						SetUIString "StartMenu/MCM/*:9/string" "Define the interval between each auto-loot check."
 					endif
