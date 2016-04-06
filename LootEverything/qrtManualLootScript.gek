@@ -10,12 +10,12 @@ Begin GameMode
 	set tempKey to qrtGlobalMCMVariable.manualLootHotkey
 	;printtoconsole "key=%g" tempKey
 	if bIsPressManualLoot != IsKeyPressed tempKey
-		printtoconsole "manualLootHotkey pressed"
+		;printtoconsole "manualLootHotkey pressed"
 		set bIsPressManualLoot to IsKeyPressed tempKey
 		if bIsPressManualLoot
 		else
 		;按钮放开了
-			printtoconsole "manualLootHotkey released"
+			;printtoconsole "manualLootHotkey released"
 			set isPressOpenMainContainer to 1
 		endif
 	endif

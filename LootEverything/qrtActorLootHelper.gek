@@ -36,7 +36,7 @@ Begin Function { itemType}
 		endif
 		;main process
 		set creatureContainer to rActor.GetContainer
-		PrintToConsole "%n actor loop start" rActor
+		;PrintToConsole "%n actor loop start" rActor
 		call qrtContainerLootCore rActor
 		;next item
 		set rActor to GetNextRef
