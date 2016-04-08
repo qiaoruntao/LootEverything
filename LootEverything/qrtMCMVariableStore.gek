@@ -44,6 +44,7 @@ short toWhichContainer116
 ref eachRef201
 ref eachRef103
 ref eachRef116
+int checkStage
 ref currentCell
 int totalSearchNum
 float searchInterval
