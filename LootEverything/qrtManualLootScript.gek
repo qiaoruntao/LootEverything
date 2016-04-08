@@ -1,0 +1,28 @@
+﻿scn qrtManualLootScript
+
+int bIsLootRoomPressed
+int isPressLootRoom
+short tempKey
+int isPressOpenMainContainer
+int bIsPressManualLoot
+
+Begin GameMode
+	set tempKey to qrtGlobalMCMVariable.manualLootHotkey
+	;printtoconsole "key=%g" tempKey
+	if bIsPressManualLoot != IsKeyPressed tempKey
+		;printtoconsole "manualLootHotkey pressed"
+		set bIsPressManualLoot to IsKeyPressed tempKey
+		if bIsPressManualLoot
+		else
+		;按钮放开了
+			;printtoconsole "manualLootHotkey released"
+			set isPressOpenMainContainer to 1
+		endif
+	endif
+	;printtoconsole "manualLootHotkey endif"
+	if isPressOpenMainContainer==1
+		set isPressOpenMainContainer to 0
+		messageex "loot now"
+		call qrtLootMain 0
+	endif
+End

@@ -1,0 +1,33 @@
+﻿scn qrtSetCellScript
+
+int bIsLootRoomPressed
+int isPressLootRoom
+int deleteResult
+short tempKey
+
+Begin GameMode
+	set tempKey to qrtGlobalMCMVariable.cellToggleHotkey
+	if bIsLootRoomPressed != IsKeyPressed tempKey
+		set bIsLootRoomPressed to IsKeyPressed tempKey
+		if bIsLootRoomPressed
+		else
+		;按钮放开了
+			set isPressLootRoom to 1
+		endif
+	endif
+	if isPressLootRoom==1
+		;messageex "no loot received"
+		set isPressLootRoom to 0
+		;add current cell to form
+		ref currentCell
+		set currentCell to player.gpc
+		if call qrtIsInNoLootCell
+			;不能loot的房间, 删除之
+			set deleteResult to ListRemoveForm qrtNoLootCellList currentCell
+			messageex "'%n' removed from auto-loot exception list" currentCell
+		else
+			AddFormToFormList qrtNoLootCellList currentCell
+			messageex "'%n' added into auto-loot exception list" currentCell
+		endif
+	endif
+End
