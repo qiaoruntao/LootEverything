@@ -14,7 +14,7 @@ int tempType
 
 Begin Function {totalSearchNum}
 	;get from variables
-	set eachRef to qrtGlobalMCMVariable.eachRef
+	set eachRef to qrtGlobalMCMVariable.eachRef201
 	;main function
 	set tempCell to player.gpc
 	;printtoconsole "tempcell= %n, currentCell=%n" tempCell, qrtGlobalMCMVariable.currentCell
@@ -22,9 +22,6 @@ Begin Function {totalSearchNum}
 	if qrtGlobalMCMVariable.currentCell != tempCell
 		;printtoconsole "init now"
 		set qrtGlobalMCMVariable.currentCell to tempCell
-		set eachRef to GetFirstRef 201 1 0
-	elseif IsReference eachRef ==0
-		;printtoconsole "not a ref now"
 		set eachRef to GetFirstRef 201 1 0
 	endif
 	set searchCount to 0
@@ -93,19 +90,40 @@ Begin Function {totalSearchNum}
 			call qrtSingleKindLootFunction eachRef qrtGlobalMCMVariable.toWhichContainer49 qrtGlobalMCMVariable.isDisableMsg49
 		elseif tempType == 50
 			call qrtSingleKindLootFunction eachRef qrtGlobalMCMVariable.toWhichContainer50 qrtGlobalMCMVariable.isDisableMsg50
-		elseif tempType == 103
-			call qrtSingleKindLootFunction eachRef qrtGlobalMCMVariable.toWhichContainer103 qrtGlobalMCMVariable.isDisableMsg103
 		elseif tempType == 108
 			call qrtSingleKindLootFunction eachRef qrtGlobalMCMVariable.toWhichContainer108 qrtGlobalMCMVariable.isDisableMsg108
 		elseif tempType == 115
 			call qrtSingleKindLootFunction eachRef qrtGlobalMCMVariable.toWhichContainer115 qrtGlobalMCMVariable.isDisableMsg115
-		elseif tempType == 116
-			call qrtSingleKindLootFunction eachRef qrtGlobalMCMVariable.toWhichContainer116 qrtGlobalMCMVariable.isDisableMsg116
 		endif
 		set eachRef to GetNextRef
 	loop
+	if IsReference eachRef ==0
+		;printtoconsole "not a ref now"
+		set eachRef to GetFirstRef 201 1 0
+	endif
+	set qrtGlobalMCMVariable.eachRef201 to eachRef
 	;get from variables
 	;printtoconsole "ref=%n" eachRef
 	;printtoconsole "searchCount=%g" searchCount
-	set qrtGlobalMCMVariable.eachRef to eachRef
+	set eachRef to qrtGlobalMCMVariable.eachRef103
+	while eachRef != 0 && (totalSearchNum==0 ||searchCount<totalSearchNum)
+		printtoconsole "while check %n now 103" eachRef
+	loop
+	if IsReference eachRef ==0
+		;printtoconsole "not a ref now"
+		set eachRef to GetFirstRef 103 1 0
+	endif
+	set qrtGlobalMCMVariable.eachRef103 to eachRef
+	;get from variables
+	;printtoconsole "ref=%n" eachRef
+	;printtoconsole "searchCount=%g" searchCount
+	set eachRef to qrtGlobalMCMVariable.eachRef116
+	while eachRef != 0 && (totalSearchNum==0 ||searchCount<totalSearchNum)
+		printtoconsole "while check %n now 116" eachRef
+	loop
+	if IsReference eachRef ==0
+		;printtoconsole "not a ref now"
+		set eachRef to GetFirstRef 116 1 0
+	endif
+	set qrtGlobalMCMVariable.eachRef116 to eachRef
 End

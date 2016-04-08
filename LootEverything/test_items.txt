@@ -1,3 +1,15 @@
 ﻿test item
 1. key bind
 2. loot function manual&auto
+
+case kFormType_Armor:
+case kFormType_Book:
+case kFormType_Clothing:
+case kFormType_Ingredient:
+case kFormType_Misc:
+case kFormType_Weapon:
+case kFormType_Ammo:
+case kFormType_Key:
+case kFormType_AlchemyItem:
+case kFormType_ARMA:
+case kFormType_Light:
