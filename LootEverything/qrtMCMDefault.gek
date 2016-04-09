@@ -1,0 +1,45 @@
+﻿scn qrtMCMDefault
+
+Begin Function {}
+	set qrtGlobalMCMVariable.isPickQuestItem to 0
+	set qrtGlobalMCMVariable.isAutoLootEnabled to 1
+	set qrtGlobalMCMVariable.mainContainerHotkey to 50
+	set qrtGlobalMCMVariable.cellToggleHotkey to 49
+	set qrtGlobalMCMVariable.isLootIntoContainer to 0
+	set qrtGlobalMCMVariable.distanceCheck to 0
+	set qrtGlobalMCMVariable.isPickPlayerDroppedItems to 1
+	set qrtGlobalMCMVariable.isPickUnPlayableItem to 0
+	set qrtGlobalMCMVariable.manualLootHotkey to 51
+	set qrtGlobalMCMVariable.isDisableMsg24 to 1
+	set qrtGlobalMCMVariable.isDisableMsg25 to 1
+	set qrtGlobalMCMVariable.isDisableMsg26 to 1
+	set qrtGlobalMCMVariable.isDisableMsg29 to 1
+	set qrtGlobalMCMVariable.isDisableMsg31 to 1
+	set qrtGlobalMCMVariable.isDisableMsg40 to 1
+	set qrtGlobalMCMVariable.isDisableMsg41 to 1
+	set qrtGlobalMCMVariable.isDisableMsg46 to 1
+	set qrtGlobalMCMVariable.isDisableMsg47 to 1
+	set qrtGlobalMCMVariable.isDisableMsg49 to 1
+	set qrtGlobalMCMVariable.isDisableMsg50 to 1
+	set qrtGlobalMCMVariable.isDisableMsg103 to 1
+	set qrtGlobalMCMVariable.isDisableMsg108 to 1
+	set qrtGlobalMCMVariable.isDisableMsg115 to 1
+	set qrtGlobalMCMVariable.isDisableMsg116 to 1
+	set qrtGlobalMCMVariable.toWhichContainer24 to 1
+	set qrtGlobalMCMVariable.toWhichContainer25 to 1
+	set qrtGlobalMCMVariable.toWhichContainer26 to 1
+	set qrtGlobalMCMVariable.toWhichContainer29 to 1
+	set qrtGlobalMCMVariable.toWhichContainer31 to 1
+	set qrtGlobalMCMVariable.toWhichContainer40 to 1
+	set qrtGlobalMCMVariable.toWhichContainer41 to 1
+	set qrtGlobalMCMVariable.toWhichContainer46 to 1
+	set qrtGlobalMCMVariable.toWhichContainer47 to 1
+	set qrtGlobalMCMVariable.toWhichContainer49 to 1
+	set qrtGlobalMCMVariable.toWhichContainer50 to 1
+	set qrtGlobalMCMVariable.toWhichContainer103 to 1
+	set qrtGlobalMCMVariable.toWhichContainer108 to 1
+	set qrtGlobalMCMVariable.toWhichContainer115 to 1
+	set qrtGlobalMCMVariable.toWhichContainer116 to 1
+	set qrtGlobalMCMVariable.totalSearchNum to 300
+	set qrtGlobalMCMVariable.searchInterval to 0.25
+End

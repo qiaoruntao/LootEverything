@@ -25,9 +25,9 @@ Begin Function { rActor, destinationInfo, isShowMessage}
 	;all condition checked, loot now
 	set tempCount to rActor.GetRefCount
 	rActor.activate storeRef
-	printtoconsole "%n count=%g" storeRef, tempCount
+	;printtoconsole "%n count=%g" storeRef, tempCount
 	if tempCount>1
-		printtoconsole "%n add count" storeRef
+		;printtoconsole "%n add count" storeRef
 		let tempCount -= 1
 		set base to rActor.GetBaseObject
 		storeRef.addItem base tempCount 1
