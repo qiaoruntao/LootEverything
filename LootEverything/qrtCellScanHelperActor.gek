@@ -10,11 +10,14 @@ ref cellOwner
 int isInDistance
 int searchCount
 int totalSearchNum
-
+float tempDistance
 Begin Function {searchCount, totalSearchNum}
 	printtoconsole "qrtCellScanHelperActor start"
 	set rActor to qrtGlobalMCMVariable.eachRefActor
-	if IsFormValid rActor ==0
+	if IsReference rActor ==0
+		printtoconsole "not a ref 200 1"
+		set rActor to GetFirstRef 200 1 0
+	elseif IsFormValid rActor ==0
 		printtoconsole "not a actor 200 1"
 		set rActor to GetFirstRef 200 1 0
 	elseif rActor.IsActor ==0
@@ -26,8 +29,9 @@ Begin Function {searchCount, totalSearchNum}
 		;check the distance
 		printtoconsole "distanceCheck start"
 		if qrtGlobalMCMVariable.distanceCheck!=0
-			if player.GetDistance rActor >qrtGlobalMCMVariable.distanceCheck
-				printtoconsole "distanceCheck continue"
+			set tempDistance to player.GetDistance rActor
+			if tempDistance >qrtGlobalMCMVariable.distanceCheck
+				printtoconsole "distanceCheck continue, distance=%.2f" tempDistance
 				set rActor to GetNextRef
 				printtoconsole "distanceCheck GetNextRef"
 				continue

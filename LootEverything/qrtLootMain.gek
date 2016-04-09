@@ -1,19 +1,24 @@
 ﻿scn qrtLootMain
 
-ref tryLootHelper
 int totalSearchNum
 int searchCount
 int isChecked
+ref currentCell
 
 Begin Function {totalSearchNum}
-	if call qrtIsInNoLootCell
+	set currentCell to player.gpc
+	;reset the buffer in a new cell
+	if currentCell != qrtGlobalMCMVariable.previousCell
+		printtoconsole "new cell reset ref now"
+		let qrtGlobalMCMVariable.eachRefActor := 0
+		let qrtGlobalMCMVariable.eachRefPlant := 0
+		let qrtGlobalMCMVariable.eachRefContainer := 0
+		set qrtGlobalMCMVariable.previousCell to currentCell
+	endif
+	;check if the cell needs to be looted
+	if IsRefInList qrtNoLootCellList currentCell !=-1
 		;messageex "no loot room"
 		return
-	endif
-	if qrtGlobalMCMVariable.isLootIntoContainer==1
-		set tryLootHelper to qrtLootHelper
-	else
-		set tryLootHelper to player
 	endif
 	;process some type which require only one activate
 	set isChecked to 0
