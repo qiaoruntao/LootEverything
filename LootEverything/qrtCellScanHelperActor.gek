@@ -12,32 +12,32 @@ int searchCount
 int totalSearchNum
 float tempDistance
 Begin Function {searchCount, totalSearchNum}
-	printtoconsole "qrtCellScanHelperActor start"
+	;printtoconsole "qrtCellScanHelperActor start"
 	set rActor to qrtGlobalMCMVariable.eachRefActor
 	if IsReference rActor ==0
-		printtoconsole "not a ref 200 1"
+		;printtoconsole "not a ref 200 1"
 		set rActor to GetFirstRef 200 1 0
 	elseif IsFormValid rActor ==0
-		printtoconsole "not a actor 200 1"
+		;printtoconsole "not a actor 200 1"
 		set rActor to GetFirstRef 200 1 0
 	elseif rActor.IsActor ==0
-		printtoconsole "not a actor 200"
+		;printtoconsole "not a actor 200"
 		set rActor to GetFirstRef 200 1 0
 	endif
 	while rActor != 0 && (totalSearchNum==0 ||searchCount<totalSearchNum)
 		let searchCount +=1
 		;check the distance
-		printtoconsole "distanceCheck start"
+		;printtoconsole "distanceCheck start"
 		if qrtGlobalMCMVariable.distanceCheck!=0
 			set tempDistance to player.GetDistance rActor
 			if tempDistance >qrtGlobalMCMVariable.distanceCheck
-				printtoconsole "distanceCheck continue, distance=%.2f" tempDistance
+				;printtoconsole "distanceCheck continue, distance=%.2f" tempDistance
 				set rActor to GetNextRef
-				printtoconsole "distanceCheck GetNextRef"
+				;printtoconsole "distanceCheck GetNextRef"
 				continue
 			endif
 		endif
-		printtoconsole "distanceCheck end"
+		;printtoconsole "distanceCheck end"
 		if rActor.GetDead==0
 			set rActor to GetNextRef
 			continue
@@ -52,21 +52,21 @@ Begin Function {searchCount, totalSearchNum}
 		endif
 		;main process
 		set creatureContainer to rActor.GetContainer
-		PrintToConsole "%n actor loot start" rActor
+		;PrintToConsole "%n actor loot start" rActor
 		call qrtContainerLootCore rActor
-		PrintToConsole "%n actor loot end" rActor
+		;PrintToConsole "%n actor loot end" rActor
 		;next item
 		set rActor to GetNextRef
 	loop
-	printtoconsole "loop end"
+	;printtoconsole "loop end"
 	if rActor==0
-		printtoconsole "rActor ==0"
+		;printtoconsole "rActor ==0"
 		;all searched, next category
 		set qrtGlobalMCMVariable.checkStage to 8
 		set rActor to GetFirstRef 200 1 0
 	endif
-	printtoconsole "reset rActor"
+	;printtoconsole "reset rActor"
 	set qrtGlobalMCMVariable.eachRefActor to rActor
 	SetFunctionValue searchCount
-	printtoconsole "qrtCellScanHelperActor end"
+	;printtoconsole "qrtCellScanHelperActor end"
 End

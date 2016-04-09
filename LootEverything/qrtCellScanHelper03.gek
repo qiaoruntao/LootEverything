@@ -3,18 +3,56 @@
 int searchCount
 ref eachRef
 int totalSearchNum
+ref base
+int isLegal
 
 Begin Function { searchCount, totalSearchNum}
 	;printtoconsole "check 49 now"
 	set eachRef to qrtGlobalMCMVariable.eachRef49
 	if IsReference eachRef ==0
-		printtoconsole "not a ref now 49"
+		;printtoconsole "not a ref now 49"
 		set eachRef to GetFirstRef 49 1 0
 	endif
 	;printtoconsole "eachRef=%n, totalSearchNum=%g, searchCount=%g" eachRef, totalSearchNum, searchCount
 	while eachRef != 0 && (totalSearchNum==0 ||searchCount<totalSearchNum)
 		let searchCount +=1
-		;printtoconsole "while check %n now 49" eachRef
+		;check the distance
+		if qrtGlobalMCMVariable.distanceCheck!=0
+			if player.GetDistance eachRef >qrtGlobalMCMVariable.distanceCheck
+				;printtoconsole "distanceCheck continue"
+				set eachRef to GetNextRef
+				continue
+			endif
+		endif
+		;check if dropped by player
+		if qrtGlobalMCMVariable.isPickPlayerDroppedItems==0
+			if GetSourceModIndex eachRef ==255
+				set eachRef to GetNextRef
+				continue
+			endif
+		endif
+		;base is used multiple times below
+		set base to eachRef.GetBaseObject
+		;check if playable
+		if qrtGlobalMCMVariable.isPickUnPlayableItem==0
+			if IsPlayable base==0
+				set eachRef to GetNextRef
+				continue
+			endif
+		endif
+		;check if steal
+		let isLegal := call qrtIsLegalToPickUpFunction eachRef
+		if isLegal==0
+			set eachRef to GetNextRef
+			continue
+		endif
+		;check if quest item
+		if qrtGlobalMCMVariable.isPickQuestItem==0
+			if IsQuestItem base
+				set eachRef to GetNextRef
+				continue
+			endif
+		endif
 		call qrtSingleKindLootFunction eachRef qrtGlobalMCMVariable.toWhichContainer49 qrtGlobalMCMVariable.isDisableMsg49
 		set eachRef to GetNextRef
 		;printtoconsole "while check %n now 49" eachRef

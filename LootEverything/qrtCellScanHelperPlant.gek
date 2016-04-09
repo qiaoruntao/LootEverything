@@ -7,20 +7,22 @@ int searchCount
 int totalSearchNum
 
 Begin Function {searchCount, totalSearchNum}
-	printtoconsole "qrtCellScanHelperPlant start"
+	;printtoconsole "qrtCellScanHelperPlant start"
 	set rActor to qrtGlobalMCMVariable.eachRefPlant
 	if IsReference rActor ==0
-		printtoconsole "not a ref 21"
+		;printtoconsole "not a ref 21"
 		set rActor to GetFirstRef 21 1 0
 	endif
 	while rActor != 0 && (totalSearchNum==0 ||searchCount<totalSearchNum)
 		let searchCount +=1
 		set tempBaseId to rActor.GetBaseObject
 		;check the distance
-		let isInDistance := call qrtLootDistanceCheckScript rActor
-		if isInDistance==0
-			set rActor to GetNextRef
-			continue
+		if qrtGlobalMCMVariable.distanceCheck!=0
+			if player.GetDistance rActor >qrtGlobalMCMVariable.distanceCheck
+				;printtoconsole "distanceCheck continue"
+				set rActor to GetNextRef
+				continue
+			endif
 		endif
 		if IsRefInList qrtPlantList tempBaseId ==-1
 			set rActor to GetNextRef
@@ -39,5 +41,5 @@ Begin Function {searchCount, totalSearchNum}
 	endif
 	set qrtGlobalMCMVariable.eachRefPlant to rActor
 	SetFunctionValue searchCount
-	printtoconsole "qrtCellScanHelperPlant end"
+	;printtoconsole "qrtCellScanHelperPlant end"
 End 

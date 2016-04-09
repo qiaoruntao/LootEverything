@@ -9,7 +9,7 @@ Begin Function {totalSearchNum}
 	set currentCell to player.gpc
 	;reset the buffer in a new cell
 	if currentCell != qrtGlobalMCMVariable.previousCell
-		printtoconsole "new cell reset ref now"
+		;printtoconsole "new cell reset ref now"
 		let qrtGlobalMCMVariable.eachRefActor := 0
 		let qrtGlobalMCMVariable.eachRefPlant := 0
 		let qrtGlobalMCMVariable.eachRefContainer := 0
@@ -84,7 +84,7 @@ Begin Function {totalSearchNum}
 		set isChecked to 1
 	endif
 	if isChecked==0
-		printtoconsole "checkStage to 0 default"
+		;printtoconsole "checkStage to 0 default"
 		set qrtGlobalMCMVariable.checkStage to 0
 	endif
 	;make sure nothing is left

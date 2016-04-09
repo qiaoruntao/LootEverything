@@ -13,10 +13,13 @@ Begin Function {searchCount, totalSearchNum}
 	endif
 	while rActor != 0 && (totalSearchNum==0 ||searchCount<totalSearchNum)
 		let searchCount +=1
-		let isInDistance := call qrtLootDistanceCheckScript rActor
-		if isInDistance==0
-			set rActor to GetNextRef
-			continue
+		;check the distance
+		if qrtGlobalMCMVariable.distanceCheck!=0
+			if player.GetDistance rActor >qrtGlobalMCMVariable.distanceCheck
+				;printtoconsole "distanceCheck continue"
+				set rActor to GetNextRef
+				continue
+			endif
 		endif
 		if  rActor.GetContainerInventoryCount ==0
 			set rActor to GetNextRef

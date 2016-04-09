@@ -13,7 +13,6 @@ Begin Function { searchCount, totalSearchNum}
 		set eachRef to GetFirstRef 201 1 0
 	endif
 	while eachRef != 0 && (totalSearchNum==0 ||searchCount<totalSearchNum)
-		;printtoconsole "while check %n now" eachRef
 		;add count
 		let searchCount +=1
 		;check the distance
@@ -79,10 +78,10 @@ Begin Function { searchCount, totalSearchNum}
 	if eachRef==0
 		;all searched, next category
 		set qrtGlobalMCMVariable.checkStage to 1
-		printtoconsole "null 201"
+		;printtoconsole "null 201"
 		;set eachRef to GetFirstRef 201 1 0
 	endif
 	set qrtGlobalMCMVariable.eachRef201 to eachRef
 	SetFunctionValue searchCount
-	printtoconsole "checkStage to 1"
+	;printtoconsole "checkStage to 1"
 End
