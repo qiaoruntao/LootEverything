@@ -25,9 +25,11 @@ Begin Function { rActor, destinationInfo, isShowMessage}
 	;all condition checked, loot now
 	set tempCount to rActor.GetRefCount
 	rActor.activate storeRef
+	printtoconsole "%n count=%g" storeRef, tempCount
 	if tempCount>1
+		printtoconsole "%n add count" storeRef
 		let tempCount -= 1
-		set base to eachRef.GetBaseObject
+		set base to rActor.GetBaseObject
 		storeRef.addItem base tempCount 1
 	endif
 	;messageex "owner= %n, cellOwner=%n" owner, cellOwner

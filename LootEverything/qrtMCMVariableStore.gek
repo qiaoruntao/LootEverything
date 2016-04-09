@@ -42,7 +42,12 @@ short toWhichContainer115
 short toWhichContainer116
 ;cellSearch
 ref eachRef201
+ref eachRef49
+ref eachRef50
+ref eachRef49
 ref eachRef103
+ref eachRef108
+ref eachRef115
 ref eachRef116
 int checkStage
 ref currentCell
