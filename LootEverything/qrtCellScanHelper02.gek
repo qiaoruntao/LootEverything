@@ -1,0 +1,30 @@
+﻿scn qrtCellScanHelper02
+
+int searchCount
+ref eachRef
+
+Begin Function { searchCount}
+	printtoconsole "check 103 now"
+	set eachRef to qrtGlobalMCMVariable.eachRef103
+	if IsReference eachRef ==0
+		printtoconsole "not a ref now 103"
+		set eachRef to GetFirstRef 103 1 0
+	endif
+	printtoconsole "eachRef=%n, totalSearchNum=%g, searchCount=%g" eachRef, qrtGlobalMCMVariable.totalSearchNum, searchCount
+	while eachRef != 0 && (qrtGlobalMCMVariable.totalSearchNum==0 ||searchCount<qrtGlobalMCMVariable.totalSearchNum)
+		let searchCount +=1
+		printtoconsole "while check %n now 103" eachRef
+		call qrtSingleKindLootFunction eachRef qrtGlobalMCMVariable.toWhichContainer103 qrtGlobalMCMVariable.isDisableMsg103
+		set eachRef to GetNextRef
+		printtoconsole "while check %n now 103" eachRef
+	loop
+	if eachRef==0
+		;all searched, next category
+		set qrtGlobalMCMVariable.checkStage to 2
+		printtoconsole "null 103"
+		set eachRef to GetFirstRef 103 1 0
+	endif
+	set qrtGlobalMCMVariable.eachRef103 to eachRef
+	SetFunctionValue searchCount
+	printtoconsole "checkStage to 0"
+End
