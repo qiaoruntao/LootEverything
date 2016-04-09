@@ -11,6 +11,11 @@ short iSubMenu
 
 begin GameMode
 	if GetGameRestarted
+		con_SCOF "debuglog.txt"
+		printtoconsole "reset refs"
+		set qrtGlobalMCMVariable.eachRefPlant to 0
+		set qrtGlobalMCMVariable.eachRefActor to 0
+		set qrtGlobalMCMVariable.eachRefContainer to 0
 		if IsModLoaded "The Mod Configuration Menu.esp"
 			set iMaster to GetModIndex "The Mod Configuration Menu.esp"
 			set rList to BuildRef iMaster 2790

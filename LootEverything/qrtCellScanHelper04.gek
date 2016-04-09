@@ -2,16 +2,17 @@
 
 int searchCount
 ref eachRef
+int totalSearchNum
 
-Begin Function { searchCount}
+Begin Function { searchCount, totalSearchNum}
 	;printtoconsole "check 50 now"
 	set eachRef to qrtGlobalMCMVariable.eachRef50
 	if IsReference eachRef ==0
 		printtoconsole "not a ref now 50"
 		set eachRef to GetFirstRef 50 1 0
 	endif
-	;printtoconsole "eachRef=%n, totalSearchNum=%g, searchCount=%g" eachRef, qrtGlobalMCMVariable.totalSearchNum, searchCount
-	while eachRef != 0 && (qrtGlobalMCMVariable.totalSearchNum==0 ||searchCount<qrtGlobalMCMVariable.totalSearchNum)
+	;printtoconsole "eachRef=%n, totalSearchNum=%g, searchCount=%g" eachRef, totalSearchNum, searchCount
+	while eachRef != 0 && (totalSearchNum==0 ||searchCount<totalSearchNum)
 		let searchCount +=1
 		;printtoconsole "while check %n now 50" eachRef
 		call qrtSingleKindLootFunction eachRef qrtGlobalMCMVariable.toWhichContainer50 qrtGlobalMCMVariable.isDisableMsg50

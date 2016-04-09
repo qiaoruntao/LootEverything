@@ -1,0 +1,68 @@
+﻿scn qrtCellScanHelperActor
+
+ref rActor
+int isLegal
+ref base
+int tempCount
+ref creatureContainer
+ref owner
+ref cellOwner
+int isInDistance
+int searchCount
+int totalSearchNum
+
+Begin Function {searchCount, totalSearchNum}
+	printtoconsole "qrtCellScanHelperActor start"
+	set rActor to qrtGlobalMCMVariable.eachRefActor
+	if IsFormValid rActor ==0
+		printtoconsole "not a actor 200 1"
+		set rActor to GetFirstRef 200 1 0
+	elseif rActor.IsActor ==0
+		printtoconsole "not a actor 200"
+		set rActor to GetFirstRef 200 1 0
+	endif
+	while rActor != 0 && (totalSearchNum==0 ||searchCount<totalSearchNum)
+		let searchCount +=1
+		;check the distance
+		printtoconsole "distanceCheck start"
+		if qrtGlobalMCMVariable.distanceCheck!=0
+			if player.GetDistance rActor >qrtGlobalMCMVariable.distanceCheck
+				printtoconsole "distanceCheck continue"
+				set rActor to GetNextRef
+				printtoconsole "distanceCheck GetNextRef"
+				continue
+			endif
+		endif
+		printtoconsole "distanceCheck end"
+		if rActor.GetDead==0
+			set rActor to GetNextRef
+			continue
+		endif
+		if  rActor.GetContainerInventoryCount ==0
+			set rActor to GetNextRef
+			continue
+		endif
+		if rActor==qrtLootNPC
+			set rActor to GetNextRef
+			continue
+		endif
+		;main process
+		set creatureContainer to rActor.GetContainer
+		PrintToConsole "%n actor loot start" rActor
+		call qrtContainerLootCore rActor
+		PrintToConsole "%n actor loot end" rActor
+		;next item
+		set rActor to GetNextRef
+	loop
+	printtoconsole "loop end"
+	if rActor==0
+		printtoconsole "rActor ==0"
+		;all searched, next category
+		set qrtGlobalMCMVariable.checkStage to 8
+		set rActor to GetFirstRef 200 1 0
+	endif
+	printtoconsole "reset rActor"
+	set qrtGlobalMCMVariable.eachRefActor to rActor
+	SetFunctionValue searchCount
+	printtoconsole "qrtCellScanHelperActor end"
+End

@@ -2,6 +2,6 @@
 ;用于执行loot操作
 
 Begin GameMode
-	SetDebugMode 1
+	con_SCOF "debuglog.txt"
 	call qrtLootMain qrtGlobalMCMVariable.totalSearchNum
 End

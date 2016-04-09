@@ -49,6 +49,9 @@ ref eachRef103
 ref eachRef108
 ref eachRef115
 ref eachRef116
+ref eachRefActor
+ref eachRefPlant
+ref eachRefContainer
 int checkStage
 ref currentCell
 int totalSearchNum

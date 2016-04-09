@@ -1,12 +1,18 @@
-﻿scn qrtContainerLootHelper
+﻿scn qrtCellScanHelperContainer
 
 ref rActor
 int isLegal
 int isInDistance
+int searchCount
+int totalSearchNum
 
-Begin Function {}
-	set rActor to GetFirstRef 27
-	while rActor != 0
+Begin Function {searchCount, totalSearchNum}
+	set rActor to qrtGlobalMCMVariable.eachRefContainer
+	if IsReference rActor ==0
+		set rActor to GetFirstRef 27 1 0
+	endif
+	while rActor != 0 && (totalSearchNum==0 ||searchCount<totalSearchNum)
+		let searchCount +=1
 		let isInDistance := call qrtLootDistanceCheckScript rActor
 		if isInDistance==0
 			set rActor to GetNextRef
@@ -34,4 +40,11 @@ Begin Function {}
 		;next item
 		set rActor to GetNextRef
 	loop
+	if rActor==0
+		;all searched, next category
+		set qrtGlobalMCMVariable.checkStage to 0
+		set rActor to GetFirstRef 27 1 0
+	endif
+	set qrtGlobalMCMVariable.eachRefContainer to rActor
+	SetFunctionValue searchCount
 End 

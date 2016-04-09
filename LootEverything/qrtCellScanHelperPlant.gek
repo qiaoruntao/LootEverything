@@ -1,0 +1,43 @@
+﻿scn qrtCellScanHelperPlant
+
+ref tempBaseId
+ref rActor
+int isInDistance
+int searchCount
+int totalSearchNum
+
+Begin Function {searchCount, totalSearchNum}
+	printtoconsole "qrtCellScanHelperPlant start"
+	set rActor to qrtGlobalMCMVariable.eachRefPlant
+	if IsReference rActor ==0
+		printtoconsole "not a ref 21"
+		set rActor to GetFirstRef 21 1 0
+	endif
+	while rActor != 0 && (totalSearchNum==0 ||searchCount<totalSearchNum)
+		let searchCount +=1
+		set tempBaseId to rActor.GetBaseObject
+		;check the distance
+		let isInDistance := call qrtLootDistanceCheckScript rActor
+		if isInDistance==0
+			set rActor to GetNextRef
+			continue
+		endif
+		if IsRefInList qrtPlantList tempBaseId ==-1
+			set rActor to GetNextRef
+			continue
+		endif
+		;loot operations
+		rActor.activate player 1
+		;messageboxex "%n picked" rActor
+		;next one
+		set rActor to GetNextRef
+	loop
+	if rActor==0
+		;all searched, next category
+		set qrtGlobalMCMVariable.checkStage to 9
+		set rActor to GetFirstRef 21 1 0
+	endif
+	set qrtGlobalMCMVariable.eachRefPlant to rActor
+	SetFunctionValue searchCount
+	printtoconsole "qrtCellScanHelperPlant end"
+End 

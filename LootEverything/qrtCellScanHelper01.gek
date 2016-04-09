@@ -5,13 +5,14 @@ ref eachRef
 ref base
 int tempType
 int isLegal
+int totalSearchNum
 
-Begin Function { searchCount}
+Begin Function { searchCount, totalSearchNum}
 	set eachRef to qrtGlobalMCMVariable.eachRef201
 	if IsReference eachRef ==0
 		set eachRef to GetFirstRef 201 1 0
 	endif
-	while eachRef != 0 && (qrtGlobalMCMVariable.totalSearchNum==0 ||searchCount<qrtGlobalMCMVariable.totalSearchNum)
+	while eachRef != 0 && (totalSearchNum==0 ||searchCount<totalSearchNum)
 		;printtoconsole "while check %n now" eachRef
 		;add count
 		let searchCount +=1
@@ -72,14 +73,6 @@ Begin Function { searchCount}
 			call qrtSingleKindLootFunction eachRef qrtGlobalMCMVariable.toWhichContainer46 qrtGlobalMCMVariable.isDisableMsg46
 		elseif tempType == 47
 			call qrtSingleKindLootFunction eachRef qrtGlobalMCMVariable.toWhichContainer47 qrtGlobalMCMVariable.isDisableMsg47
-		elseif tempType == 49
-			call qrtSingleKindLootFunction eachRef qrtGlobalMCMVariable.toWhichContainer49 qrtGlobalMCMVariable.isDisableMsg49
-		elseif tempType == 50
-			call qrtSingleKindLootFunction eachRef qrtGlobalMCMVariable.toWhichContainer50 qrtGlobalMCMVariable.isDisableMsg50
-		elseif tempType == 108
-			call qrtSingleKindLootFunction eachRef qrtGlobalMCMVariable.toWhichContainer108 qrtGlobalMCMVariable.isDisableMsg108
-		elseif tempType == 115
-			call qrtSingleKindLootFunction eachRef qrtGlobalMCMVariable.toWhichContainer115 qrtGlobalMCMVariable.isDisableMsg115
 		endif
 		set eachRef to GetNextRef
 	loop
