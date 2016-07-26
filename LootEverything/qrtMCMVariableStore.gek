@@ -56,6 +56,7 @@ int checkStage
 ref previousCell
 int totalSearchNum
 float searchInterval
+short isManualLoot
 
 begin GameMode
 	if iInit

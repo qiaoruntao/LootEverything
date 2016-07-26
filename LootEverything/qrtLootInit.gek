@@ -3,5 +3,6 @@
 
 Begin GameMode
 	;con_SCOF "debuglog.txt"
+	set qrtGlobalMCMVariable.isManualLoot to 0
 	call qrtLootMain qrtGlobalMCMVariable.totalSearchNum
 End

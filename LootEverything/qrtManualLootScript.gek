@@ -23,6 +23,7 @@ Begin GameMode
 	if isPressOpenMainContainer==1
 		set isPressOpenMainContainer to 0
 		messageex "loot now"
+		set qrtGlobalMCMVariable.isManualLoot to 1
 		call qrtLootMain 0
 	endif
 End
